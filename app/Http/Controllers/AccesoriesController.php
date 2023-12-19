@@ -134,9 +134,11 @@ class AccesoriesController extends Controller
     })->editColumn('id_golongan',function($data){
         if($data->id_golongan == 29){
             return 'RMH.TANGGA D';
-        }elseif($data->id_golongan == 12){
+        }elseif($data->id_golongan == 28){
             return 'RT. C';
-        }else{
+        }elseif($data->id_golongan == 12){
+            return 'SK';
+         } else{
             
             return 'Belum Verifikasi';
         }
@@ -144,16 +146,21 @@ class AccesoriesController extends Controller
    
     })
     ->editColumn('id_merek',function($data){
-        if($data->id_merek == 9){
-            return 'RMH.TANGGA D';
-        }elseif($data->id_merek == 2){
-            return 'RT. C';
+        if($data->id_merek == 1){
+            return 'LINFLOW';
+        }elseif($data->id_merek == 14){
+            return 'BESTINI';
+        }elseif($data->id_merek == 13){
+            return 'BARINDO';
+        }elseif($data->id_merek == 12){
+            return 'ITRON';
+        }elseif($data->id_merek == 17){
+            return 'ONDA';
         }else{
             
-            return 'Belum Verifikasi';
+            return 'MASIH PROSES INPUT MEREK';
         }
-       
-   
+      
     })
     
     

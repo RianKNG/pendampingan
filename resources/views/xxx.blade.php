@@ -44,7 +44,7 @@
                     </td>
                     <td>
                       <select data-column="2" class="form-control filter-select">
-                      <option value="">--- Pilih Status Segel ---</option>
+                      <option value="">--- Pilih Segel ---</option>
                       @foreach($last_names as $segel)
                       <option value="{{ $segel }}">{{ $segel }}</option>
                       @endforeach
@@ -58,17 +58,34 @@
                     </td> --}}
                     <td>
                       <select data-column="6" class="form-control filter-select">
-                      <option value="">-- Select segel --</option>
-                      <option value=29>RMH.TANGGA D</option>
-                      <option value=12>RT. C</option>
-                      <option value=13>Belum Verify</option>
+                      <option value="">-- Pilih Golongan --</option>
+                      <option value= 11 >Sosial Umum</option>
+                      <option value= 12 >Sosial Khusus</option>
+                      <option value= 21 >RMH.TANGGA A</option>
+                      <option value= 22 >RMH.TANGGA B</option>
+                      <option value= 23 >PEMERINTAH</option>
+                      <option value= 28 >RT.C</option>
+                      <option value= 29 >RT.D</option>
+                      <option value= 31 >NK KECIL</option>
+                      <option value= 32 >NK SEDANG</option>
+                      <option value= 33 >NK BESAR</option>
+                      <option value= 41 >IND KECIL</option>
+                      <option value= 42 >IND BESAR</option>
+                      <option value= 80 >KESEPAKATAN</option>
                     </td>
                     <td>
                       <select data-column="7" class="form-control filter-select">
-                      <option value="">-- Select Merek --</option>
-                      <option value= 9 >RMH.TANGGA D</option>
-                     
-                      <option value= 2 >Belum Verify</option>
+                      <option value="">-- Pilih Merek --</option>
+                      <option value= 1 >LIN</option>
+                      <option value= 13 >BAR</option>
+                      <option value= 14 >BEST</option>
+                      <option value= 12 >ITR</option>
+                      <option value= 18 >ONDA</option>
+                      <option value= 17 >AMICO</option>
+                      
+
+                      
+
                     </td>
                   
             </table>
