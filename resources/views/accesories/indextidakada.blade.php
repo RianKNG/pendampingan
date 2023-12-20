@@ -64,11 +64,11 @@
                               </thead>
                               <tbody>
                                 
-                                @foreach ($dupes as $index => $k)
+                                {{-- @foreach ($dupes as $index => $k)
                                   <tr>
                                     <td>{{ $k }}</td>
                                       
-                                  @endforeach
+                                  @endforeach --}}
                                 
                               </tbody>
    

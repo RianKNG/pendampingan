@@ -1,12 +1,9 @@
 
 @extends('templates.v_template')
-@section('title','Master Dil')
+@section('title','(CARI RINCI DATA DARI PELANGGAN)')
 @section('content')
-@if ($message = Session::get('success'))
-<div class="alert alert-success" role="alert">
- {{ $message }}
-</div>
-@endif
+
+
 {{-- @push('style')
 <link rel="stylesheet"
     href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -20,28 +17,34 @@
 <div class="card-outline card-primary">
   <div class="card-header">
     <h3 class="card-title">Data Dil</h3>
-    <br>
+    <br>`
     <div class="card-body">
       <div class="mx-auto pull-right">
           <div class="">
-              <form action="{{ route('dil') }}" method="GET" role="search">
-
-                  <div class="input-group">
-                    <span class="input-group-btn mr-2 mt-0">
-                      <button class="btn btn-info" type="submit" title="Search projects">
-                          <span class="fas fa-search"></span>
-                      </button>
-                  </span>
-                  <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term">
-                  <a href="{{ route('dil') }}" class=" mt-0">
-                      <span class="input-group-btn">
-                          <button class="btn btn-danger" type="button" title="Refresh page">
-                              <span class="fas fa-sync-alt"></span>
-                          </button>
-                      </span>
-                      </a>
-                  </div>
-              </form>
+           <form action="" method="get">
+             <div>
+               <label for="">Cabang</label>
+               <select name="cabang" id="">
+                <option value="">--- Pilih Cabang ---</option>
+                <option value="01" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] == '01' }}">Sumedang Utara</option>
+                <option value="14" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] == '14' }}">Cianggung</option>
+                <option value="02" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] == '02' }}">SS</option>
+                <option value="12" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] == '12' }}">SCT</option>
+               
+               </select>
+             
+            {{-- //  <input type="text" name="cabang" value="{{ isset($_GET['cabang']) ? $_GET['cabang'] : '' }}"> --}}
+             <input type="text" name="segel" value="{{ isset($_GET['segel']) ? $_GET['segel'] : '' }}">
+             {{-- <input type="text" name="segel" value="{{ isset($_GET['segel']) ? $_GET['segel'] : '' }}"> --}}
+             {{-- <select name="keyword" id="segel">
+             
+               
+                  <option value="">--- Pilih Segel ---</option>
+                
+             </select> --}}
+            </div>  
+             <button type="submit">Cari</button>
+           </form>
           </div>
       </div>
   </div>
@@ -60,10 +63,10 @@
                     <th>Status Sekarang</th>
                     <th>Cabang</th>
                     <th>No Sambungan</th>
-                    <th>Rek</th>
+                    <th>Segel</th>
                     <th>Nama Sekarang</th>
-                    {{-- <th>Nama Pemilik</th>
-                    <th>Nama Setelah BBN</th> --}}
+                    <th>Nama Pemilik</th>
+                    <th>Nama Setelah BBN</th>
                     {{-- <th>No Rumah</th>
                     <th>Rt</th>
                     <th>Rw</th>
@@ -85,7 +88,7 @@
                     <th>Bulan Billing</th>
                     <th>Tahun Billing</th> --}}
                     <th>Sumber Lain</th>
-                    <th>Keterangan</th>
+                    <th>Jenis Usaha</th>
                     {{-- <th>Aktip/Non Aktipkan</th> --}}
                     <th width="15%">Aksi</th>
                     
@@ -95,16 +98,16 @@
                 
                 <tbody>
                   
-                  @foreach ($data as $index => $k)
+                  @foreach ($dil as $index => $k)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     </td>
                     <td><label class=" btn {{ ($k->status == 1 ) ? 'btn-success btn-xs' : 'btn-danger btn-xs'}}">{{ ($k->status == 1 ) ? 'Aktip' : 'Non Aktip' }}</label></td>
                     <td>{{ duka($k->cabang) }}</td>  
                     <td>{{ $k->id }}</td>  
-                    <td>{{ $k->no_rekening }}</td>
+                    <td>{{ $k->segel }}</td>
                     <td class="text-warning">{{ $k->nama_sekarang }}</td>
-                    {{-- <td>
+                    <td>
                       @if(empty($k->nama_pemilik))
                       
                           <p class="text-white">__</p>
@@ -119,7 +122,7 @@
                       @else
                           <p class="text-danger">{{ $k->nama_baru }}</p>
                       @endif
-                    </td> --}}
+                    </td>
                     {{-- <td>{{ $k->no_rumah }}</td>
                     <td>{{ $k->rt }}</td>
                     <td>{{ $k->rw }}</td>
@@ -163,19 +166,7 @@
                           <a href="/dil/status/{{ $k->id }}" class="btn btn-xs btn-success">Aktip Kan&nbsp;.</a>
                         @endif
                       </td> --}}
-                      <td>
-                        <a href="dil/edit/{{ $k->id }}" class="btn btn-warning btn-xs"><i class="fa fa-edit" aria-hidden="true"></i>
-                        </a>
-                        <a href="dil/detail/{{ $k->id }}" class="btn btn-success btn-xs"><i class="fa fa-info-circle" aria-hidden="true"></i>
-                        </a>
-                        <a href="dil/hapus/{{ $k->id }}" 
-                          class="btn btn-danger btn-xs" 
-                          data-toggle="modal" 
-                          data-target="#delete{{ $k->id }}">
-                          <i class="fa fa-trash" aria-hidden="true"></i>
-
-                        </a>
-                    </td>
+                     
                   </tr>
                       
             
@@ -183,49 +174,23 @@
               </tbody>
             
               </table>
-              @if ($data->links()->paginator->hasPages())
-              <div class="mt-4 p-4 box has-text-centered">
-                  {{ $data->links() }}
-              </div>
-          @endif
+            
               {{-- {{$data->links("pagination::bootstrap-4")}}
 
 <p>
     Menampilkan {{$data->count()}} of {{ $data->total() }} Dil.
 </p>  --}}
-    {{-- *// ini adalah modal denger --}}
-    @foreach ($data as $index => $k)
-    <div class="modal fade" id="delete{{ $k->id }}">
-      <div class="modal-dialog">
-        <div class="modal-content bg-info">
-          <div class="modal-header">
-            <h4 class="modal-title">No Sambungan&hellip;{{ $k->id}}</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Apakah anda yakin ingin hapus Data? {{ $k->nama_sekarang}}</p>
-          </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Batal</button>
-            <a href="dil/hapus/{{ $k->id }}" class="btn btn-danger btn-sm">Hapus</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    @endforeach
+  
     </table>
+   
   </div>
+  @if ($dil->links()->paginator->hasPages())
+<div class="mt-4 p-4 box has-text-centered">
+    {{ $dil->links() }}
 </div>
+@endif
 </div>
-@endsection
-{{-- @push('scripts')
-<script>
-  $(document).ready(function () {
-    $('#table').DataTable({ info: false, ordering: false, paging: false });
-  });
-  </script>
-@endpush --}}
 
+</div>
+
+@endsection

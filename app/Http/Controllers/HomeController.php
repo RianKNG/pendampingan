@@ -291,8 +291,8 @@ class HomeController extends Controller
             $ganti12 = DB::table('ganti')->whereMonth('tanggal_ganti','12')->whereYear('tanggal_ganti',Carbon::now()->format('Y'))->count();
             
 
-            // $categories=['jan','feb','mar','apr','mei','jun','jul','ags','sep','okt','nov','des'];
-            $categories=['agsustus','september','oktober','nopember','desember'];
+            $categories=['januari','februari','maret','april','mei','juni','juli','agustus','september','oktober','nopember','desember'];
+            // $categories=['agsustus','september','oktober','nopember','desember'];
             // dd(json_encode($categories));
             $tahun=Carbon::now()->year;
             $star = "2004-03-01";
@@ -415,14 +415,14 @@ class HomeController extends Controller
             }elseif($testoke == $filling_Datesep){
               $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep];
             }elseif($testoke == $filling_Dateokt){
-              // $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep,$grafikokt];
-              $data=[$grafikags,$grafiksep,$grafikokt];
+              $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep,$grafikokt];
+              // $data=[$grafikags,$grafiksep,$grafikokt];
             }elseif($testoke == $filling_Datenov){
-              // $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep,$grafikokt,$grafiknov];
-              $data=[$grafikags,$grafiksep,$grafikokt,$grafiknov];
+              $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep,$grafikokt,$grafiknov];
+              // $data=[$grafikags,$grafiksep,$grafikokt,$grafiknov];
             }elseif($testoke == $filling_Datedes){
-              // $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep,$grafikokt,$grafiknov,$grafikdes];
-               $data=[$grafikags,$grafiksep,$grafikokt,$grafiknov,$grafikdes];
+              $data=[$grafikjan,$grafikpeb,$grafikmar,$grafikapr,$grafikmei,$grafikjun,$grafikjul,$grafikags,$grafiksep,$grafikokt,$grafiknov,$grafikdes];
+              //  $data=[$grafikags,$grafiksep,$grafikokt,$grafiknov,$grafikdes];
             }else{
               echo"Data Yang anda Cari melebihi Batas Pencarian";
             }

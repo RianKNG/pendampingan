@@ -37,56 +37,119 @@
                       {{-- <td>{{ duka($k->cabang) }}</td>  --}}
                       
                       {{-- @endforeach --}}
-                      <option value="5">Jatinangor</option>
-                      <option value="6">Tanjungsari</option>
+                      <option value="05">Jatinangor</option>
+                      <option value="06">Tanjungsari</option>
                       <option value="13">Pamulihan</option>
+                      <option value="09">Tomo</option>
+                      <option value="10"> Ujungjaya</option>
+                      <option value="03"> Darmaraja</option>
+                      <option value="12">Cisitu</option>
+                      <option value="14"> Cimanggung</option>
+                      <option value="06">Tanjungsari</option>
+                      <option value="13"> Pamulihan</option>
+                      <option value="01"> Sumedang Utara</option>
+                      <option value="07">Paseh</option>
+                      <option value="08">Cimalaka</option>
+                      <option value="02">Tanjungkerta</option>
+                      <option value="04">Situraja</option>
+                      <option value="11"> Wado</option>
+                      <option value="31"> Sumedang Selatan</option>
+                      <option value="05">Jatinangor</option>
+                      <option value="40"> Mol Pelayan Publik</option>
                      
                     </td>
                     <td>
                       <select data-column="2" class="form-control filter-select">
-                      <option value="">--- Pilih Segel ---</option>
-                      @foreach($last_names as $segel)
-                      <option value="{{ $segel }}">{{ $segel }}</option>
-                      @endforeach
+                      <option value="">--- Kondisi WM ---</option>
+                      <option value= 1 >BAIK</option>
+                      <option value= 2 >Rusak</option>
+                      <option value= 3 >BURAM</option>
+                      <option value= 4 >HILANG</option>
+                      <option value= 5 >RUMAH TERKUNCI</option>
+           
+                    </td>
+                    <td>
+                      <select data-column="3" class="form-control filter-select">
+                      <option value="">--- Kondisi Segel ---</option>
+                      <option value= 1 >Baik</option>
+                      <option value= 2 >TIDAK ADA</option>
+                      <option value= 3 >Rusak</option>
+                      <option value= 4 >Tidak Diketahui</option>
+           
+                    </td>
+                    <td>
+                      <select data-column="4" class="form-control filter-select">
+                      <option value="">--- Usaha ---</option>
+                      <option value= 1 >Ada</option>
+                      <option value= 2 >TIDAK ADA</option>
+                      <option value= 3 >Tabel Kosong</option>
+           
                     </td>
                     {{-- <td>
-                      <select data-column="3" class="form-control filter-select">
-                      <option value="">Select segel</option>
-                      @foreach($mer as $segel)
-                      <option value="{{ $segel->id }}">{{ $segel->merek }}</option>
+                      <select data-column="8" class="form-control filter-select">
+                      <option value="">Select ddddsegel</option>
+                      @foreach($gol as $segel)
+                      <option value="{{ $segel->id }}">{{ $segel->nama_golongan }}</option>
                       @endforeach
                     </td> --}}
-                    <td>
+                    {{-- <td>
                       <select data-column="6" class="form-control filter-select">
-                      <option value="">-- Pilih Golongan --</option>
-                      <option value= 11 >Sosial Umum</option>
-                      <option value= 12 >Sosial Khusus</option>
-                      <option value= 21 >RMH.TANGGA A</option>
-                      <option value= 22 >RMH.TANGGA B</option>
-                      <option value= 23 >PEMERINTAH</option>
-                      <option value= 28 >RT.C</option>
-                      <option value= 29 >RT.D</option>
-                      <option value= 31 >NK KECIL</option>
-                      <option value= 32 >NK SEDANG</option>
-                      <option value= 33 >NK BESAR</option>
-                      <option value= 41 >IND KECIL</option>
-                      <option value= 42 >IND BESAR</option>
-                      <option value= 80 >KESEPAKATAN</option>
-                    </td>
-                    <td>
-                      <select data-column="7" class="form-control filter-select">
                       <option value="">-- Pilih Merek --</option>
-                      <option value= 1 >LIN</option>
-                      <option value= 13 >BAR</option>
-                      <option value= 14 >BEST</option>
-                      <option value= 12 >ITR</option>
-                      <option value= 18 >ONDA</option>
+                      <option value= 01 >LINFLOW</option>
+                      <option value= 02 >KENT</option>
+                      <option value= 03 >AQUA</option>
+                      <option value= 04 >SAE SEOUL</option>
+                      <option value= 05 >B & R</option>
+                      <option value= 06 >ASAHI</option>
+                      <option value= 07 >BOSCO</option>
+                      <option value= 08 >KIMON</option>
+                      <option value= 09 >N.B</option>
+                      <option value= 10 >I.V.Z</option>
+                      <option value= 11 >MAGDALENA</option>
+                      <option value= 12 >ITRON</option>
+                      <option value= 13 >BARINDO</option>
+                      <option value= 14 >BESTINI</option>
+                      <option value= 15 >AG</option>
+                      <option value= 16 >MR</option>
                       <option value= 17 >AMICO</option>
-                      
-
-                      
-
-                    </td>
+                      <option value= 18 >ONDA</option>
+                      <option value= 19 >HILANG</option>
+                      <option value= 20 >MULTIMAH</option>
+                      <option value= 21 >S H</option>
+                      <option value= 22 >SHINHAN</option>
+                      <option value= 23 >CS</option>
+                      <option value= 24 >AICHI TOKAI</option>
+                      <option value= 25 >AKURAT</option>
+                      <option value= 26 >PKM</option>
+                      <option value= 27 >AKARIS</option>
+                      <option value= 28 >AIR MAS</option>
+                      <option value= 29 >LOUIS VIKTOR</option>
+                      <option value= 30 >NINGBO</option>
+                      <option value= 31 >SCHLUMBERGER</option>
+                      <option value= 32 >NULL</option>
+                      <option value= 33 >TIDAK TERVERIFIKASI</option>
+                      <option value= 222 >KOFONG</option>
+                      <option value= 266 >TEST</option>
+                     
+                    </td> --}}
+                    <td>
+                      <select data-column="5" class="form-control filter-select">
+                      <option value="">-- Pilih Golongan --</option>
+                      <option value= 11>Sosial Umum</option>
+                      <option value= 12>Sosial Khusus</option>
+                      <option value= 21>RMH.TANGGA A</option>
+                      <option value= 22>RMH.TANGGA B</option>
+                      <option value= 23>PEMERINTAH</option>
+                      <option value= 28>RT.C</option>
+                      <option value= 29>RT.D</option>
+                      <option value= 31>NK KECIL</option>
+                      <option value= 32>NK SEDANG</option>
+                      <option value= 33>NK BESAR</option>
+                      <option value= 41>IND KECIL</option>
+                      <option value= 42>IND BESAR</option>
+                      <option value= 80>KESEPAKATAN</option>
+                    </td> 
+                   
                   
             </table>
           
@@ -104,15 +167,20 @@
                 <th>Cabang</th>
                 {{-- <th>No Sambungan</th> --}}
                 {{-- <th>Cabang</th> --}}
+                <th>Kondisi WM</th>
                 <th>Segel</th>
-                <th>Sumber Lain</th>
-                <th>Jenis Usaha</th>
+                <th>Usaha</th>
+                <th>Golongan</th>
+               
+               
                 {{-- <th>Sumber Lain</th>
                 <th>Jenis Usaha</th>
                 <th>Merek</th> --}}
-                <th>Usaha</th>
-                <th>Golongan</th>
-                <th>Merek</th>
+                <th>Nama</th>
+                
+                {{-- <th>Merek</th> --}}
+               
+             
                
                 {{-- <th width="20%">Aksi</th> --}}
               </tr>
@@ -136,18 +204,21 @@
   var table = $('.data-table').DataTable({
     'processing':true,
     'serverSide':true,
-    // "orderable": false,
+    "lengthMenu":[[10,25,50,100,-1],[10,25,50,100,'semua']],
     'ajax': "{{ url('test/datatable') }}",
     'columns':[
       // {'data': 'DT_RowIndex'},
       {'data': 'id'},
       {'data': 'cabang'},
+      {'data': 'kondisi_wm'},
       {'data': 'segel'},
       {'data': 'usaha'},
-      {'data': 'sumber_lain'},
-      {'data': 'jenis_usaha'},
       {'data': 'id_golongan'},
-      {'data': 'id_merek'},
+     
+     
+      {'data': 'nama_sekarang'},
+     
+      
       // { 'render': function(data, type, row) { 
       //      var html = ""             
       //       if (row.id_golongan == 29) { 

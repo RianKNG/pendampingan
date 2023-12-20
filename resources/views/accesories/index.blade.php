@@ -19,54 +19,37 @@
   }
 </style>
     
+
+      
     <div class="row">
-      <div class="col-lg-12 col-6">
+      <div class="col-lg-6 col-6">
         <!-- small box -->
         <div class="small-box bg-success">
-          <span class="text-center">
-            <div>
-              <h4 class="blinkblink"><a href="/test/datatable" class="small-box-footer"> <strong>Pencarian Data Status Pelanggan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <i id="blink" class="fas fa-arrow-circle-right btn-warning"></i></a></h4>
-            </div>
-            
-            
-           </span>
-           <div>
-             
-           </div>
-            {{-- <h4>{{ $tidakada }}</h4> --}}
-           
-          </div>
+          <h4 class="bling"><a href="/test/jalan" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h4>
+        
           <div class="icon">
             <i class="ion ion-bag"></i>
-          
-        
+          </div>
+          <a href="/test/wmbaik" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <div class="small-box bg-success">
-          <span class="text-center">
-            <div>
-              <h4 class="bling"><a href="/test/jalan" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h4>
-            </div>
-            
-            
-           </span>
-           <div>
-             
-           </div>
-            {{-- <h4>{{ $tidakada }}</h4> --}}
-           
-          </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-6 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <h4 class="blinkblink"><a href="/test/datatable" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pencarian Data Status Pelanggan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <i id="blink" class="fas fa-arrow-circle-right btn-warning"></i></a></h4>
           <div class="icon">
-            <i class="ion ion-bag"></i>
-          
-        
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="/test/wmrusak" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
 
       <!-- ./col -->
     </div>
-      
-
+    <!-- /.row -->
+    <!-- Main row -->
 
 
     <div class="row">
@@ -151,15 +134,15 @@
         <!-- small box -->
         <div class="small-box bg-primary">
           <div class="inner">
-            <h4>({{ number_format($tidakada ,0,",",".") }})<sup style="font-size: 20px"></sup></h4>
+            <h4>({{ number_format($wmterkubur ,0,",",".") }})<sup style="font-size: 20px"></sup></h4>
             {{-- <h4>{{ $tidakada }}</h4> --}}
     
-            <p><i>Pelanggan Tidak ada Segel</i></p>
+            <p><i>Pelanggan WM Terkubur</i></p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
           </div>
-          <a href="/test/tidakada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="/test/wmterkubur" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -167,15 +150,15 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h4>({{ number_format($ada ,0,",",".") }})<sup style="font-size: 20px"></sup></h4>
+            <h4>({{ number_format($wmterkunci ,0,",",".") }})<sup style="font-size: 20px"></sup></h4>
             {{-- <h4>{{ $ada }}<sup style="font-size: 20px"></sup></h4> --}}
     
-            <p><i>Pelanggan ada Segel</i></p>
+            <p><i>Pelanggan WM Terkunci</i></p>
           </div>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/ada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="/test/wmterkunci" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -261,7 +244,7 @@
             <h4>({{ number_format($kada ,0,",",".") }})<sup style="font-size: 20px"></sup></h4>
             {{-- <h4>{{ $kada }}</h4> --}}
 
-            <p><i>Pelanggan Tidak ada Kopling</i></p>
+            <p><i>Pelanggan ada Kopling</i></p>
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -277,7 +260,7 @@
             <h4>({{ number_format($ktidakada ,0,",",".") }})<sup style="font-size: 20px"></sup></h4>
             {{-- <h4>{{ $ktidakada }}</h4> --}}
 
-            <p><i>Pelanggan ada Kopling</i></p>
+            <p><i>Pelanggan Tidak ada Kopling</i></p>
           </div>
           <div class="icon">
             <i class="ion ion-pie-graph"></i>

@@ -60,11 +60,11 @@
                     <tbody>
                   
                     
-                        @foreach ($tsegel1 as $key)
+                        @foreach ($querywm as $key)
                         <tr>
                           <td>{{ $loop->iteration }}</td> 
                         <td>{{ duka($key->cabang) }}</td> 
-                        <td>{{ $key->stop_kran }}</td> 
+                        <td>{{ $key->kondisi_wm }}</td> 
                     </tr>
                         @endforeach
                      

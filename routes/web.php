@@ -12,6 +12,7 @@ use App\Http\Controllers\DilController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\EvaluasiController;
@@ -66,6 +67,8 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/test/wmrusak', [AccesoriesController::class,'wmrusak'])->name('wmrusak');
     Route::get('/test/wmburam', [AccesoriesController::class,'wmburam'])->name('wmburam');
     Route::get('/test/wmhilang', [AccesoriesController::class,'wmhilang'])->name('wmhilang');
+    Route::get('/test/wmterkubur', [AccesoriesController::class,'wmterkubur'])->name('wmterkubur');
+    Route::get('/test/wmterkunci', [AccesoriesController::class,'wmterkunci'])->name('wmterkunci');
 
  
 
@@ -87,6 +90,7 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/pagination/fetch_data', [DilController::class,'fetch_data']);
     Route::get('/dil/cetakperiode', [DilController::class,'cetakperiode']);
     Route::get('/dil/cetakrt', [DilController::class,'cetakrt']);
+    
    
 
 
@@ -162,6 +166,8 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/golongan/hapus/{id}', [GolonganController::class,'hapus']);
 
     Route::get('/evaluasi', [EvaluasiController::class,'index']);
+
+    Route::get('/filter',[FilterController::class,'index']);
 });
 
 
