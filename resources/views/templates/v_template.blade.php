@@ -22,7 +22,7 @@
    {{-- <meta http-equiv ="refresh" content="{{ $sec; }}" URL="{{ $page; }}"> --}}
    @stack('style')
    
-   <link rel="stylesheet"href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+   {{-- <link rel="stylesheet"href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"> --}}
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -120,13 +120,16 @@
 <script src="{{ asset('adminLTE/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <script src="{{ asset('adminLTE/dist/js/pages/dashboard2.js') }}"></script> --}}
+{{-- ck editor --}}
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
 <!-- DataTables -->
+
 <script src="{{ asset('adminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 {{-- <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script> --}}
-
-{{-- @yield('script') --}}
+@yield('footer2')
+@yield('footer')
 @stack('scripts')
 @stack('kodescripts')
 </body>

@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\GolonganController;
@@ -168,6 +169,11 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/evaluasi', [EvaluasiController::class,'index']);
 
     Route::get('/filter',[FilterController::class,'index']);
+
+    Route::get('laporan', [LaporanController::class,'index'])->name('laporan');
+    Route::post('laporan/create', [LaporanController::class,'create'])->name('laporan.create');
+    Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
+    // Route::get('upload', [LaporanController::class,'uploadImage'])->name('laporan.upload');
 });
 
 

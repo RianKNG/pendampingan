@@ -395,7 +395,7 @@ class HomeController extends Controller
             foreach ($grafikdess as $keyresult) {
               $grafikdes =  $keyresult->jumlah;
             }
-           
+            // dd($grafikdes);
             if($testoke == $filling_Datejan){
               $data=[$grafikjan];
             }elseif($testoke == $filling_Datepeb){

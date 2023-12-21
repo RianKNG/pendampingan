@@ -658,7 +658,7 @@ public function wmbaik(Request $request)
                  ->where('kondisi_wm', '=', 4)
                  ->groupBy('cabang')
                  ->get();
-            // dd($querywm );
+          
             
       
         return view('accesories.wm4',compact('querywm'));

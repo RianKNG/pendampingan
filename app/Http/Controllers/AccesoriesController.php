@@ -75,12 +75,115 @@ class AccesoriesController extends Controller
              //tamgahan
              $wmterkubur = DB::table('tbl_dil')->where('kondisi_wm','5')->count();
              $wmterkunci = DB::table('tbl_dil')->where('kondisi_wm','6')->count();
+            //untuk grafik
+            $grafikbaik = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 1)
+            ->groupBy('cabang')
+            ->pluck('cabang','jumlah');
+            // dd([$grafikbaik]);
+           
+            //   dd($grafikbaik);
+            $grafikrusak = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 2)
+            ->groupBy('cabang')
+            ->get();
+            $grafikburam = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 3)
+            ->groupBy('cabang')
+            ->get();
             
-             
+            // dd($grafikhilang);
+                $grafikterkubur = DB::table('tbl_dil')
+                ->select(DB::raw('count(*) as jumlah, cabang'))
+                ->where('kondisi_wm', '=', 5)
+                ->groupBy('cabang')
+            ->get();
+            $grafikterkunci = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 6)
+            ->groupBy('cabang')
+        ->pluck('cabang');
+        $grafikhilang = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 4)
+            ->groupBy('cabang')
+        ->get();
+    //  $cab = ['14','12'];
+    //  if ($cab == '14') {
+    //      echo "cimanggung";
+    //  } elseif($cab == '02') {
+    //     echo "cimanggung";
+    //  }
+    $tabelgrafik = DB::table('tbl_dil')
+    ->select([
+        'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+        'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+        'm.merek','g.nama_golongan','g.kode','s.nama_baru'
+])
+    ->select('cabang', DB::raw('count(*) as total'))
+    ->groupBy('cabang')
+    // ->groupBy('total')
+    ->get();
+    if($tabelgrafik == "05"){
+        $tabelgrafik = 'Jatinangor';
+    }elseif($tabelgrafik == "13"){
+        $tabelgrafik = 'Pamulihan';
+    }elseif($tabelgrafik == "06"){
+        $tabelgrafik = 'Tanjungsari';   
+    }elseif($tabelgrafik == "14"){
+        $tabelgrafik = 'Ciamnggung'; 
+    }elseif($tabelgrafik == "01"){
+        $tabelgrafik = 'Sumedang Utara'; 
+    }else{
+        
+        $tabelgrafik = 'Anda Salah Memasukan Kode';
+    }
+//  dd($tabelgrafik);
+
+        $groups = DB::table('tbl_dil')
+        ->select('cabang', DB::raw('count(*) as total'))
+        ->groupBy('cabang')
+        ->pluck('total','cabang')->all();
+
+// Prepare the data for returning with the view
+$chart = new DilModel;
+       for ($i=0; $i<=count($groups); $i++) {
+            $colours[] = '#' . substr(str_shuffle('ACBDEF0125436789'), 0, 6);
+        }
+// Prepare the data for returning with the view
+$chart = new DilModel;
+        $chart->labels = (array_keys($groups));
+        $chart->dataset = (array_values($groups));
+        $chart->colours = $colours;
+//untuk merek
+        $merekgrap = DB::table('tbl_dil')
+        ->Join('merek','tbl_dil.id_merek','=','merek.id')
+        ->select('merek', DB::raw('count(*) as total'))
+        ->groupBy('merek')
+        // ->groupBy('cabang')
+        ->pluck('total','merek')->all();
+
+// Prepare the data for returning with the view
+$graph = new DilModel;
+       for ($i=0; $i<=count($merekgrap); $i++) {
+            $colours[] = '#' . substr(str_shuffle('ACBDEF0123456789'), 0, 6);
+        }
+// Prepare the data for returning with the view
+$graph = new DilModel;
+        $graph->labels = (array_keys($merekgrap));
+        $graph->dataset = (array_values($merekgrap));
+        $graph->colours = $colours;
+            
 
         return view('accesories.index',compact('rada','rtidakada','ada','tidakada',
         'sada','stidakada','cada','ctidakada','kada','ktidakada','pada','ptidakada',
-        'bada','btidakada','semuapelanggan','datarelasi','wmbaik','wmrusak','wmburam','wmhilang','wmterkubur','wmterkunci'));
+        'bada','btidakada','semuapelanggan','datarelasi','wmbaik','wmrusak','wmburam',
+        'wmhilang','wmterkubur','wmterkunci','grafikbaik','grafikrusak','grafikburam',
+        'grafikterkubur','grafikterkunci','grafikhilang','chart','groups','tabelgrafik','merekgrap','graph'));
     }
     // public function datatable(Request $request){
     //     if ($request->ajax()) {
