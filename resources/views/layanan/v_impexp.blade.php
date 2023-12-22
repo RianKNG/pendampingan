@@ -1,10 +1,10 @@
 @extends('templates.v_template')
-@section('title','layanan')
+@section('title','(L A Y A N A N)')
 @section('content')
 <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card card-outline card-success">
             <div class="card-header">
                 <h3 class="card-title">Impor Data DIL</h3>
@@ -15,12 +15,12 @@
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import">
                     Import
                 </button>
-               
+            </div>
           </div>
             </div>
-            </div>
+        
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card card-outline card-warning">
             <div class="card-header">
                 <h3 class="card-title">Download DIL PerCabang XLS.</h3>
@@ -32,109 +32,124 @@
             </div>
             </div>
         </div>
-        <div class="col-md-4">
+  
+        <div class="col-md-6">
             <div class="card card-outline card-danger">
             <div class="card-header">
-                <h3 class="card-title">Download Laporan Dil Per Cabang dan Merek</h3>
+                <h6 class="card-title col-xs"><span class="text-warning">Download Laporan Dil Cabang && Golongan<span></h6>
             </div>
-            <div class="my-0">
+            <div class="my-4 mb-2">
                 <form action="/dil/cetakperiode" method="GET">
                     <div class="input-group">
-                        <input type="date" class="form-control" name="start_date">
-                        <input type="date" class="form-control" name="end_date">
+                        <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                        <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
                         <button class="btn btn-primary" type="submit">Ambil Data</button>
                     </div>
                 </form>
             </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-outline card-danger">
-            <div class="card-header">
-                <h3 class="card-title">Download Laporan Dil Per Cabang dan Golongan</h3>
-            </div>
-            <div class="my-0">
-                <form action="/dil/cetakrt" method="GET">
-                    <div class="input-group">
-                        <input type="date" class="form-control" name="start_date">
-                        <input type="date" class="form-control" name="end_date">
-                        <button class="btn btn-primary" type="submit">Ambil Data</button>
-                    </div>
-                </form>
-            </div>
-            </div>
-        </div>
-        
-        {{-- <div class="col-md-4">
-            <div class="card card-outline card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Expor Data Pdf Non Aktip</h3>
-            </div>
-            <div class="card-body">
-                <a href="/exportpdfn" class="btn btn-primary">Download Pdf Non Aktip</a>     
-            </div>
-            </div>
-        </div> --}}
-        <div class="col-md-12">
-            <div class="card card-outline card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Cetak Laporan PenutupanSL</h3>
-            </div>
-            
-            <div class="my-0">
-                <form action="/dil/cetaklaporan" method="GET">
-                    <div class="input-group">
-                        <input type="date" class="form-control" name="start_date">
-                        <input type="date" class="form-control" name="end_date">
-                        <button class="btn btn-primary" type="submit">Ambil Data</button>
-                    </div>
-                </form>
-            </div>
-            <div class="card card-outline card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Cetak SL Baru</h3>
-                </div>
-                
-                <div class="my-0">
-                    <form action="/dil/cetaklaporansl" method="GET">
-                        <div class="input-group">
-                            <input type="date" class="form-control" name="start_date">
-                            <input type="date" class="form-control" name="end_date">
-                            <button class="btn btn-primary" type="submit">Ambil Data</button>
-                        </div>
-                    </form>
-                </div>
-            <div class="card card-outline card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Cetak Laporan PenyambunganSL</h3>
-            </div>
-            
-            <div class="my-0">
-                <form action="/dil/cetaklaporanpenyambungan" method="GET">
-                    <div class="input-group">
-                        <input type="date" class="form-control" name="start_date">
-                        <input type="date" class="form-control" name="end_date">
-                        <button class="btn btn-primary" type="submit">Ambil Data</button>
-                    </div>
-                </form>
-            </div>
-            <div class="card card-outline card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">Cetak Laporan Ganti SL</h3>
-                </div>
-                
-                <div class="my-0">
-                    <form action="/dil/cetaklaporanpenggantian" method="GET">
-                        <div class="input-group">
-                            <input type="date" class="form-control" name="start_date">
-                            <input type="date" class="form-control" name="end_date">
-                            <button class="btn btn-primary" type="submit">Ambil Data</button>
-                        </div>
-                    </form>
-                </div>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-6 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <h6 class="bling"><a href="#" class="small-box-footer"> <i id="blink"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download Laporan Dil Per Cabang dan Golongan</strong> </a></h6>
+        <form action="/dil/cetakrt" method="GET">
+            <div class="input-group">
+                <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <button class="btn btn-primary" type="submit">Ambil Data</button>
+            </div>
+        </form>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="/test/wmbaik" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-6 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+          <h6 class="blinkblink"><a href="#" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cetak Laporan PenutupanSL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></h6>
+          <form action="/dil/cetaklaporan" method="GET">
+            <div class="input-group">
+                <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <button class="btn btn-primary" type="submit">Ambil Data</button>
+            </div>
+        </form>
+          <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+</div>
+  <div class="row">
+    <div class="col-lg-6 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <h6 class="bling"><a href="#" class="small-box-footer"> <i id="blink"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cetak Laporan SlBaru</strong> </a></h6>
+        <form action="/dil/cetaklaporansl" method="GET">
+            <div class="input-group">
+                <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <button class="btn btn-primary" type="submit">Ambil Data</button>
+            </div>
+        </form>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+
+    <!-- ./col -->
+    <div class="col-lg-6 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+          <h6 class="blinkblink"><a href="#" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cetak Laporan PenyambunganSL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></h6>
+          <form action="/dil/cetaklaporanpenyambungan" method="GET">
+            <div class="input-group">
+                <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                {{-- <input type="date" class="form-control" name="start_date"> --}}
+                {{-- <input type="date" class="form-control" name="end_date"> --}}
+                <button class="btn btn-primary" type="submit">Ambil Data</button>
+            </div>
+        </form>
+          <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-12 col-12">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <h6 class="bling"><a href="#" class="small-box-footer"> <i id="blink"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cetak Laporan GantiSL</strong> </a></h6>
+            <form action="#" method="GET">
+                <div class="input-group">
+                    <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                    <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
+                    {{-- <input type="date" class="form-control" name="start_date"> --}}
+                    {{-- <input type="date" class="form-control" name="end_date"> --}}
+                    <button class="btn btn-primary" type="submit">Ambil Data</button>
+                </div>
+            </form>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="/test/wmbaik" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+    </div>
+
+
 <!-- modal -->
 <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

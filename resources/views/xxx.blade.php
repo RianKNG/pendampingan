@@ -2,6 +2,7 @@
 @extends('templates.v_template')
 @section('title','(CARI RINCI DATA DARI PELANGGAN)')
 @section('content')
+
 <section class="content table-striped">
   <div class="container-fluid table-striped">
     <div class="card card-warning card-outline">
@@ -202,9 +203,10 @@
   <script type="text/javascript">
   $(document).ready(function(){
   var table = $('.data-table').DataTable({
-    'processing':true,
+    'processing':"DataTables is currently busy",
     'serverSide':true,
     "lengthMenu":[[10,25,50,100,-1],[10,25,50,100,'semua']],
+   
     'ajax': "{{ url('test/datatable') }}",
     'columns':[
       // {'data': 'DT_RowIndex'},

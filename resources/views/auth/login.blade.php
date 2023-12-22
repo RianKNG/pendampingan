@@ -36,6 +36,12 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
+  <style>
+    #map { height: 600px;}
+  </style>
 </head>
 <style>
 .img-rounded {
@@ -58,7 +64,7 @@
         <h1 class="btn btn-dark"><img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" alt="..."></h1>
        
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <button type="button" class="nav-toggle"><i class="bx bx-menu"></i></button>
@@ -301,9 +307,14 @@
 
           </div>
 
-          <div class="col-lg-5 col-md-7">
-            <iframe src="https://www.google.com/maps/embed?pb=!4v1696940830108!6m8!1m7!1sZCDdkE1g7FsGcwkhhJQzZQ!2m2!1d-6.820814054166925!2d107.944990688378!3f62.77447867414154!4f-3.5543281248070997!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="col-lg-8 col-md-7">
+            {{-- <iframe src="https://www.google.com/maps/embed?pb=!4v1696940830108!6m8!1m7!1sZCDdkE1g7FsGcwkhhJQzZQ!2m2!1d-6.820814054166925!2d107.944990688378!3f62.77447867414154!4f-3.5543281248070997!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
+            <div id="map"></div>
           </div>
+
+  
+  
+  
 
         </div>
 
@@ -337,6 +348,72 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('adminLTE') }}/templatedepan/js/main.js"></script>
 
+  {{-- ////leflate --}}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
+  <script>
+// [-6.8351879356635115,107.92719719325183]
+// const html ='<h5>Nama Lokasi : Kantor Cabang Pusat'<h5>';
+// 	    html+='<h5>Nama Lokasi : Kantor Cabang Pusat'<h5>';
+// 	    html+='<img src="assets/img/logo.png">';
+    const map = L.map('map').setView([-6.8351879356635115,107.92719719325183], 10);
+    L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 50,
+        subdomains:['mt0','mt1','mt2','mt3']
+
+    }).addTo(map);
+    // L.marker([-6.8351879356635115,107.92719719325183], {icon: greenIcon}).addTo(map);
+    var pdamIcon = L.icon({
+    iconUrl: 'pin-map.png',
+    shadowUrl: 'leaf-shadow.png',
+
+    iconSize:     [38, 38], // size of the icon
+    // shadowSize:   [50, 64], // size of the shadow
+    // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+ 
+
+L.marker([-6.821041846215963, 107.94523626588362], {icon: pdamIcon}).addTo(map)
+.on('click', function(e){
+
+
+  L.popup()
+        .setLatLng(e.latlng)
+        .setContent("PDAM Pusat" +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .openOn(map);
+  });
+  L.marker([-6.93535525497094, 107.77349195741489], {icon: pdamIcon}).addTo(map)
+.on('click', function(e){
+
+
+  L.popup()
+        .setLatLng(e.latlng)
+        .setContent("PDAM Cab Jatinangor " +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .openOn(map);
+  });
+  L.marker([-6.906502895050911, 107.79781363715885], {icon: pdamIcon}).addTo(map)
+.on('click', function(e){
+
+
+  L.popup()
+        .setLatLng(e.latlng)
+        .setContent("PDAM Cab Tanjungsari " +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .openOn(map);
+  });
+  L.marker([-6.955663031585109, 107.82341135567455], {icon: pdamIcon}).addTo(map)
+.on('click', function(e){
+
+
+  L.popup()
+        .setLatLng(e.latlng)
+        .setContent("PDAM Cab Cimanggung " +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .openOn(map);
+  });
+
+  </script>
 </body>
 
 </html>
