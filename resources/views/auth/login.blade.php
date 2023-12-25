@@ -382,7 +382,7 @@ L.marker([-6.821041846215963, 107.94523626588362], {icon: pdamIcon}).addTo(map)
 
   L.popup()
         .setLatLng(e.latlng)
-        .setContent("PDAM Pusat" +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .setContent('<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+"PDAM Pusat" + e.latlng.toString())
         .openOn(map);
   });
   L.marker([-6.93535525497094, 107.77349195741489], {icon: pdamIcon}).addTo(map)
@@ -391,7 +391,7 @@ L.marker([-6.821041846215963, 107.94523626588362], {icon: pdamIcon}).addTo(map)
 
   L.popup()
         .setLatLng(e.latlng)
-        .setContent("PDAM Cab Jatinangor " +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .setContent('<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+"PDAM Cab Jatinangor " + e.latlng.toString())
         .openOn(map);
   });
   L.marker([-6.906502895050911, 107.79781363715885], {icon: pdamIcon}).addTo(map)
@@ -400,7 +400,7 @@ L.marker([-6.821041846215963, 107.94523626588362], {icon: pdamIcon}).addTo(map)
 
   L.popup()
         .setLatLng(e.latlng)
-        .setContent("PDAM Cab Tanjungsari " +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .setContent('<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+"PDAM Cab Tanjungsari " + e.latlng.toString())
         .openOn(map);
   });
   L.marker([-6.955663031585109, 107.82341135567455], {icon: pdamIcon}).addTo(map)
@@ -409,7 +409,7 @@ L.marker([-6.821041846215963, 107.94523626588362], {icon: pdamIcon}).addTo(map)
 
   L.popup()
         .setLatLng(e.latlng)
-        .setContent("PDAM Cab Cimanggung " +'<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+ e.latlng.toString())
+        .setContent( '<img src="{{ asset('adminLTE') }}/templatedepan/img/logo.png" width="50px">'+"PDAM Cab Cimanggung "+ e.latlng.toString())
         .openOn(map);
   });
 
