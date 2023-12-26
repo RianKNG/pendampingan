@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  {{-- <meta content="width=device-width, initial-scale=1.0" name="viewport"> --}}
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
   <title>Dil-Perumdam-Sumedang</title>
   {{-- <meta content="" name="description">

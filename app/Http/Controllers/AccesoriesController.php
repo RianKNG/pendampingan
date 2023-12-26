@@ -173,11 +173,12 @@ $graph = new DilModel;
             $colours[] = '#' . substr(str_shuffle('ACBDEF0123456789'), 0, 6);
         }
 // Prepare the data for returning with the view
+
 $graph = new DilModel;
         $graph->labels = (array_keys($merekgrap));
         $graph->dataset = (array_values($merekgrap));
         $graph->colours = $colours;
-            
+        // dd($graph);
 
         return view('accesories.index',compact('rada','rtidakada','ada','tidakada',
         'sada','stidakada','cada','ctidakada','kada','ktidakada','pada','ptidakada',

@@ -25,7 +25,7 @@
       <div class="col-lg-6 col-6">
         <!-- small box -->
         <div class="small-box bg-success">
-          <h4 class="bling"><a href="/test/jalan" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h4>
+          <h4 class="bling"><a href="{{ url('/test/jalan') }}/test/jalan" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h4>
         
           <div class="icon">
             <i class="ion ion-bag"></i>
@@ -37,7 +37,7 @@
       <div class="col-lg-6 col-6">
         <!-- small box -->
         <div class="small-box bg-warning">
-            <h4 class="blinkblink"><a href="/test/datatable" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pencarian Data Status Pelanggan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <i id="blink" class="fas fa-arrow-circle-right btn-warning"></i></a></h4>
+            <h4 class="blinkblink"><a href="{{ url('/test/datatable') }}" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pencarian Data Status Pelanggan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <i id="blink" class="fas fa-arrow-circle-right btn-warning"></i></a></h4>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
@@ -398,13 +398,13 @@
         <div class="row">
           <div class="col-md-12" >
             <p class="text-left text-warning">
+              05 = Jatinangor
+              <br>
+              06 =Tanjungsari
+              <br>
+              13 = Pamulihan
+              <br>
               14 = Cimanggung
-              <br>
-              06 = Pamulihan
-              <br>
-              05 = Cisitu
-              <br>
-              07 = AJSDD
             </p>
 
             <div class="chart">
