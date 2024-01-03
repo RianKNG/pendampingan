@@ -70,11 +70,13 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/test/wmhilang', [AccesoriesController::class,'wmhilang'])->name('wmhilang');
     Route::get('/test/wmterkubur', [AccesoriesController::class,'wmterkubur'])->name('wmterkubur');
     Route::get('/test/wmterkunci', [AccesoriesController::class,'wmterkunci'])->name('wmterkunci');
+    Route::get('/test/tabelnya', [AccesoriesController::class,'tabelnya'])->name('tabelnya');
 
  
 
     // Route::get('/dil', [DilController::class,'index'])->name('dil');
-    Route::get('/dil/add', [DilController::class,'add']);
+    Route::post('/dil/add', [DilController::class,'add']);
+    // Route::get('/dil/add', [DilController::class,'add']);
     Route::post('/dil/insert', [DilController::class,'insert']);
     Route::get('/dil/edit/{id}', [DilController::class,'edit']);
     Route::post('/dil/update/{id}', [DilController::class,'update']);
@@ -175,7 +177,6 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
     // Route::get('upload', [LaporanController::class,'uploadImage'])->name('laporan.upload');
 });
-
 
 
 

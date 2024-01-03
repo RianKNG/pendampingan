@@ -22,7 +22,7 @@
    <!-- Theme style -->
    {{-- <meta http-equiv ="refresh" content="{{ $sec; }}" URL="{{ $page; }}"> --}}
    @stack('style')
-   
+   @yield('test')
    {{-- <link rel="stylesheet"href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"> --}}
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">

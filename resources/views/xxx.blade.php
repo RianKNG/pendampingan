@@ -31,7 +31,7 @@
                 
                   
                     <td>
-                      <select data-column="1" class="form-control filter-select"">
+                      <select data-column="2" class="form-control filter-select"">
                       <option value="">--- Pilih Cabang ---</option>
                       {{-- @foreach($first_names as $name)
                       <option value="{{ $name }}">{{ $name }}</option> --}}
@@ -60,7 +60,7 @@
                      
                     </td>
                     <td>
-                      <select data-column="2" class="form-control filter-select">
+                      <select data-column="3" class="form-control filter-select">
                       <option value="">--- Kondisi WM ---</option>
                       <option value= 1 >BAIK</option>
                       <option value= 2 >Rusak</option>
@@ -70,7 +70,7 @@
            
                     </td>
                     <td>
-                      <select data-column="3" class="form-control filter-select">
+                      <select data-column="4" class="form-control filter-select">
                       <option value="">--- Kondisi Segel ---</option>
                       <option value= 1 >Baik</option>
                       <option value= 2 >TIDAK ADA</option>
@@ -79,7 +79,7 @@
            
                     </td>
                     <td>
-                      <select data-column="4" class="form-control filter-select">
+                      <select data-column="5" class="form-control filter-select">
                       <option value="">--- Usaha ---</option>
                       <option value= 1 >Ada</option>
                       <option value= 2 >TIDAK ADA</option>
@@ -134,7 +134,7 @@
                      
                     </td> --}}
                     <td>
-                      <select data-column="5" class="form-control filter-select">
+                      <select data-column="6" class="form-control filter-select">
                       <option value="">-- Pilih Golongan --</option>
                       <option value= 11>Sosial Umum</option>
                       <option value= 12>Sosial Khusus</option>
@@ -164,6 +164,7 @@
           <table class="table table-bordered data-table">
             <thead>
               <tr>
+                <th>No</th>
                 <th>No Sambungan</th>
                 <th>Cabang</th>
                 {{-- <th>No Sambungan</th> --}}
@@ -198,8 +199,8 @@
 @endsection
 
 @push('scripts')
-<script>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+{{-- <script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script> --}}
   <script type="text/javascript">
   $(document).ready(function(){
   var table = $('.data-table').DataTable({
@@ -210,16 +211,21 @@
     'ajax': "{{ url('test/datatable') }}",
     'columns':[
       // {'data': 'DT_RowIndex'},
-      {'data': 'id'},
+      { data: 'no', name:'id', render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {'data': 'id'},
       {'data': 'cabang'},
       {'data': 'kondisi_wm'},
       {'data': 'segel'},
       {'data': 'usaha'},
+    
+      
       {'data': 'id_golongan'},
      
      
       {'data': 'nama_sekarang'},
-     
+  ],
       
       // { 'render': function(data, type, row) { 
       //      var html = ""             
@@ -232,7 +238,7 @@
       //                }        
       //                  },
       // {'data': 'usaha'}
-    ],
+    
    
    
   });
@@ -252,6 +258,5 @@
  
 })
 </script>
-  </script>
+ 
 @endpush
-

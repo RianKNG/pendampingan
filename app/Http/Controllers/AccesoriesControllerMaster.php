@@ -54,6 +54,7 @@ class AccesoriesController extends Controller
              $tidakada = DB::table('tbl_dil')->where('segel','tid')->count();
             //  dd($tidakada);
              $sada = DB::table('tbl_dil')->where('stop_kran','ada')->count();
+            //  dd( $sada);
              $stidakada = DB::table('tbl_dil')->where('stop_kran','tidak ada')->count();
              $cada = DB::table('tbl_dil')->where('ceck_valve','ada')->count();
              $ctidakada = DB::table('tbl_dil')->where('ceck_valve','tidak ada')->count();
@@ -63,21 +64,127 @@ class AccesoriesController extends Controller
              $ptidakada = DB::table('tbl_dil')->where('plugran','tidak ada')->count();
              $bada = DB::table('tbl_dil')->where('box','ada')->count();
              $btidakada = DB::table('tbl_dil')->where('box','tidak ada')->count();
-             $rada = DB::table('tbl_dil')->where('status_milik','sewa')->count();
-             $rtidakada = DB::table('tbl_dil')->where('status_milik','Hak Milik')->count();
+             $rada = DB::table('tbl_dil')->where('status_milik','2')->count();
+             $rtidakada = DB::table('tbl_dil')->where('status_milik','1')->count();
              $semuapelanggan = DB::table('tbl_dil')->count();
              //konsisi WM
              $wmbaik = DB::table('tbl_dil')->where('kondisi_wm','1')->count();
              $wmrusak = DB::table('tbl_dil')->where('kondisi_wm','2')->count();
              $wmburam = DB::table('tbl_dil')->where('kondisi_wm','3')->count();
              $wmhilang = DB::table('tbl_dil')->where('kondisi_wm','4')->count();
-             
-                    //menambahkan grafik
-
+             //tamgahan
+             $wmterkubur = DB::table('tbl_dil')->where('kondisi_wm','5')->count();
+             $wmterkunci = DB::table('tbl_dil')->where('kondisi_wm','6')->count();
+            //untuk grafik
+            $grafikbaik = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 1)
+            ->groupBy('cabang')
+            ->pluck('cabang','jumlah');
+            // dd([$grafikbaik]);
+           
+            //   dd($grafikbaik);
+            $grafikrusak = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 2)
+            ->groupBy('cabang')
+            ->get();
+            $grafikburam = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 3)
+            ->groupBy('cabang')
+            ->get();
             
+            // dd($grafikhilang);
+                $grafikterkubur = DB::table('tbl_dil')
+                ->select(DB::raw('count(*) as jumlah, cabang'))
+                ->where('kondisi_wm', '=', 5)
+                ->groupBy('cabang')
+            ->get();
+            $grafikterkunci = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 6)
+            ->groupBy('cabang')
+        ->pluck('cabang');
+        $grafikhilang = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->where('kondisi_wm', '=', 4)
+            ->groupBy('cabang')
+        ->get();
+    //  $cab = ['14','12'];
+    //  if ($cab == '14') {
+    //      echo "cimanggung";
+    //  } elseif($cab == '02') {
+    //     echo "cimanggung";
+    //  }
+    $tabelgrafik = DB::table('tbl_dil')
+    ->select([
+        'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+        'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+        'm.merek','g.nama_golongan','g.kode','s.nama_baru'
+])
+    ->select('cabang', DB::raw('count(*) as total'))
+    ->groupBy('cabang')
+    // ->groupBy('total')
+    ->get();
+    if($tabelgrafik == "05"){
+        $tabelgrafik = 'Jatinangor';
+    }elseif($tabelgrafik == "13"){
+        $tabelgrafik = 'Pamulihan';
+    }elseif($tabelgrafik == "06"){
+        $tabelgrafik = 'Tanjungsari';   
+    }elseif($tabelgrafik == "14"){
+        $tabelgrafik = 'Ciamnggung'; 
+    }elseif($tabelgrafik == "01"){
+        $tabelgrafik = 'Sumedang Utara'; 
+    }else{
+        
+        $tabelgrafik = 'Anda Salah Memasukan Kode';
+    }
+//  dd($tabelgrafik);
+
+        $groups = DB::table('tbl_dil')
+        ->select('cabang', DB::raw('count(*) as total'))
+        ->groupBy('cabang')
+        ->pluck('total','cabang')->all();
+
+// Prepare the data for returning with the view
+$chart = new DilModel;
+       for ($i=0; $i<=count($groups); $i++) {
+            $colours[] = '#' . substr(str_shuffle('ACBDEF0125436789'), 0, 6);
+        }
+// Prepare the data for returning with the view
+$chart = new DilModel;
+        $chart->labels = (array_keys($groups));
+        $chart->dataset = (array_values($groups));
+        $chart->colours = $colours;
+//untuk merek
+        $merekgrap = DB::table('tbl_dil')
+        ->Join('merek','tbl_dil.id_merek','=','merek.id')
+        ->select('merek', DB::raw('count(*) as total'))
+        ->groupBy('merek')
+        // ->groupBy('cabang')
+        ->pluck('total','merek')->all();
+
+// Prepare the data for returning with the view
+$graph = new DilModel;
+       for ($i=0; $i<=count($merekgrap); $i++) {
+            $colours[] = '#' . substr(str_shuffle('ACBDEF0123456789'), 0, 6);
+        }
+// Prepare the data for returning with the view
+
+$graph = new DilModel;
+        $graph->labels = (array_keys($merekgrap));
+        $graph->dataset = (array_values($merekgrap));
+        $graph->colours = $colours;
+        // dd($graph);
+
         return view('accesories.index',compact('rada','rtidakada','ada','tidakada',
         'sada','stidakada','cada','ctidakada','kada','ktidakada','pada','ptidakada',
-        'bada','btidakada','semuapelanggan','datarelasi','wmbaik','wmrusak','wmburam','wmhilang'));
+        'bada','btidakada','semuapelanggan','datarelasi','wmbaik','wmrusak','wmburam',
+        'wmhilang','wmterkubur','wmterkunci','grafikbaik','grafikrusak','grafikburam',
+        'grafikterkubur','grafikterkunci','grafikhilang','chart','groups','tabelgrafik','merekgrap','graph'));
     }
     // public function datatable(Request $request){
     //     if ($request->ajax()) {
@@ -109,16 +216,17 @@ class AccesoriesController extends Controller
         $customers = DB::table('tbl_dil')
       
        
-        ->select(['tbl_dil.id','tbl_dil.cabang','tbl_dil.segel','tbl_dil.usaha','tbl_dil.status','tbl_dil.sumber_lain','tbl_dil.jenis_usaha','id_golongan','id_merek'])
-        ->Join('golongan','tbl_dil.id_golongan','=','golongan.id')
-        ->Join('merek','tbl_dil.id_merek','=','merek.id');
+        ->select(['tbl_dil.id','tbl_dil.cabang','tbl_dil.segel','tbl_dil.usaha','tbl_dil.status','tbl_dil.sumber_lain','tbl_dil.jenis_usaha','tbl_dil.nama_sekarang','tbl_dil.kondisi_wm','id_golongan','id_merek']);
+        // ->Join('golongan','tbl_dil.id_golongan','=','golongan.id')
+        // ->Join('merek','tbl_dil.id_merek','=','merek.id');
        
         
-    
+       
         // return DataTables::of($customers)
         //     ->addIndexColumn()
         //     ->make(true);
-      return dataTables()->of($customers)->editColumn('cabang',function($data){
+      return datatables()->of($customers)
+      ->editColumn('cabang',function($data){
         if($data->cabang == 05){
             return 'Jatinangor';
         }elseif($data->cabang == 13){
@@ -128,7 +236,7 @@ class AccesoriesController extends Controller
         }elseif($data->cabang == 14){
             return 'Ciamnggung'; 
         }elseif($data->cabang == 01){
-            return 'sUMEDANG uTARA'; 
+            return 'Sumedang Utara'; 
         }else{
             
             return 'Anda Salah Memasukan Kode';
@@ -136,7 +244,7 @@ class AccesoriesController extends Controller
        
    
     })
-    ->editColumn('tbl_dil.id_golongan',function($data){
+    ->editColumn('id_golongan',function($data){
         if($data->id_golongan == 11){
             return 'SOSIAL UMUM';
         }elseif($data->id_golongan == 12){
@@ -168,19 +276,19 @@ class AccesoriesController extends Controller
         }
     })
     ->editColumn('id_merek',function($data){
-        if($data->id_merek == 01){
+        if($data->id_merek == 1){
             return 'LINFLOW';
-        }elseif($data->id_merek == 02){
+        }elseif($data->id_merek == 2){
             return 'KENT';
-        }elseif($data->id_merek == 03){
+        }elseif($data->id_merek == 3){
             return 'AQUA';
-        }elseif($data->id_merek == 04){
+        }elseif($data->id_merek == 4){
             return 'SAE SEOUL';
-        }elseif($data->id_merek == 05){
+        }elseif($data->id_merek == 5){
             return 'B & R';
-        }elseif($data->id_merek == 06){
+        }elseif($data->id_merek == 6){
             return 'ASAHI';
-        }elseif($data->id_merek == 07){
+        }elseif($data->id_merek == 7){
             return 'BOSCO';   
         }elseif($data->id_merek == 8){
             return 'KIMON';
@@ -254,9 +362,26 @@ class AccesoriesController extends Controller
             return 'TIDAK ADA';
         }elseif($data->segel == 3){
             return 'RUSAK';
-        }else{
-            
-            return 'DITABELNYA KOSONG';
+        }elseif($data->segel == 4){
+            return 'TIDAK DIKETAHUI';
+        }else{ 
+        return 'DITABELNYA KOSONG';
+        }
+      
+    })
+    ->editColumn('kondisi_wm',function($data){
+        if($data->kondisi_wm == 1){
+            return 'BAIK';
+        }elseif($data->kondisi_wm == 2){
+            return 'Rusak';
+        }elseif($data->kondisi_wm == 3){
+            return 'Buram';
+        }elseif($data->kondisi_wm == 4){
+            return 'Hilang';
+        }elseif($data->kondisi_wm == 5){
+            return 'Rumah Terkunci';
+        }else{ 
+        return 'DITABELNYA KOSONG';
         }
       
     })
@@ -273,7 +398,7 @@ class AccesoriesController extends Controller
       
     })
     
-    // ->addIndexColumn()
+    ->addIndexColumn()
       ->make(true);
      }
     //  $mer = 
@@ -289,7 +414,7 @@ class AccesoriesController extends Controller
         //     $last_names = 'tidak';
         // }
     // dd( $golongan);
-     return view('xxx',compact('first_names','last_names','golongan','merek','gol'));
+     return view('testing',compact('first_names','last_names','golongan','merek','gol'));
     }
         
 
@@ -345,13 +470,13 @@ class AccesoriesController extends Controller
             $stsegel = DB::table('tbl_dil as a')
             ->select(DB::raw("(a.cabang)  as `cabang` "))
             ->groupBy(DB::raw("cabang"))
-            ->where('stop_kran','=','tid')
+            ->where('stop_kran','=','tidak ada')
             ->pluck('cabang');
             
             $sttsegel = DB::table('tbl_dil as a')
-            ->select(DB::raw("count(a.segel)  as `segel` "))
+            ->select(DB::raw("count(a.stop_kran)  as `segel` "))
             ->groupBy(DB::raw("cabang"))
-            ->where('stop_kran','=','tid')
+            ->where('stop_kran','=','tidak ada')
             ->pluck('segel');
             
       
@@ -360,21 +485,14 @@ class AccesoriesController extends Controller
     public function sada(Request $request)
     {
        
-            $tsegel1 = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
-            ->where('stop_kran','=','ada')
-            ->pluck('cabang');
-            
-            $ttsegel11 = DB::table('tbl_dil as a')
-            ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
-            ->where('stop_kran','=','ada')
-            ->pluck('segel');
-            // return $request->all();
-            // $dil = DilModel::all();
+            $tsegel1 = DB::table('tbl_dil')
+            ->select(DB::raw('count(*) as stop_kran, cabang'))
+            ->where('stop_kran', '=', "ada")
+            ->groupBy('cabang')
+            ->get();
+            // dd($tsegel1);
       
-            return view('accesories.indexsada',compact('tsegel1','ttsegel11'));
+            return view('accesories.indexsada',compact('tsegel1'));
     }
     public function cvada(Request $request)
     {
@@ -526,13 +644,13 @@ class AccesoriesController extends Controller
             $segel = DB::table('tbl_dil as a')
             ->select(DB::raw("(a.cabang)  as `cabang` "))
             ->groupBy(DB::raw("cabang"))
-            ->where('status_milik','=','Hak Milik')
+            ->where('status_milik','=','1')
             ->pluck('cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
             ->groupBy(DB::raw("cabang"))
-            ->where('status_milik','=','Hak Milik')
+            ->where('status_milik','=','1')
             ->pluck('segel');
             // return $request->all();
             // $dil = DilModel::all();
@@ -545,13 +663,13 @@ class AccesoriesController extends Controller
             $segel = DB::table('tbl_dil as a')
             ->select(DB::raw("(a.cabang)  as `cabang` "))
             ->groupBy(DB::raw("cabang"))
-            ->where('status_milik','=','sewa')
+            ->where('status_milik','=','2')
             ->pluck('cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
             ->groupBy(DB::raw("cabang"))
-            ->where('status_milik','=','sewa')
+            ->where('status_milik','=','2')
             ->pluck('segel');
             
         return view('accesories.indexrada',compact('segel','segel1'));
@@ -658,9 +776,37 @@ public function wmbaik(Request $request)
                  ->where('kondisi_wm', '=', 4)
                  ->groupBy('cabang')
                  ->get();
-          
+            // dd($querywm );
             
       
         return view('accesories.wm4',compact('querywm'));
+    }
+    public function wmterkubur(Request $request)
+    {
+       
+         
+            $querywm = DB::table('tbl_dil')
+                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->where('kondisi_wm', '=', 5)
+                 ->groupBy('cabang')
+                 ->get();
+            // dd($querywm );
+            
+      
+        return view('accesories.wm5',compact('querywm'));
+    }
+    public function wmterkunci(Request $request)
+    {
+       
+         
+            $querywm = DB::table('tbl_dil')
+                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->where('kondisi_wm', '=', 5)
+                 ->groupBy('cabang')
+                 ->get();
+            // dd($querywm );
+            
+      
+        return view('accesories.wm6',compact('querywm'));
     }
 }

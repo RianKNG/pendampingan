@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
+
 class AccesoriesController extends Controller
 {
 
@@ -195,226 +196,65 @@ $graph = new DilModel;
     // }
     public function datatable(Request $request)
     {
-        // $data = DB::table('tbl_dil as d')->select([
-        //     'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-        //     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-        //     'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-        //     'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek',
-        // ])
-        // ->Join('merek as m','d.id_merek','=','m.id')
-        // ->Join('golongan as g','d.id_golongan','=','g.id');
-      
-          
-        //    $first_names = $customers->sortBy('cabang')->pluck('cabang')->unique();
-        //    $last_names = $customers->sortBy('segel')->pluck('segel')->unique();
-        //     return view('xxx',compact('customers','first_names','last_names'));
-        if(request()->ajax())
-     {
-        // $customers = DilModel::select(['id','cabang','segel','usaha','status']);
-        // $customers = DilModel::select(['id','cabang','segel','usaha','status','sumber_lain','jenis_usaha']);
-        
-        $customers = DB::table('tbl_dil')
-      
-       
-        ->select(['tbl_dil.id','tbl_dil.cabang','tbl_dil.segel','tbl_dil.usaha','tbl_dil.status','tbl_dil.sumber_lain','tbl_dil.jenis_usaha','tbl_dil.nama_sekarang','tbl_dil.kondisi_wm','id_golongan','id_merek']);
-        // ->Join('golongan','tbl_dil.id_golongan','=','golongan.id')
-        // ->Join('merek','tbl_dil.id_merek','=','merek.id');
-       
-        
-       
-        // return DataTables::of($customers)
-        //     ->addIndexColumn()
-        //     ->make(true);
-      return datatables()->of($customers)->editColumn('cabang',function($data){
-        if($data->cabang == 05){
-            return 'Jatinangor';
-        }elseif($data->cabang == 13){
-            return 'Pamulihan';
-        }elseif($data->cabang == 06){
-            return 'Tanjungsari';   
-        }elseif($data->cabang == 14){
-            return 'Ciamnggung'; 
-        }elseif($data->cabang == 01){
-            return 'Sumedang Utara'; 
-        }else{
-            
-            return 'Anda Salah Memasukan Kode';
-        }
-       
-   
-    })
-    ->editColumn('id_golongan',function($data){
-        if($data->id_golongan == 11){
-            return 'SOSIAL UMUM';
-        }elseif($data->id_golongan == 12){
-            return 'BESTINISOSIAL UMUM';
-        }elseif($data->id_golongan == 21){
-            return 'RMH. TANGGA A';
-        }elseif($data->id_golongan == 22){
-            return 'RMH. TANGGA B';
-        }elseif($data->id_golongan == 23){
-            return 'PEMERINTAH';
-        }elseif($data->id_golongan == 28){
-            return 'RMH. TANGGA C';
-        }elseif($data->id_golongan == 29){
-            return 'RMH. TANGGA D';
-        }elseif($data->id_golongan == 31){
-            return 'NIAGA KECIL';
-        }elseif($data->id_golongan == 32){
-            return 'NIAGA SEDANG';
-        }elseif($data->id_golongan == 33){
-            return 'NIAGA BESAR';
-        }elseif($data->id_golongan == 41){
-            return 'INDUSTRI KECIL';
-        }elseif($data->id_golongan == 42){
-            return 'INDUSTRI BESAR';
-        }elseif($data->id_golongan == 80){
-            return 'KESEPAKATAN';
-        }else{  
-            return 'Tabel Belum Terisi';
-        }
-    })
-    ->editColumn('id_merek',function($data){
-        if($data->id_merek == 1){
-            return 'LINFLOW';
-        }elseif($data->id_merek == 2){
-            return 'KENT';
-        }elseif($data->id_merek == 3){
-            return 'AQUA';
-        }elseif($data->id_merek == 4){
-            return 'SAE SEOUL';
-        }elseif($data->id_merek == 5){
-            return 'B & R';
-        }elseif($data->id_merek == 6){
-            return 'ASAHI';
-        }elseif($data->id_merek == 7){
-            return 'BOSCO';   
-        }elseif($data->id_merek == 8){
-            return 'KIMON';
-        }elseif($data->id_merek == 9){
-            return 'N B';
-        }elseif($data->id_merek == 10){
-            return 'I V Z';
-        }elseif($data->id_merek == 11){
-            return 'MAGDALENA';
-        }elseif($data->id_merek == 12){
-            return 'ITRON';
-        }elseif($data->id_merek == 13){
-            return 'BARINDO';
-        }elseif($data->id_merek == 14){
-            return 'BESTINI';
-        }elseif($data->id_merek == 15){
-            return 'A G';
-        }elseif($data->id_merek == 16){
-            return 'M R';
-        }elseif($data->id_merek == 17){
-            return 'AMICO';
-        }elseif($data->id_merek == 18){
-            return 'ONDA';
-        }elseif($data->id_merek == 19){
-            return 'HILANG';
-        }elseif($data->id_merek == 20){
-            return 'MULTIMAG';
-        }elseif($data->id_merek == 21){
-            return 'S H';
-        }elseif($data->id_merek == 22){
-            return 'SHINHAN';
-        }elseif($data->id_merek == 23){
-            return 'C S';
-        }elseif($data->id_merek == 24){
-            return 'AICHI TOKAI';
-        }elseif($data->id_merek == 25){
-            return 'AKURAT';
-        }elseif($data->id_merek == 26){
-            return 'PKM';
-        }elseif($data->id_merek == 27){
-            return 'ACTARIS';
-        }elseif($data->id_merek == 28){
-            return 'AIRMAS';
-        }elseif($data->id_merek == 29){
-            return 'LOUIS VIXTOR';
-        }elseif($data->id_merek == 30){
-            return 'NINGBO';
-        }elseif($data->id_merek == 31){
-            return 'SCHLUMBERGER';
-        }elseif($data->id_merek == 32){
-            return 'NULL';
-        }elseif($data->id_merek == 33){
-            return 'TIDAK TERVERIFIKASI';
-        }elseif($data->id_merek == 222){
-            return 'DATA JOSONG';
+        // $data = DB::table('tbl_dil')
+        // ->select('cabang', DB::raw('count(*) as total'))
+        // ->groupBy('cabang')
+        // ->get();
+        // dd($data);
+        if($request->ajax())
+        {
+        $data = DilModel::select('*');
 
+        if($request->filter_cabang)
+        {
+            $data = $data->where('cabang', [$request->cabang]);
         }
-        elseif($data->id_merek == 266){
-            return 'TEST';
-
-        }else{
-            
-            return 'MASIH PROSES INPUT MEREK';
+        if($request->filter_segel)
+        {
+            $data = $data->where('segel', [$request->segel]);
         }
-      
-    })
-    ->editColumn('segel',function($data){
-        if($data->segel == 1){
-            return 'BAIK';
-        }elseif($data->segel == 2){
-            return 'TIDAK ADA';
-        }elseif($data->segel == 3){
-            return 'RUSAK';
-        }elseif($data->segel == 4){
-            return 'TIDAK DIKETAHUI';
-        }else{ 
-        return 'DITABELNYA KOSONG';
-        }
-      
-    })
-    ->editColumn('kondisi_wm',function($data){
-        if($data->kondisi_wm == 1){
-            return 'BAIK';
-        }elseif($data->kondisi_wm == 2){
-            return 'Rusak';
-        }elseif($data->kondisi_wm == 3){
-            return 'Buram';
-        }elseif($data->kondisi_wm == 4){
-            return 'Hilang';
-        }elseif($data->kondisi_wm == 5){
-            return 'Rumah Terkunci';
-        }else{ 
-        return 'DITABELNYA KOSONG';
-        }
-      
-    })
-    ->editColumn('usaha',function($data){
-        if($data->usaha == 1){
-            return 'ADA';
-        }elseif($data->usaha == 2){
-            return 'TIDAK ADA';
         
-        }else{
-            
-            return 'DITABELNYA KOSONG';
-        }
-      
-    })
-    
-    // ->addIndexColumn()
-      ->make(true);
-     }
-    //  $mer = 
-     $gol = Golongan::all();
-     $customers = DilModel::all();
-         $first_names = $customers->sortBy('cabang')->pluck('cabang')->unique();
-           $last_names = $customers->sortBy('segel')->pluck('segel')->unique();
-           $golongan = $customers->sortBy('id_golongan')->pluck('id_golongan')->unique();
-           $merek = $customers->sortBy('id_merek')->pluck('id_merek')->unique();
-        //    if ($last_names == 'ada') {
-        //     $last_names = 'ada';
-        // }else{
-        //     $last_names = 'tidak';
-        // }
-    // dd( $golongan);
-     return view('xxx',compact('first_names','last_names','golongan','merek','gol'));
+        return DataTables::of($data)
+        ->addIndexColumn()
+        ->editColumn('cabang',function($data){
+            if($data->cabang == 05){
+                return 'Jatinangor';
+            }elseif($data->cabang == 13){
+                return 'Pamulihan';
+            }elseif($data->cabang == 06){
+                return 'Tanjungsari';   
+            }elseif($data->cabang == 14){
+                return 'Ciamnggung'; 
+            }elseif($data->cabang == 01){
+                return 'Sumedang Utara'; 
+            }else{
+                
+                return 'Anda Salah Memasukan Kode';
+            }
+           
+       
+        })
+        ->make(true);
     }
+
+        return view('testing');
+    }
+
+  
+    // public function tablenya(Request $request)
+    // {
+    //     $lier = DB::table('tbl_dil');
+    //     return DataTables::of($lier)
+    //     ->addIndexColumn()
+    //     // ->addColumn
+    //     ->addColumn('opsi', function($data){
+    //         return'<span class="test-danger">Edit</span> | <span class="test-warning>Delete</span>';
+
+    //     })
+    //     ->rawColumns(['opsi'])
+    //     ->make(true);
+    // }
+    
         
 
     
