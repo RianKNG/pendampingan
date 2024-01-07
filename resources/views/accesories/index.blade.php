@@ -25,7 +25,7 @@
       <div class="col-lg-6 col-6">
         <!-- small box -->
         <div class="small-box bg-success">
-          <h4 class="bling"><a href="{{ url('/test/jalan') }}/test/jalan" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h4>
+          <h4 class="bling"><a href="{{ url('/test/jalan') }}" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h4>
         
           <div class="icon">
             <i class="ion ion-bag"></i>
@@ -461,18 +461,19 @@
     <script> 
         var ctx = document.getElementById('userChart').getContext('2d');
         var nilai = {!!json_encode($chart->labels)!!}
+     
         
         var chart = new Chart(ctx, {
             // The type of chart we want to create
             type: 'bar',
     // The data for our dataset
             data: {
-                labels:  {!!json_encode($chart->dataset)!!} ,
+                labels:  nilai,
                 datasets: [
                     {
                         label: 'GRAFIK DIL PERCABANG',
                         backgroundColor: {!! json_encode($chart->colours)!!} ,
-                        data:   nilai,
+                        data:   {!!json_encode($chart->dataset)!!},
                     },
                 ]
             },

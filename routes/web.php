@@ -74,9 +74,9 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
 
  
 
-    // Route::get('/dil', [DilController::class,'index'])->name('dil');
+    Route::get('/dil', [DilController::class,'index'])->name('dil');
     Route::post('/dil/add', [DilController::class,'add']);
-    // Route::get('/dil/add', [DilController::class,'add']);
+    Route::get('/dil/add', [DilController::class,'add']);
     Route::post('/dil/insert', [DilController::class,'insert']);
     Route::get('/dil/edit/{id}', [DilController::class,'edit']);
     Route::post('/dil/update/{id}', [DilController::class,'update']);
@@ -93,6 +93,13 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/pagination/fetch_data', [DilController::class,'fetch_data']);
     Route::get('/dil/cetakperiode', [DilController::class,'cetakperiode']);
     Route::get('/dil/cetakrt', [DilController::class,'cetakrt']);
+    Route::get('/exportexcel/{cabang}', [DilController::class,'exportexcel'])->name('exportexcel');
+    //import
+    Route::post('/importexcel', [DilController::class,'importexcel'])->name('importexcel');
+    //import
+    Route::get('/exportpdf', [DilController::class,'exportpdf'])->name('exportpdf');
+    Route::get('/exportpdfa', [DilController::class,'exportpdfa'])->name('exportpdfa');
+    Route::get('/exportpdfn', [DilController::class,'exportpdfn'])->name('exportpdfn');
     
    
 
@@ -129,10 +136,10 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/exportbbn',[BbnController::class,'exportbbn'])->name('exportbbn');
     Route::post('/importbbn', [BbnController::class,'importbbn'])->name('importbbn');
 
-    Route::get('/coba',[CobaController::class,'index']);
+ 
     // bbn
-    Route::get('/report',[ReportController::class,'index'])->name('report');
-    Route::post('/report/search',[ReportController::class,'search'])->name('dilsearch');
+    // Route::get('/report',[ReportController::class,'index'])->name('report');
+    // Route::post('/report/search',[ReportController::class,'search'])->name('dilsearch');
 
 
     //penggantian
@@ -153,13 +160,7 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
 
     Route::get('/layanan', [LayananController::class,'index'])->name('layanan');
     //export
-    Route::get('/exportexcel/{cabang}', [DilController::class,'exportexcel'])->name('exportexcel');
-    //import
-    Route::post('/importexcel', [DilController::class,'importexcel'])->name('importexcel');
-    //import
-    Route::get('/exportpdf', [DilController::class,'exportpdf'])->name('exportpdf');
-    Route::get('/exportpdfa', [DilController::class,'exportpdfa'])->name('exportpdfa');
-    Route::get('/exportpdfn', [DilController::class,'exportpdfn'])->name('exportpdfn');
+    
 
       //Golongan
     Route::get('/golongan', [GolonganController::class,'index'])->name('golongan');
@@ -169,13 +170,12 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/golongan/hapus/{id}', [GolonganController::class,'hapus']);
 
     Route::get('/evaluasi', [EvaluasiController::class,'index']);
-
-    Route::get('/filter',[FilterController::class,'index']);
+    // Route::get('/filter',[FilterController::class,'index']);
 
     Route::get('laporan', [LaporanController::class,'index'])->name('laporan');
     Route::post('laporan/create', [LaporanController::class,'create'])->name('laporan.create');
     Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
-    // Route::get('upload', [LaporanController::class,'uploadImage'])->name('laporan.upload');
+
 });
 
 

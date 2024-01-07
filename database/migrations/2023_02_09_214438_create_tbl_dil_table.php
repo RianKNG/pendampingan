@@ -16,7 +16,7 @@ class CreateTblDilTable extends Migration
         Schema::create('tbl_dil', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status')->nullable();
-            $table->string('cabang');
+            $table->unsignedInteger('id_cabang');
             $table->string('no_rekening')->nullable();
             $table->string('nama_sekarang')->nullable();
             $table->string('nama_pemilik')->nullable();
@@ -37,8 +37,13 @@ class CreateTblDilTable extends Migration
             $table->string('no_seri')->nullable();
             $table->string('jenis_usaha')->nullable();
             $table->date('tanggal_pasang')->nullable();
-            $table->date('tanggal_file')->nullable();;
+            $table->date('tanggal_file')->nullable();
+
+            $table->foreign('id_cabang')->references('id')->on('cabang')->onDelete('cascade'); 
+           
         });
+
+       
     }
 
     /**

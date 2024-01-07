@@ -94,14 +94,19 @@
                 </thead>
                 
                 <tbody>
-                  
+                  {{-- @foreach ($cab as $index => $s)
+                  {{ $s->nama_cabang }}
+                  @endforeach --}}
                   @foreach ($data as $index => $k)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     </td>
                     <td><label class=" btn {{ ($k->status == 1 ) ? 'btn-success btn-xs' : 'btn-danger btn-xs'}}">{{ ($k->status == 1 ) ? 'Aktip' : 'Non Aktip' }}</label></td>
-                    <td>{{ duka($k->cabang) }}</td>  
-                    <td>{{ $k->id }}</td>  
+                    {{-- <td>{{ duka($k->cabang) }}</td>   --}}
+                    {{-- <td>{{ $k->id_cabang }}</td>   --}}
+                  
+                    <td>{{ $k->nama_cabang }}</td> 
+                    <td>{{ $k->id }}</td>   
                     <td>{{ $k->no_rekening }}</td>
                     <td class="text-warning">{{ $k->nama_sekarang }}</td>
                     {{-- <td>

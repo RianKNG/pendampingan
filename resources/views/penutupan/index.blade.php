@@ -82,10 +82,10 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                  @if ($k->status == 2)
-                    <a href="/dil/statustutup/{{ $k->id_dil }}" class="fa fa-window-close"></a>
-                  @else
+                  @if ($k->status == 2 && $loop->iteration == 1)
                     <a href="/dil/statustutup/{{ $k->id_dil }}" class="fa fa-check"></a>
+                  @else
+                    <a href="/dil/statustutup/{{ $k->id_dil }}" class="fa hide"></a>Tidak Aktip
                   @endif
                 </td>
                 <td>{{ duka($k->cabang) }}</td>
@@ -96,7 +96,7 @@
               
                
                 <td>
-                  <a href="penutupan/edit/{{ $k->id }}" class="btn btn-success btn-xs">Edit</a>
+                  {{-- <a href="penutupan/edit/{{ $k->id }}" class="btn btn-success btn-xs">Edit</a> --}}
                   <a href="penutupan/hapus/{{ $k->id }}" 
                     class="btn btn-danger btn-xs" 
                     data-toggle="modal" 

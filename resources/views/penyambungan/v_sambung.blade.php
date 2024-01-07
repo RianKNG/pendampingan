@@ -82,16 +82,19 @@
                     <td>{{ $k->tanggal_sambung }}</td>
 
                     <td>
-                      @if ($k->status == 2)
-                    <a href="/dil/statussambung/{{ $k->id_dil }}" class="fa fa-window-close"></a>
+                      @if ($k->status == 2 && $loop->iteration == 1)
+                      <a href="/dil/statussambung/{{ $k->id_dil }}" class="fa fa-window-close"></a>
                   @else
-                    <a href="/dil/statussambung/{{ $k->id_dil }}" class="fa fa-check"></a>
+                  
+                 
+                  <a href="/dil/statussambung/{{ $k->id_dil }}"></a>Aktip Tanggal
+                   
                   @endif
                     </td>
                     <td>
                       {{-- <a href="penutupan/hapus/{{ $k->id }}" class="btn btn-primary btn-xs">Delete</a> --}}
                       
-                      <a href="/penyambungan/edit/{{ $k->id }}" class="btn btn-success btn-xs">Edit</a>
+                      {{-- <a href="/penyambungan/edit/{{ $k->id }}" class="btn btn-success btn-xs">Edit</a> --}}
                       <a href="penyambungan/hapus/{{ $k->id }}" 
                         class="btn btn-danger btn-xs" 
                         data-toggle="modal" 

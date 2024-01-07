@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\Facade\Pdf;
-
-
 use App\Models\Merek;
 
+
+use App\Models\Cabang;
 use App\Models\DilModel;
 use App\Models\Golongan;
 use App\Exports\DilExport;
@@ -14,6 +13,7 @@ use App\Imports\DilImport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -42,96 +42,104 @@ class DilController extends Controller
     public function index(Request $request)
    
     {
-        
+        // $cab = Cabang::all();
         $username = $this->user->name;
         if($username == 'admin') {
-            $data = DB::table('tbl_dil AS d')
+            $data = DB::table('tbl_dil as d')
             ->select([
-                    'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+                    'd.id','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
                     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-                    'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-                    'm.merek','g.nama_golongan','g.kode','s.nama_baru'
+                    'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_cabang','d.id_golongan','d.id_merek','m.merek','u.nama_cabang'
+                    // 'g.nama_golongan','g.kode','u.id','u.nama_cabang'
         ])
         ->Join('merek as m','d.id_merek','=','m.id')
+        ->Join('cabang as u','d.id_cabang','=','u.id')
         ->Join('golongan as g','d.id_golongan','=','g.id')
         ->leftJoin('bbn as s','s.id_dil','=','d.id')
-        ->where('cabang',11)
+        // ->where('id_cabang',11)
         ->simplePaginate(100);
-        if (request('term')) {
-            $data = DB::table('tbl_dil as d')
-        ->select([
-            'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-            'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-            'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-            'd.id_golongan','g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek'
-        ])
-        ->Join('merek as m','d.id_merek','=','m.id')
-        ->Join('golongan as g','d.id_golongan','=','g.id')
-        ->leftJoin('bbn as s','s.id_dil','=','d.id')
-        ->leftJoin('penutupan as p','p.alasan','=','d.id')
-        ->orderBy('d.status','desc')
-        ->where('d.cabang', 'Like', '%' . request('term') . '%')
-        ->orWhere('d.id', 'Like', '%' . request('term') . '%')
-        ->simplePaginate(100);
-        return view('dil.v_dil', compact('data'));
-        }else{
-            $data = DB::table('tbl_dil as d')
-        ->select([
-            'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-            'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-            'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-            'd.id_golongan','g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek',
-        ])
-        ->Join('merek as m','d.id_merek','=','m.id')
-        ->Join('golongan as g','d.id_golongan','=','g.id')
-        ->leftJoin('bbn as s','s.id_dil','=','d.id')
-        ->leftJoin('penutupan as p','p.alasan','=','d.id')
-        // ->orderBy('d.cabang','desc')
-        ->orderBy('d.status','desc')
-        // ->where('d.status',2)
-        ->simplePaginate(100);
-        // dd($data);
-        if (request('term')) {
-            $data = DB::table('tbl_dil as d')
-        ->select([
-            'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-            'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-            'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-            'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek',
-        ])
-        ->Join('merek as m','d.id_merek','=','m.id')
-        ->Join('golongan as g','d.id_golongan','=','g.id')
-        ->leftJoin('bbn as s','s.id_dil','=','d.id')
-        ->leftJoin('penutupan as p','p.alasan','=','d.id')
-        ->orderBy('d.status','desc')
-        ->where('d.cabang', 'Like', '%' . request('term') . '%')
-        ->orWhere('d.id', 'Like', '%' . request('term') . '%')
-        ->simplePaginate(100);
+        
+        // if (request('term')) {
+        //     $data = DB::table('tbl_dil as d')
+        // ->select([
+        //     'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        //     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+        //     'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+        //     'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang'
+        // ])
+        // ->Join('merek as m','d.id_merek','=','m.id')
+        // ->Join('cabang as c','d.id_cabang','=','c.id')
+        // ->Join('golongan as g','d.id_golongan','=','g.id')
+        // ->leftJoin('bbn as s','s.id_dil','=','d.id')
+        // ->leftJoin('penutupan as p','p.alasan','=','d.id')
+        // ->orderBy('d.status','desc')
+        // ->where('d.id_cabang', 'Like', '%' . request('term') . '%')
+        // ->orWhere('d.id', 'Like', '%' . request('term') . '%')
+        // ->simplePaginate(100);
+        // return view('dil.v_dil', compact('data'));
+        // }else{
+        //     $data = DB::table('tbl_dil as d')
+        // ->select([
+        //     'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        //     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+        //     'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+        //     'd.id_golongan','g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang'
+        // ])
+        // ->Join('merek as m','d.id_merek','=','m.id')
+        // ->Join('cabang as c','d.id_cabang','=','c.id')
+        // ->Join('golongan as g','d.id_golongan','=','g.id')
+        // ->leftJoin('bbn as s','s.id_dil','=','d.id')
+        // ->leftJoin('penutupan as p','p.alasan','=','d.id')
+        // // ->orderBy('d.id_cabang','desc')
+        // ->orderBy('d.status','desc')
+        // // ->where('d.status',2)
+        // ->simplePaginate(100);
+        // // dd($data);
+        // if (request('term')) {
+        //     $data = DB::table('tbl_dil as d')
+        // ->select([
+        //     'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        //     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+        //     'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+        //     'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang'
+        // ])
+        // ->Join('merek as m','d.id_merek','=','m.id')
+        // ->Join('cabang as c','d.id_cabang','=','c.id')
+        // ->Join('golongan as g','d.id_golongan','=','g.id')
+        // ->leftJoin('bbn as s','s.id_dil','=','d.id')
+        // ->leftJoin('penutupan as p','p.alasan','=','d.id')
+        // ->orderBy('d.status','desc')
+        // ->where('d.id_cabang', 'Like', '%' . request('term') . '%')
+        // ->orWhere('d.id', 'Like', '%' . request('term') . '%')
+        // ->simplePaginate(100);
            
-        }
+        // }
         return view('dil.v_dil', compact('data'))->render(); 
-       
+    //    dd($data);
     
         }
 
-    }    
+     
       
     }
     public function add()
     {
         $mer = Merek::all();
         $gol = Golongan::all();
-        return view('dil.v_dil_tambah',compact('mer','gol'));
+        $cab = Cabang::all();
+        // dd($cab);
+        return view('dil.v_dil_tambah',compact('mer','gol','cab'));
 
     }
     public function insert(Request $request)
     {
+        // dd($request->all());
         $dateinit = \Carbon\Carbon::parse($request->tanggal_file);
         $datefim = \Carbon\Carbon::parse($request->tanggal_pasang);
         $this->validate($request,[
           'id' => 'required|unique:tbl_dil,id|max:11',
           'status' => 'required',
-          'cabang'=>'required',
+          'id_cabang'=>'required',
           'no_rekening' => 'required|max:8',
           'nama_sekarang' => 'required',
           'nama_pemilik' => 'required',
@@ -163,7 +171,7 @@ class DilController extends Controller
           
           'id' => $request->id,
           'status' => $request->status,
-          'cabang' => $request->cabang,
+          'id_cabang' => $request->id_cabang,
           'no_rekening' => $request->no_rekening,
           'nama_sekarang' => $request->nama_sekarang,
           'nama_pemilik' => $request->nama_pemilik,
@@ -189,7 +197,7 @@ class DilController extends Controller
           'tanggal_file' => $request->tanggal_file,
         ])
         ->get();
-        
+  
         return redirect()->route('dil')->with('success','data berhasil ditambahkan');
       }  
 
@@ -198,10 +206,11 @@ class DilController extends Controller
        // ini cara baru
        $mer = Merek::all();
        $gol = Golongan::all();
+       $cab = Cabang::all();
         $data = DilModel::find($id);
         // dd($data);r
        
-        return view('dil.v_editdil',compact('data','mer','gol'));
+        return view('dil.v_editdil',compact('data','mer','gol','cab'));
     }
     // public function jumlahstatus(Request $request,$id){
     //     $data = DilModel::find($id);
@@ -265,7 +274,7 @@ class DilController extends Controller
    {
     $s=DB::table('tbl_dil as d')
     ->select([
-                'd.id','d.cabang','d.status',
+                'd.id','d.id_cabang','d.status',
               
             ])
         // ->where('status', 2)
@@ -291,7 +300,7 @@ class DilController extends Controller
     ->leftJoin('sambung as e','e.id_dil','=','a.id')
 
     ->select([
-        'a.id','a.status','a.cabang','a.no_rekening','a.nama_sekarang','a.dusun','a.kecamatan','a.status_milik','a.jml_jiwa_tetap','a.jml_jiwa_tidak_tetap','a.kondisi_wm','tanggal_file',
+        'a.id','a.status','a.id_cabang','a.no_rekening','a.nama_sekarang','a.dusun','a.kecamatan','a.status_milik','a.jml_jiwa_tetap','a.jml_jiwa_tidak_tetap','a.kondisi_wm','tanggal_file',
         'a.segel','a.stop_kran','a.ceck_valve','a.kopling','a.plugran','a.box','a.sumber_lain','a.jenisusaha','a.id_merek',
         'b.merek','c.tanggal_tutup','c.alasan','d.tanggal_ganti','d.no_wmbaru','e.tanggal_sambung','e.alasan'
     ])
@@ -345,7 +354,7 @@ class DilController extends Controller
     $lain = DB::table('tbl_dil as d')
 
             ->select([
-                'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+                'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
                 'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','d.kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
                 'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_merek',
                 'm.merek',

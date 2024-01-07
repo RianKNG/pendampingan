@@ -35,6 +35,8 @@ if ($request->has('end_date'))
        $data->where('tanggal_sambung', '<=', $end_date);
 }
 $data = $data
+->orderBy('id','desc')
+->latest()
 ->simplePaginate(100);
 //elequent
        

@@ -25,7 +25,7 @@
               @enderror
             </div>
           </div>
-              <div class="col-sm-4">
+              {{-- <div class="col-sm-4">
                 <div class="form-group">
                   <label>cabang</label>
                   <select name="cabang" class="form-control btn-xs">
@@ -51,6 +51,22 @@
                       <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+            </div> --}}
+            
+            <div class="col-sm-4">
+              <!-- Select multiple-->
+              <div class="form-group">
+              <label>Cabang</label>
+              <select name="id_cabang" class="form-control">
+                <option value="">--- cabang ---</option>
+                @foreach($cab as $item)
+                  <option value="{{ $item->id }}" @if (old('id_cabang') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_cabang }}</option>
+                @endforeach  
+                @error('id_cabang')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror  
+              </select>
+              </div>
             </div>
         
           <div class="col-sm-4">

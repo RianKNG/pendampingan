@@ -26,7 +26,7 @@ class AccesoriesController extends Controller
 
         if ( $request->cari) {
           
-            $datarelasi = $datarelasi->where('d.cabang','like','%'.$request->cari.'%');
+            $datarelasi = $datarelasi->where('d.id_cabang','like','%'.$request->cari.'%');
           
         } 
         $datarelasi = DB::table('tbl_dil as d');
@@ -39,7 +39,7 @@ class AccesoriesController extends Controller
         
         $datarelasi = $datarelasi
                 ->select([
-                        'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+                        'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
                         'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
                         'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
                         'm.merek','g.nama_golongan','g.kode','s.nama_baru'
@@ -78,39 +78,39 @@ class AccesoriesController extends Controller
              $wmterkunci = DB::table('tbl_dil')->where('kondisi_wm','6')->count();
             //untuk grafik
             $grafikbaik = DB::table('tbl_dil')
-            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->select(DB::raw('count(*) as jumlah, id_cabang'))
             ->where('kondisi_wm', '=', 1)
-            ->groupBy('cabang')
-            ->pluck('cabang','jumlah');
+            ->groupBy('id_cabang')
+            ->pluck('id_cabang','jumlah');
             // dd([$grafikbaik]);
            
             //   dd($grafikbaik);
             $grafikrusak = DB::table('tbl_dil')
-            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->select(DB::raw('count(*) as jumlah, id_cabang'))
             ->where('kondisi_wm', '=', 2)
-            ->groupBy('cabang')
+            ->groupBy('id_cabang')
             ->get();
             $grafikburam = DB::table('tbl_dil')
-            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->select(DB::raw('count(*) as jumlah, id_cabang'))
             ->where('kondisi_wm', '=', 3)
-            ->groupBy('cabang')
+            ->groupBy('id_cabang')
             ->get();
             
             // dd($grafikhilang);
                 $grafikterkubur = DB::table('tbl_dil')
-                ->select(DB::raw('count(*) as jumlah, cabang'))
+                ->select(DB::raw('count(*) as jumlah, id_cabang'))
                 ->where('kondisi_wm', '=', 5)
-                ->groupBy('cabang')
+                ->groupBy('id_cabang')
             ->get();
             $grafikterkunci = DB::table('tbl_dil')
-            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->select(DB::raw('count(*) as jumlah, id_cabang'))
             ->where('kondisi_wm', '=', 6)
-            ->groupBy('cabang')
-        ->pluck('cabang');
+            ->groupBy('id_cabang')
+        ->pluck('id_cabang');
         $grafikhilang = DB::table('tbl_dil')
-            ->select(DB::raw('count(*) as jumlah, cabang'))
+            ->select(DB::raw('count(*) as jumlah, id_cabang'))
             ->where('kondisi_wm', '=', 4)
-            ->groupBy('cabang')
+            ->groupBy('id_cabang')
         ->get();
     //  $cab = ['14','12'];
     //  if ($cab == '14') {
@@ -120,13 +120,13 @@ class AccesoriesController extends Controller
     //  }
     $tabelgrafik = DB::table('tbl_dil')
     ->select([
-        'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
         'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
         'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
         'm.merek','g.nama_golongan','g.kode','s.nama_baru'
 ])
-    ->select('cabang', DB::raw('count(*) as total'))
-    ->groupBy('cabang')
+    ->select('id_cabang', DB::raw('count(*) as total'))
+    ->groupBy('id_cabang')
     // ->groupBy('total')
     ->get();
     if($tabelgrafik == "05"){
@@ -146,10 +146,11 @@ class AccesoriesController extends Controller
 //  dd($tabelgrafik);
 
         $groups = DB::table('tbl_dil')
-        ->select('cabang', DB::raw('count(*) as total'))
-        ->groupBy('cabang')
-        ->pluck('total','cabang')->all();
-
+        ->Join('cabang','tbl_dil.id_cabang','=','cabang.id')
+        ->select('nama_cabang', DB::raw('count(*) as total'))
+        ->groupBy('nama_cabang')
+        // ->groupBy('id_cabang')
+        ->pluck('total','nama_cabang')->all();
 // Prepare the data for returning with the view
 $chart = new DilModel;
        for ($i=0; $i<=count($groups); $i++) {
@@ -160,12 +161,13 @@ $chart = new DilModel;
         $chart->labels = (array_keys($groups));
         $chart->dataset = (array_values($groups));
         $chart->colours = $colours;
+        // dd($chart);
 //untuk merek
         $merekgrap = DB::table('tbl_dil')
         ->Join('merek','tbl_dil.id_merek','=','merek.id')
         ->select('merek', DB::raw('count(*) as total'))
         ->groupBy('merek')
-        // ->groupBy('cabang')
+        // ->groupBy('id_cabang')
         ->pluck('total','merek')->all();
 
 // Prepare the data for returning with the view
@@ -198,42 +200,64 @@ $graph = new DilModel;
     {
         // $data = DB::table('tbl_dil')
         // ->select('cabang', DB::raw('count(*) as total'))
-        // ->groupBy('cabang')
+        // ->groupBy('id_cabang')
         // ->get();
         // dd($data);
         if($request->ajax())
         {
-        $data = DilModel::select('*');
+            $data = DB::table('tbl_dil as d')
+            ->select([
+                    'd.id','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+                    'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+                    'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_cabang','u.nama_cabang'
+                    // 'g.nama_golongan','g.kode','u.id','u.nama_cabang'
+        ])
+       
+        ->Join('cabang as u','d.id_cabang','=','u.id');
 
-        if($request->filter_cabang)
+        if($request->filter_id_cabang)
         {
-            $data = $data->where('cabang', [$request->cabang]);
+            $data = $data->where('id_cabang', [$request->id_cabang]);
         }
         if($request->filter_segel)
         {
-            $data = $data->where('segel', [$request->segel]);
+            $data = $data->where('d.segel', [$request->segel]);
         }
         
         return DataTables::of($data)
-        ->addIndexColumn()
-        ->editColumn('cabang',function($data){
-            if($data->cabang == 05){
-                return 'Jatinangor';
-            }elseif($data->cabang == 13){
-                return 'Pamulihan';
-            }elseif($data->cabang == 06){
-                return 'Tanjungsari';   
-            }elseif($data->cabang == 14){
-                return 'Ciamnggung'; 
-            }elseif($data->cabang == 01){
-                return 'Sumedang Utara'; 
-            }else{
+        // ->addIndexColumn()
+        ->editColumn('d.id_cabang',function($data){
+            // if($data->id_cabang == 05){
+            //     return 'Jatinangor';
+            // }elseif($data->id_cabang == 13){
+            //     return 'Pamulihan';
+            // }elseif($data->id_cabang == 06){
+            //     return 'Tanjungsari';   
+            // }elseif($data->id_cabang == 2){
+            //     return 'Tanjungkerta'; 
+            // }elseif($data->id_cabang == 1){
+            //     return 'Sumedang Utara'; 
+            // }else{
                 
-                return 'Anda Salah Memasukan Kode';
-            }
-           
-       
+            //     return 'Anda Salah Memasukan Kode';
+            // }
+            return $data->nama_cabang; 
         })
+        ->editColumn('segel',function($data){
+            if($data->segel == 1){
+                return 'BAIK';
+            }elseif($data->segel == 2){
+                return 'TIDAK ADA';
+            }elseif($data->segel == 3){
+                return 'RUSAK';
+            }elseif($data->segel == 4){
+                return 'TIDAK DIKETAHUI';
+            }else{ 
+            return 'DITABELNYA KOSONG';
+            }
+          
+        })
+        ->addIndexColumn()
         ->make(true);
     }
 
@@ -270,14 +294,14 @@ $graph = new DilModel;
     {
        
             $tsegel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('segel','=','tid')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $ttsegel = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('segel','=','tid')
             ->pluck('segel');
 
@@ -288,14 +312,14 @@ $graph = new DilModel;
     {
        
             $tsegel1 = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('segel','=','ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $ttsegel11 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('segel','=','ada')
             ->pluck('segel');
             // return $request->all();
@@ -307,14 +331,14 @@ $graph = new DilModel;
     {
        
             $stsegel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('stop_kran','=','tidak ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $sttsegel = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.stop_kran)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('stop_kran','=','tidak ada')
             ->pluck('segel');
             
@@ -325,9 +349,9 @@ $graph = new DilModel;
     {
        
             $tsegel1 = DB::table('tbl_dil')
-            ->select(DB::raw('count(*) as stop_kran, cabang'))
+            ->select(DB::raw('count(*) as stop_kran, id_cabang'))
             ->where('stop_kran', '=', "ada")
-            ->groupBy('cabang')
+            ->groupBy('id_cabang')
             ->get();
             // dd($tsegel1);
       
@@ -337,14 +361,14 @@ $graph = new DilModel;
     {
        
             $tsegel1 = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('ceck_valve','=','ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $ttsegel11 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('ceck_valve','=','ada')
             ->pluck('segel');
             // return $request->all();
@@ -356,14 +380,14 @@ $graph = new DilModel;
     {
        
             $stsegel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('ceck_valve','=','tidak ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $sttsegel = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('ceck_valve','=','tidak ada')
             ->pluck('segel');
             
@@ -373,14 +397,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('kopling','=','ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('kopling','=','ada')
             ->pluck('segel');
             // return $request->all();
@@ -392,14 +416,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('kopling','=','tidak ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('kopling','=','tidak ada')
             ->pluck('segel');
             
@@ -409,14 +433,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('plugran','=','ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('plugran','=','ada')
             ->pluck('segel');
             // return $request->all();
@@ -428,14 +452,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('plugran','=','tidak ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('plugran','=','tidak ada')
             ->pluck('segel');
             
@@ -445,14 +469,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('box','=','ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('box','=','ada')
             ->pluck('segel');
             // return $request->all();
@@ -464,14 +488,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('box','=','tidak ada')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('box','=','tidak ada')
             ->pluck('segel');
             
@@ -481,14 +505,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('status_milik','=','1')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('status_milik','=','1')
             ->pluck('segel');
             // return $request->all();
@@ -500,14 +524,14 @@ $graph = new DilModel;
     {
        
             $segel = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('status_milik','=','2')
-            ->pluck('cabang');
+            ->pluck('id_cabang');
             
             $segel1 = DB::table('tbl_dil as a')
             ->select(DB::raw("count(a.segel)  as `segel` "))
-            ->groupBy(DB::raw("cabang"))
+            ->groupBy(DB::raw("id_cabang"))
             ->where('status_milik','=','2')
             ->pluck('segel');
             
@@ -517,14 +541,14 @@ $graph = new DilModel;
     {
        
             $datacabang = DB::table('tbl_dil as a')
-            ->select(DB::raw("(a.cabang)  as `cabang` "))
-            ->groupBy(DB::raw("cabang"))
+            ->select(DB::raw("(a.id_cabang)  as `id_cabang` "))
+            ->groupBy(DB::raw("id_cabang"))
                 ->where('status',1)
-            ->pluck('cabang');
+            ->pluck('id_cabang');
         //     dd($datacabang);
             $jumlahdatacabang = DB::table('tbl_dil as a')
             ->select(DB::raw("count(*)  as `all` "))
-            ->groupBy(DB::raw("a.cabang"))
+            ->groupBy(DB::raw("a.id_cabang"))
                 ->where('status',1)
             ->pluck('all');
         //     dd($jumlahdatacabang);
@@ -571,7 +595,7 @@ public function wmbaik(Request $request)
             $querywm = DB::table('tbl_dil')
                  ->select(DB::raw('count(*) as kondisi_wm, cabang'))
                  ->where('kondisi_wm', '=', 1)
-                 ->groupBy('cabang')
+                 ->groupBy('id_cabang')
                  ->get();
             // dd($querywm );
             
@@ -585,7 +609,7 @@ public function wmbaik(Request $request)
             $querywm = DB::table('tbl_dil')
                  ->select(DB::raw('count(*) as kondisi_wm, cabang'))
                  ->where('kondisi_wm', '=', 2)
-                 ->groupBy('cabang')
+                 ->groupBy('id_cabang')
                  ->get();
             // dd($querywm );
             
@@ -599,7 +623,7 @@ public function wmbaik(Request $request)
             $querywm = DB::table('tbl_dil')
                  ->select(DB::raw('count(*) as kondisi_wm, cabang'))
                  ->where('kondisi_wm', '=', 3)
-                 ->groupBy('cabang')
+                 ->groupBy('id_cabang')
                  ->get();
             // dd($querywm );
             
@@ -613,7 +637,7 @@ public function wmbaik(Request $request)
             $querywm = DB::table('tbl_dil')
                  ->select(DB::raw('count(*) as kondisi_wm, cabang'))
                  ->where('kondisi_wm', '=', 4)
-                 ->groupBy('cabang')
+                 ->groupBy('id_cabang')
                  ->get();
             // dd($querywm );
             
@@ -627,7 +651,7 @@ public function wmbaik(Request $request)
             $querywm = DB::table('tbl_dil')
                  ->select(DB::raw('count(*) as kondisi_wm, cabang'))
                  ->where('kondisi_wm', '=', 5)
-                 ->groupBy('cabang')
+                 ->groupBy('id_cabang')
                  ->get();
             // dd($querywm );
             
@@ -641,7 +665,7 @@ public function wmbaik(Request $request)
             $querywm = DB::table('tbl_dil')
                  ->select(DB::raw('count(*) as kondisi_wm, cabang'))
                  ->where('kondisi_wm', '=', 5)
-                 ->groupBy('cabang')
+                 ->groupBy('id_cabang')
                  ->get();
             // dd($querywm );
             

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Bbn;
 use App\Models\Ganti;
 use App\Models\Merek;
+use App\Models\Cabang;
 use App\Models\Sambung;
 use App\Models\Penutupan;
 use Illuminate\Http\Request;
@@ -33,12 +34,14 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-      Penutupan::all();
+     Penutupan::all();
+      
       Sambung::all();
      Bbn::all();
      Ganti::all();
      Merek::all();
-            
+    //  $a = Cabang::all();
+  
       $coba = Sambung::all();
       $categories = [];
       foreach($coba as $mp){
@@ -65,12 +68,21 @@ class HomeController extends Controller
         //  $date = Carbon::now()->format('M');
          
         $tdatabill = DB::table('tbl_dil as a')
-        ->select(DB::raw("(COUNT(*)) as jumlah"),'cabang', DB::raw('SUM(a.tanggal_file) as tanggal_file'),'tanggal_file')
+
+       
+        ->select(DB::raw("(COUNT(*)) as jumlah"),'id_cabang', DB::raw('SUM(a.tanggal_file) as tanggal_file'),'tanggal_file')
+      //   ->select([
+      //     'a.id','a.id_cabang','a.status','a.no_rekening','a.nama_sekarang','a.nama_pemilik','a.alamat','a.status_milik',
+      //     'a.jml_jiwa_tetap','a.jml_jiwa_tidak_tetap','a.angka','a.segel','kondisi_wm','a.stop_kran','a.ceck_valve','a.kopling','a.plugran',
+      //     'a.box','a.plugran','a.box','a.usaha','a.sumber_lain','a.no_seri','a.jenis_usaha','a.tanggal_pasang','a.tanggal_file','m.id'
+      // ])
+    
+        ->Join('cabang as m','m.id','=','a.id_cabang')
         // ->select('a.*')
-        // ->where('status','=',1) 
+        ->where('status','=',1) 
         ->whereMonth('a.tanggal_file',$tanggal1)
         ->whereYear('a.tanggal_file', Carbon::now()->year)
-        ->groupBy('a.cabang')
+        ->groupBy('a.id_cabang')
         ->groupBy('tanggal_file')
         ->get();
         // dd($tdatabill);
@@ -128,7 +140,7 @@ class HomeController extends Controller
         
       $jumlahtutup = DB::table('penutupan as a')
       ->join('tbl_dil as b','a.id_dil','=','b.id')
-      ->select(DB::raw("(COUNT(*)) as jumlah"),'cabang', DB::raw('SUM(a.tanggal_tutup) as tanggal_tutup'),'tanggal_tutup')
+      ->select(DB::raw("(COUNT(*)) as jumlah"),'id_cabang', DB::raw('SUM(a.tanggal_tutup) as tanggal_tutup'),'tanggal_tutup')
       // ->select(DB::raw("(COUNT(*)) as jumlah"),'cabang', DB::raw('COUNT(tanggal_tutup) as tanggal_tutup'),'tanggal_tutup')//Untuk Raw swmuanya
       // ->select(DB::raw("(COUNT(*)) as jumlah"),'cabang', DB::raw('COUNT(tanggal_tutup) as tanggal_tutup' , Carbon::now()->month))// Untuk Raw Bulanan ->groupBy('tanggal_tutup')ny  hilangkan
       // ->where(DB::raw('(tanggal_tutup)'), Carbon::today()->month)
@@ -138,7 +150,7 @@ class HomeController extends Controller
         ->whereMonth('a.tanggal_tutup',$tanggal1)
         ->whereYear('a.tanggal_tutup', Carbon::now()->year)
         // ->where('tanggal_tutup',Carbon::now()->month)
-        ->groupBy('cabang')
+        ->groupBy('id_cabang')
         ->groupBy('tanggal_tutup')
         ->get()->toArray();
       // dd($jumlahtutup);
@@ -156,11 +168,11 @@ class HomeController extends Controller
        
            $jumlahsambung = DB::table('sambung as a')
            ->join('tbl_dil as b','a.id_dil','=','b.id')
-           ->select(DB::raw("(COUNT(*)) as jumlah"),'cabang', DB::raw('COUNT(tanggal_sambung) as tanggal_sambung'),'tanggal_sambung')
+           ->select(DB::raw("(COUNT(*)) as jumlah"),'id_cabang', DB::raw('COUNT(tanggal_sambung) as tanggal_sambung'),'tanggal_sambung')
              // ->select('a.*','b.*')
              // ->whereMonth('tanggal_sambung', Carbon::now()->month)
              ->whereYear('tanggal_sambung','<=', Carbon::now())
-             ->groupBy('cabang')
+             ->groupBy('id_cabang')
              ->groupBy('tanggal_sambung')
              ->get()->toArray();
       //data Penggantian
@@ -177,13 +189,13 @@ class HomeController extends Controller
       ->join('tbl_dil as b','a.id_dil','=','b.id')
       ->join('merek as m','a.id_merek','=','m.id')
       // ->select('a.*','b.*','m.*')
-      ->select(DB::raw("(COUNT(*)) as jumlah"),'cabang', DB::raw('COUNT(tanggal_ganti) as tanggal_ganti'))
+      ->select(DB::raw("(COUNT(*)) as jumlah"),'id_cabang', DB::raw('COUNT(tanggal_ganti) as tanggal_ganti'))
        
         // ->select('a.*','b.*')
         // ->whereMonth('tanggal_ganti', Carbon::now()->month)
         ->whereYear('tanggal_ganti','<=', Carbon::now())
         // ->groupBy('no_wmbaru')
-        ->groupBy('cabang')
+        ->groupBy('id_cabang')
         ->groupBy('tanggal_ganti')
         ->get()->toArray();
        
@@ -214,7 +226,7 @@ class HomeController extends Controller
       //untuk Total Dil
        $totdil = DB::table('tbl_dil as d')
        ->select([
-        'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+        'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
         'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
         'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file',
         'd.id_merek','d.id_merek',

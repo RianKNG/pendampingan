@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Laravel Datatables Tutorial</title>
@@ -8,27 +8,13 @@
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body>
-     --}}
-     @extends('templates.v_template')
-@section('title','(CARI RINCI DATA DARI PELANGGAN)')
-{{-- @section('test')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
-<link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-@endsection --}}
-@section('content')
-<section class="content table-striped">
-    <div class="container-fluid table-striped">
-      <div class="card card-warning card-outline">
-        <div class="card-header text-center btn btn-info">
-          <button type="button" class="btn btn-warning" onclick="window.location.reload()"><span class="col-mt-2 mt-2">Segarkan Halaman</button>
-            <a href="/test" class="btn btn-warning"><span class="col-mt-2 mt-2">Kembali KE Halaman Dashboard</a>
-            </div> 
-     
-    <table >
+
+<div class="container mt-5">
+    <h2 class="mb-4">Laravel Yajra Datatables Example</h2>
+    <table>
         <tr>
             <td>
-                <select name="filter_cabang" id="filter_cabang" data-column="1" class="form-control" required>
+                <select name="filter_cabang" id="filter_cabang" data-column="2" class="form-control" required>
                 <option value="">--- Pilih Cabang ---</option>
                 <option value="05">Jatinangor</option>
                 <option value="06">Tanjungsari</option>
@@ -61,25 +47,23 @@
               </td>
         </tr>
     </table>
-    <div class="card-body">
-        
-     
+    
     <table id="myTable" class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Kode Cabang</th>
-                <th>Nama Cabang</th>
-                <th>Kondisi Segel</th>
-                <th>Status</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Nama Status</th>
             </tr>
         </thead>
-        
+        <tbody>
+        </tbody>
     </table>
 </div>
+   
 </body>
-@endsection
-@push('scripts')
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -100,8 +84,6 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
                 //   { data: 'DT_RowIndex', name: 'DT_RowIndex' , orderable: false, searchable: false },
-               //   { data: 'DT_RowIndex', name: 'DT_RowIndex' , orderable: false, searchable: false },
-                {data: 'id_cabang', name: 'd.id_cabang'},
                 {data: 'nama_cabang', name: 'nama_cabang'},
                   {data: 'segel', name: 'd.segel'},
                   {data: 'status', name: 'd.status'},
@@ -120,4 +102,5 @@
           
         });
 </script>
-@endpush
+
+</html>
