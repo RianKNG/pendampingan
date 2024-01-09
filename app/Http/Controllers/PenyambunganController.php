@@ -92,7 +92,7 @@ $data = $data
         $data = Sambung::find($id);
         $data->delete();
 
-        return redirect()->route('penyambungan')->with('success','data penutupan berhasil dihapus');
+        return redirect()->route('penyambungan')->with('success','data penyambungan berhasil dihapus');
     }
     public function insert(Request $request)
     {

@@ -6,7 +6,7 @@
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link"><span class="text-warning">Tim HUMAS   &   VDPR</span></a>
-      
+     
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link"></a>
@@ -16,11 +16,18 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <!-- Navbar Search -->
-   
+<li>
+  <div>
+    <?php
+    date_default_timezone_set("Asia/jakarta");
+?>
+<p align="right">Waktu Menunjukan Pukul: <b><span id="jam" style="font-size:24"></span></b></p>
 
-   
+   </div>
+</li>
 
-    <!-- Messages Dropdown Menu -->
+
+    <!-- Messages Dropdown Menu -->    
     <a class="nav-link">
       <form action="{{ route('logout') }}" method="POST">
         @csrf

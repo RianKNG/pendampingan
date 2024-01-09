@@ -95,7 +95,7 @@ function mrk($angka){
         'LOUIS VICTOR',
         'NINGBO',
         'SCHLUMBERGER',
-        'NULL',
+        'TIDAK DIKETAHUI',
         'TIDAK TERVERIFIKASI',
 
     ];

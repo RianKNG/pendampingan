@@ -394,52 +394,99 @@
       </div>
      
     </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-12" >
-            <div class="chart">
-              <!-- Sales Chart div -->
-              <canvas id="userChart" class="rounded shadow" width="20%"></canvas>
-              
-            </div>
-            {{-- <!-- /.chart-responsive --> --}}
-          </div>
-          <!-- /.col -->
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
+
       
       <!-- /.chart-responsive -->
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-12" >
-            <p class="text-left text-warning">
-              {{-- 14 = Cimanggung
-              <br>
-              06 = Pamulihan
-              <br>
-              05 = Cisitu
-              <br>
-              07 = AJSDD --}}
-            </p>
 
-            <div class="chart">
-              <!-- Sales Chart div -->
-              <canvas id="graphChart" class="rounded shadow" width="20%"></canvas>
-              
-            </div>
-            {{-- <!-- /.chart-responsive --> --}}
-          </div>
-          <!-- /.col -->
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
       
       <!-- /.chart-responsive -->
-   
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Rekap Berdasarkan Merek</h5>
 
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-center">
+                    {{-- <strong>DIL: 1 Jan, 2014 - 30 Jul, 2014</strong> --}}
+                  </p>
+                  <div class="chart">
+                    <!-- Sales Chart div -->
+                    <canvas id="userChart" class="rounded shadow" width="20%"></canvas>
+                    
+                  </div>
+                  
+                  <!-- /.chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./card-body -->
+            <!-- /.card-footer -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Rekap Berdasarkan Merek</h5>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="text-center">
+                    {{-- <strong>DIL: 1 Jan, 2014 - 30 Jul, 2014</strong> --}}
+                  </p>
+                  <div class="chart">
+                    <!-- Sales Chart div -->
+                    <canvas id="graphChart" class="rounded shadow" width="20%"></canvas>
+                    
+                  </div>
+                  
+                  <!-- /.chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./card-body -->
+            <!-- /.card-footer -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
       @endsection
 
       @section('footer')

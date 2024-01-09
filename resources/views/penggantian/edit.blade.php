@@ -15,7 +15,7 @@
     <h3 class="card-title">Edit Penyambungan</h3>
   </div>
   
-  <form action="/penggantian/update/{{ $data->id }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+  <form action="{{ url('penggantian/update/' .$data->id) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
     @csrf
     
       <div class="form-group">

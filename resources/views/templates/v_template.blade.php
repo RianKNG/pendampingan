@@ -7,7 +7,7 @@
   {{-- <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-  {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}} --}}
+  {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}} 
   <title>Master Dil</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -51,8 +51,11 @@
   
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+<div>
+<i class="text-warning"><marquee> <i>!!! Mohon ma'af apabila Tim Kami dalam pembuatan Sistem ini masih Banyak Kekurangan Karena masih dalam Pengembangan sesui intruksi Pimpinan !!!</i></marquee></i>
+</div>
+  
 
-   <i class="text-warning"><marquee> <i>!!! Mohon ma'af apabila Tim Kami dalam pembuatan Sistem ini masih Banyak Kekurangan Karena masih dalam Pengembangan sesui intruksi Pimpinan !!!</i></marquee></i>
     
     <div class="content-header">
       <div class="container-fluid">
@@ -72,7 +75,7 @@
     </div>
     </div>
     <!-- /.content-header -->
-    
+   
     <!-- Main content -->
     <section class="content">
         @yield('content')
@@ -133,6 +136,27 @@
 <script src="{{ asset('adminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 {{-- <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script> --}}
+<script type="text/javascript">
+  window.onload = function() { jam(); }
+ 
+  function jam() {
+      var e = document.getElementById('jam'),
+      d = new Date(), h, m, s;
+      h = d.getHours();
+      m = set(d.getMinutes());
+      s = set(d.getSeconds());
+ 
+      e.innerHTML = h +':'+ m +':'+ s;
+ 
+      setTimeout('jam()', 1000);
+  }
+ 
+  function set(e) {
+      e = e < 10 ? '0'+ e : e;
+      return e;
+  }
+
+</script>  
 @yield('footer2')
 @yield('footer')
 @stack('scripts')

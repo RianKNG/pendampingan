@@ -14,7 +14,7 @@ class CabangController extends Controller
      */
     public function index(Request $request)
     {
-        $data['title'] = 'Data User';
+        $data['title'] = 'Data Cabang';
         $data['q'] = $request->q;
         $data['rows'] = Cabang::where('nama_cabang', 'like', '%' . $request->q . '%')->get();
         return view('cabang.index', $data);

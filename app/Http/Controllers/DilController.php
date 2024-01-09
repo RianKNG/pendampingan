@@ -94,34 +94,34 @@ class DilController extends Controller
         // ->orderBy('d.status','desc')
         // // ->where('d.status',2)
         // ->simplePaginate(100);
-        // // dd($data);
-        // if (request('term')) {
-        //     $data = DB::table('tbl_dil as d')
-        // ->select([
-        //     'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-        //     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-        //     'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-        //     'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang'
-        // ])
-        // ->Join('merek as m','d.id_merek','=','m.id')
-        // ->Join('cabang as c','d.id_cabang','=','c.id')
-        // ->Join('golongan as g','d.id_golongan','=','g.id')
-        // ->leftJoin('bbn as s','s.id_dil','=','d.id')
-        // ->leftJoin('penutupan as p','p.alasan','=','d.id')
-        // ->orderBy('d.status','desc')
-        // ->where('d.id_cabang', 'Like', '%' . request('term') . '%')
-        // ->orWhere('d.id', 'Like', '%' . request('term') . '%')
-        // ->simplePaginate(100);
+        // dd($data);
+        if (request('term')) {
+            $data = DB::table('tbl_dil as d')
+        ->select([
+            'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+            'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+            'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+            'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang'
+        ])
+        ->Join('merek as m','d.id_merek','=','m.id')
+        ->Join('cabang as c','d.id_cabang','=','c.id')
+        ->Join('golongan as g','d.id_golongan','=','g.id')
+        ->leftJoin('bbn as s','s.id_dil','=','d.id')
+        ->leftJoin('penutupan as p','p.alasan','=','d.id')
+        ->orderBy('d.status','desc')
+        ->where('d.id_cabang', 'Like', '%' . request('term') . '%')
+        ->orWhere('d.id', 'Like', '%' . request('term') . '%')
+        ->simplePaginate(100);
            
-        // }
+        }
         return view('dil.v_dil', compact('data'))->render(); 
-    //    dd($data);
+      
     
         }
 
-     
-      
     }
+
+   
     public function add()
     {
         $mer = Merek::all();

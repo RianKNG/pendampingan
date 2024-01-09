@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="card-body">
-      <a href="/exportganti" class="btn btn-info">Export Penggantian</a>
+      <a href="{{ URL('/exportganti') }}" class="btn btn-info">Export Penggantian</a>
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#import">
         Import Penggantian
     </button>
@@ -25,7 +25,7 @@
   <div class="modal-dialog" role="document">
       <div class="modal-content">
          
-        <form action="/importganti" method="POST" enctype="multipart/form-data">
+        <form action="{{ ('/exportganti') }}/importganti" method="POST" enctype="multipart/form-data">
           @csrf
               <div class="modal-body">
                   <div class="form-group">
@@ -52,7 +52,7 @@
         <div class="card-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
             {{-- <input type="search" name="search" class="form-control float-right" placeholder="search"> --}}
-            <form action="/penggantian" method="GET">
+            <form action="{{ URL('/penggantian') }}" method="GET">
               <input type="search" class="form-control" name="search" placeholder="Cari ">
             </form>
           </div>
@@ -78,7 +78,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $k->id_dil }}</td>
-                <td>{{ duka($k->cabang) }}</td>
+                <td>{{ duka($k->id_cabang) }}</td>
                 <td>{{ $k->tanggal_ganti }}</td>
                 <td>{{ mrk($k->id_merek) }}</td>
                 <td>{{ $k->no_wmbaru }}</td>
@@ -86,7 +86,7 @@
                 <td>
                   {{-- <a href="penutupan/hapus/{{ $k->id }}" class="btn btn-primary btn-xs">Delete</a> --}}
                   
-                  <a href="penggantian/edit/{{ $k->id }}" class="btn btn-success btn-xs">Edit</a>
+                  <a href="{{ url('penggantian/edit/' .$k->id) }}" class="btn btn-success btn-xs">Edit</a>
                   <a href="penggantian/hapus/{{ $k->id }}" 
                     class="btn btn-danger btn-xs" 
                     data-toggle="modal" 
@@ -146,7 +146,7 @@
             
           </div>
           <div class="card-body">
-            <form action="/penggantian/insert" method="post" enctype="multipart/form-data">
+            <form action="{{ URL('/penggantian/insert') }}" method="post" enctype="multipart/form-data">
               @csrf
                 <!-- /.card-header -->
                   <div class="form-group">

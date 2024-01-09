@@ -167,8 +167,8 @@ $chart = new DilModel;
         ->Join('merek','tbl_dil.id_merek','=','merek.id')
         ->select('merek', DB::raw('count(*) as total'))
         ->groupBy('merek')
-        // ->groupBy('id_cabang')
-        ->pluck('total','merek')->all();
+        ->groupBy('id_cabang')
+        ->pluck('total','merek','id_cabang')->all();
 
 // Prepare the data for returning with the view
 $graph = new DilModel;

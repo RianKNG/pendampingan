@@ -104,6 +104,7 @@
           </div>
           <!-- /.col -->
            <!-- fix for small devices only -->
+        
            <div class="clearfix hidden-md-up"></div>
     
            <div class="col-12 col-sm-6 col-md-3">

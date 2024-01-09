@@ -84,7 +84,7 @@ class PenutupanController extends Controller
         $data = Penutupan::find($id);
         $data->delete();
 
-        return redirect()->route('penutupan')->with('success','data penutupan berhasil dithapus');
+        return redirect()->route('penutupan')->with('success','data penutupan berhasil dihapus');
     }
     // public function index()
     // {

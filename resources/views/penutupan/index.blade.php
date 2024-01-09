@@ -2,6 +2,7 @@
 @extends('templates.v_template')
 @section('title','Penutupan Dil')
 @section('content')
+
 <div class="col-md-4">
   <div class="card card-primary card-outline">
     {{-- <div class="card-header">
@@ -13,19 +14,24 @@
       </div>
     </div> --}}
     <div class="card-body">
-      <a href="/exportexcelp" class="btn btn-info btn-sm">Export Penutupan</a>
+      <a href="{{ url('/exportexcelp') }}" class="btn btn-info btn-sm">Export Penutupan</a>
       <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#import">
         Import Penutupan
     </button>
     </div>
   </div>
 </div>
+@if ($message = Session::get('success'))
+<div class="alert alert-success" role="alert">
+ {{ $message }}
+</div>
+@endif
 <!-- modal -->
 <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-content">
          
-        <form action="/importexcelp" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/importexcelp') }}" method="POST" enctype="multipart/form-data">
           @csrf
               <div class="modal-body">
                   <div class="form-group">
@@ -82,13 +88,13 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                  @if ($k->status == 2 && $loop->iteration == 1)
-                    <a href="/dil/statustutup/{{ $k->id_dil }}" class="fa fa-check"></a>
+                  @if ($k->status == 1 && $loop->iteration == 1)
+                    <a href="{{ url('/dil/statustutup/' .$k->id_dil) }}" class="fa fa-check"></a>
                   @else
-                    <a href="/dil/statustutup/{{ $k->id_dil }}" class="fa hide"></a>Tidak Aktip
+                    <a href="{{ url('/dil/statustutup/' .$k->id_dil) }}" class="fa hide"></a>Tidak Aktip
                   @endif
                 </td>
-                <td>{{ duka($k->cabang) }}</td>
+                <td>{{ duka($k->id_cabang) }}</td>
                 <td>{{ $k->id_dil }}</td>
                 <td>{{ $k->tanggal_tutup }}</td>
                 <td>{{ $k->nama_sekarang }}</td>
@@ -156,7 +162,7 @@
             
           </div>
           <div class="card-body">
-            <form action="/penutupan/insert" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/penutupan/insert') }}" method="post" enctype="multipart/form-data">
               @csrf
                 <!-- /.card-header -->
                   <div class="form-group">

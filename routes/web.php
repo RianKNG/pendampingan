@@ -12,6 +12,7 @@ use App\Http\Controllers\DilController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CabangController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\LaporanController;
@@ -175,6 +176,9 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('laporan', [LaporanController::class,'index'])->name('laporan');
     Route::post('laporan/create', [LaporanController::class,'create'])->name('laporan.create');
     Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
+  //Cabang
+    Route::get('/cabang', [CabangController::class,'index']);
+  
 
 
 

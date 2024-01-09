@@ -25,7 +25,7 @@
   <div class="modal-dialog" role="document">
       <div class="modal-content">
          
-        <form action="/importsambung" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/importsambung') }}" method="POST" enctype="multipart/form-data">
           @csrf
               <div class="modal-body">
                   <div class="form-group">
@@ -68,7 +68,7 @@
                   <th>nama</th>
                   <th>alasan</th>
                   <th>tanggal_sambung</th>
-                  <th>alasan</th>
+                
                   <th width="25%">Aksi</th>
                 </tr>
               </thead>
@@ -79,15 +79,15 @@
                     <td>{{ $k->id_dil }}</td>
                     <td>{{ $k->nama_sekarang }}</td>
                     <td>{{ $k->alasan }}</td>
-                    <td>{{ $k->tanggal_sambung }}</td>
+                    {{-- <td>{{ $k->alamat }}</td> --}}
 
                     <td>
                       @if ($k->status == 2 && $loop->iteration == 1)
-                      <a href="/dil/statussambung/{{ $k->id_dil }}" class="fa fa-window-close"></a>
+                      <a href="{{ url('/dil/statussambung/' .$k->id_dil) }}" class="fa fa-window-close"></a>
                   @else
                   
                  
-                  <a href="/dil/statussambung/{{ $k->id_dil }}"></a>Aktip Tanggal
+                  <a href="{{ url('/dil/statussambung/' .$k->id_dil) }}"></a>Riwayat Sambung {{ $k->tanggal_sambung }}
                    
                   @endif
                     </td>

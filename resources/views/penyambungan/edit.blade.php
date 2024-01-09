@@ -15,7 +15,7 @@
   </div>
   <!-- /.card-header -->
   <!-- form start -->
-  <form action="/penyambungan/update/{{ $data->id }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+  <form action="{{ url('/penyambungan/update/' .$data->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
     @csrf
               <!-- /.card-header -->
                 <div class="form-group">

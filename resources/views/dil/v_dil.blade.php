@@ -52,7 +52,7 @@
             {{-- {{ $data->links() }} --}}
               <div class="card-body table-responsive p-0" style="height: 500px;">
                 {{-- @include('pagination_child') --}}
-                <table id="table" class="table table-striped">
+                <table id="table" class="table table-head-fixed text-nowrap">
                     {{-- <table id="table"> --}}
                 <thead>
                   <tr>
@@ -106,7 +106,7 @@
                     {{-- <td>{{ $k->id_cabang }}</td>   --}}
                   
                     <td>{{ $k->nama_cabang }}</td> 
-                    <td>{{ $k->id }}</td>   
+                    <td>{{ $k->id }}</td>
                     <td>{{ $k->no_rekening }}</td>
                     <td class="text-warning">{{ $k->nama_sekarang }}</td>
                     {{-- <td>
