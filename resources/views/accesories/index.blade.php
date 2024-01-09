@@ -30,7 +30,7 @@
           <div class="icon">
             <i class="ion ion-bag"></i>
           </div>
-          <a href="/test/wmbaik" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/jalan') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -41,7 +41,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/wmrusak" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/datatable') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -65,7 +65,7 @@
           <div class="icon">
             <i class="ion ion-bag"></i>
           </div>
-          <a href="/test/wmbaik" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/wmbaik') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -81,7 +81,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/wmrusak" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/wmrusak') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -97,7 +97,7 @@
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="/test/wmburam" class="small-box-footer"><span class="btn-sm"></span><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/wmburam') }}" class="small-box-footer"><span class="btn-sm"></span><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
           
         </div>
       </div>
@@ -114,7 +114,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="/test/wmhilang" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/wmhilang') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -142,7 +142,7 @@
           <div class="icon">
             <i class="ion ion-bag"></i>
           </div>
-          <a href="/test/wmterkubur" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/wmterkubur') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -158,7 +158,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/wmterkunci" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/wmterkunci') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -174,7 +174,7 @@
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="/test/stidakada" class="small-box-footer"><span class="btn-sm"></span><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/stidakada') }}" class="small-box-footer"><span class="btn-sm"></span><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
           
         </div>
       </div>
@@ -191,7 +191,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="/test/sada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/sada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -217,7 +217,7 @@
           <div class="icon">
             <i class="ion ion-bag"></i>
           </div>
-          <a href="/test/cvtidakada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/cvtidakada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -233,7 +233,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/cvada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/cvada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -249,7 +249,7 @@
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="/test/kptada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/kptada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -265,7 +265,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="/test/kpada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/kpada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -284,7 +284,7 @@
           <div class="icon">
             <i class="ion ion-bag"></i>
           </div>
-          <a href="/test/pktada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/pktada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -300,7 +300,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/pkada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/pkada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -316,7 +316,7 @@
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="/test/bxada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/bxada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -333,7 +333,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="/test/bxtada" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/bxtada') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -355,7 +355,7 @@
             <i class="ion ion-bag"></i>
           </div>
           
-          <a href="/test/rada" class="small-box-footer"><i>Pelanggan Rumah Hak Milik Percabang</i> <i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/rada') }}" class="small-box-footer"><i>Pelanggan Rumah Hak Milik Percabang</i> <i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -372,7 +372,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/rtada" class="small-box-footer"><i>Pelanggan Rumah Sewa Percabang</i> <i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/rtada') }}" class="small-box-footer"><i>Pelanggan Rumah Sewa Percabang</i> <i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <div class="col-lg-12 col-12">
@@ -388,7 +388,7 @@
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="/test/all" class="small-box-footer"><i>DIL Semua Pelanggan Percabang</i> <i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/test/all') }}" class="small-box-footer"><i>DIL Semua Pelanggan Percabang</i> <i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       
       </div>
@@ -397,16 +397,6 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-12" >
-            <p class="text-left text-warning">
-              05 = Jatinangor
-              <br>
-              06 =Tanjungsari
-              <br>
-              13 = Pamulihan
-              <br>
-              14 = Cimanggung
-            </p>
-
             <div class="chart">
               <!-- Sales Chart div -->
               <canvas id="userChart" class="rounded shadow" width="20%"></canvas>

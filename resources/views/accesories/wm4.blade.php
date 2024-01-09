@@ -38,7 +38,7 @@
         <div class="card-header">
          
           <div class="card-tools">
-            <a href="/test"><span class ="fa fa-arrow-left">Kembali</span></a>
+            <a href="{{ url('/test') }}"><span class ="fa fa-arrow-left">Kembali</span></a>
           </div>
         </div>
       <!-- /.card-header -->
@@ -63,7 +63,7 @@
                         @foreach ($querywm as $key)
                         <tr>
                           <td>{{ $loop->iteration }}</td> 
-                        <td>{{ duka($key->cabang) }}</td> 
+                          <td>{{ duka($key->id_cabang) }}</td> 
                         <td>{{ $key->kondisi_wm }}</td> 
                     </tr>
                         @endforeach

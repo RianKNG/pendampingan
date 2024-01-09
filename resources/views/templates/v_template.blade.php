@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{-- <meta charset="utf-8"> --}}
-  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+  {{-- <meta charset="utf-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-  {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+  {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}} --}}
   <title>Master Dil</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -33,9 +33,9 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  {{-- <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{ asset('adminLTE/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
-  </div> --}}
+  <div class="preloader justify-content-center align-items-center">
+    <img class="animation__wobble" src="{{ asset('adminLTE/dist/img/a.png') }}" alt="P E R U M D A" height="100" width="100">
+  </div> 
 
   <!-- Navbar -->
 

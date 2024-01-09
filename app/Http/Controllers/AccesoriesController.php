@@ -571,29 +571,36 @@ $graph = new DilModel;
 // dd($dupes);
     // return response()->json($dupes);
 // dd($dupes);
-$collection =  DilModel::all();
-$grouped = $collection->groupBy(function ($item, $key) {
-    return substr($item['id'], 0, 7);
-});
+// ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+// $collection =  DilModel::all();
+// $grouped = $collection->groupBy(function ($item, $key) {
+//     return substr($item['id'], 0, 7);
+// });
 
+// // dd($collection);
 
-
-$groupCount = $grouped->map(function ($item, $key) {
-    return collect($item)->count();
-});
-// dd($groupCount);
-        return view('jalan',compact('groupCount'));
+// $groupCount = $grouped->map(function ($item, $key) {
+//     return collect($item)->count();
+// });
+// // dd($groupCount);
+//         return view('jalan',compact('groupCount'));
         
-    }
+//     }
 
-
-
+$groupCount = DB::table('cabang as d')
+->Join('tbl_dil as u','d.id','=','u.id_cabang')
+->select(DB::raw("(COUNT(d.id)) as jumlah"),'nama_cabang')
+->groupBy('nama_cabang')
+->get();
+// dd($groupCount);
+return view('jalan',compact('groupCount'));
+}
 public function wmbaik(Request $request)
     {
        
          
             $querywm = DB::table('tbl_dil')
-                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                  ->where('kondisi_wm', '=', 1)
                  ->groupBy('id_cabang')
                  ->get();
@@ -607,7 +614,7 @@ public function wmbaik(Request $request)
        
          
             $querywm = DB::table('tbl_dil')
-                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                  ->where('kondisi_wm', '=', 2)
                  ->groupBy('id_cabang')
                  ->get();
@@ -621,7 +628,7 @@ public function wmbaik(Request $request)
        
          
             $querywm = DB::table('tbl_dil')
-                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                  ->where('kondisi_wm', '=', 3)
                  ->groupBy('id_cabang')
                  ->get();
@@ -635,7 +642,7 @@ public function wmbaik(Request $request)
        
          
             $querywm = DB::table('tbl_dil')
-                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                  ->where('kondisi_wm', '=', 4)
                  ->groupBy('id_cabang')
                  ->get();
@@ -649,7 +656,7 @@ public function wmbaik(Request $request)
        
          
             $querywm = DB::table('tbl_dil')
-                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                  ->where('kondisi_wm', '=', 5)
                  ->groupBy('id_cabang')
                  ->get();
@@ -663,7 +670,7 @@ public function wmbaik(Request $request)
        
          
             $querywm = DB::table('tbl_dil')
-                 ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                 ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                  ->where('kondisi_wm', '=', 5)
                  ->groupBy('id_cabang')
                  ->get();

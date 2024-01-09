@@ -127,7 +127,7 @@
             <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
           </div>
 		  <div class="col-md-6 form-group pr-md-1">
-            <input type="password" name="password" class="form-control" id="name" placeholder="Nama" required>
+            <input type="password" name="password" class="form-control" id="name" placeholder="Password" required>
           </div>
         </div>
 

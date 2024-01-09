@@ -100,6 +100,32 @@
         </p>
       </a>
     </li>
+    <li class="{{ Request::is('/cabang')? "active":"" }}">
+      <a href="{{ url('/cabang') }}" class="nav-link">
+        <span class="icon"><i class="fa fa-coins text-red"></i></span>
+     
+        <p class="btn-xs">
+          <i style="color: rgb(151, 207, 19)">Cabang (Progres)</i>
+        </p>
+      </a>
+    </li>
+    <li class="#">
+      <a href="#" class="nav-link">
+        <span class="icon"><i class="fa fa-coins text-red"></i></span>
+     
+        <p class="btn-xs">
+          <i style="color: rgb(151, 207, 19)">Wilayah (Belum Dibuat)</i>
+        </p>
+      </a>
+    </li>
+    <li class="#">
+      <a href="#" class="nav-link">
+        <span class="icon"><i class="fa fa-coins text-red"></i></span>
+        <p class="btn-xs">
+          <i style="color: rgb(151, 207, 19)">Jalan (Belum Dibuat)</i>
+        </p>
+      </a>
+    </li>
     <li class="{{ Request::is('/golongan')? "active":"" }}">
       <a href="{{ url('/golongan') }}" class="nav-link">
         <span class="icon"><i class="fa fa-code-branch text-primary"></i></i></span>

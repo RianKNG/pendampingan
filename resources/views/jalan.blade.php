@@ -22,7 +22,7 @@
                   <thead class="thead-danger text-white">
                     <tr>
                     <th>No</th>
-                     <th>Kode Jalan</th>
+                     <th>Cabang</th>
                      <th>Jumlah</th>
                     
                     </tr>
