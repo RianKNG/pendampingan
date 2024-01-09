@@ -36,10 +36,10 @@
         <div class="col-md-6">
             <div class="card card-outline card-danger">
             <div class="card-header">
-                <h6 class="card-title col-xs"><span class="text-warning">Download Laporan Dil Cabang && Golongan<span></h6>
+                <h6 class="card-title col-xs"><span class="text-warning">Download Laporan Dil Cabxxxxxxxang && Golongan<span></h6>
             </div>
             <div class="my-4 mb-2">
-                <form action="/dil/cetakperiode" method="GET">
+                <form action="{{ url('/dil/cetakperiode') }}" method="GET">
                     <div class="input-group">
                         <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
                         <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
@@ -56,7 +56,7 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <h6 class="bling"><a href="#" class="small-box-footer"> <i id="blink"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download Laporan Dil Per Cabang dan Golongan</strong> </a></h6>
-        <form action="/dil/cetakrt" method="GET">
+        <form action="{{ url('/dil/cetakrt') }}" method="GET">
             <div class="input-group">
                 <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
                 <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
@@ -93,7 +93,7 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <h6 class="bling"><a href="#" class="small-box-footer"> <i id="blink"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cetak Laporan SlBaru</strong> </a></h6>
-        <form action="/dil/cetaklaporansl" method="GET">
+        <form action="{{ url('/dil/cetaklaporansl') }}" method="GET">
             <div class="input-group">
                 <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
                 <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
@@ -112,7 +112,7 @@
       <!-- small box -->
       <div class="small-box bg-warning">
           <h6 class="blinkblink"><a href="#" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cetak Laporan PenyambunganSL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></a></h6>
-          <form action="/dil/cetaklaporanpenyambungan" method="GET">
+          <form action="{{ url('/dil/cetaklaporanpenyambungan') }}" method="GET">
             <div class="input-group">
                 <input name="start_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
                 <input name="end_date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='date'">
@@ -155,7 +155,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
            
-            <form action="/importexcel" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/importexcel') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -175,27 +175,27 @@
 <div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="/exportexcel/{cabang}" method="GET">
+            <form action="{{ url('/exportexcel/{id_cabang}') }}" method="GET">
                 <div class="input-group">
                     {{-- <label for="" class="form-label">cari cabang</label> --}}
-                    <select name="cabang" id="" class="form-select">
+                    <select name="id_cabang" id="" class="form-select">
                         <option value="">-</option>
-                        <option value="1" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='1'}}">Sumedang Utara</option>
-                        <option value="2" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='2'}}">Tanjungkerta</option>
-                        <option value="3" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='3'}}">Datmaraja</option>
-                        <option value="4" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='4'}}">Situraja</option>
-                        <option value="5" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='5'}}">Jatinangor</option>
-                        <option value="6" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='6'}}">Tanjungsari</option>
-                        <option value="7" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='7'}}">Paseh</option>
-                        <option value="8" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='8'}}">Cimalaka</option>
-                        <option value="10" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='10'}}">Ujungjaya</option>
-                        <option value="11" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='11'}}">Wado</option>
-                        <option value="12" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='12'}}">Cisitu</option>
-                        <option value="13" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='13'}}">Pamulihan</option>
-                        <option value="14" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='14'}}">Cimanggung</option>
-                        <option value="31" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='31'}}">Sumeadang Selatan</option>
-                        <option value="42" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='42'}}">Sumedang Utara</option>
-                        <option value="40" selected="{{ isset($_GET['cabang']) && $_GET['cabang'] =='40'}}">Mol Pelayanan Publik</option>
+                        <option value="1" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='1'}}">Sumedang Utara</option>
+                        <option value=2 selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] ==2}}">Tanjungkerta</option>
+                        <option value="3" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='3'}}">Datmaraja</option>
+                        <option value="4" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='4'}}">Situraja</option>
+                        <option value="5" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='5'}}">Jatinangor</option>
+                        <option value="6" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='6'}}">Tanjungsari</option>
+                        <option value="7" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='7'}}">Paseh</option>
+                        <option value="8" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='8'}}">Cimalaka</option>
+                        <option value="10" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='10'}}">Ujungjaya</option>
+                        <option value="11" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='11'}}">Wado</option>
+                        <option value="12" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='12'}}">Cisitu</option>
+                        <option value="13" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='13'}}">Pamulihan</option>
+                        <option value="14" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='14'}}">Cimanggung</option>
+                        <option value="31" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='31'}}">Sumeadang Selatan</option>
+                        <option value="42" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='42'}}">Sumedang Utara</option>
+                        <option value="40" selected="{{ isset($_GET['id_cabang']) && $_GET['id_cabang'] =='40'}}">Mol Pelayanan Publik</option>
     
     
                     </select>

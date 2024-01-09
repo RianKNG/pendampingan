@@ -37,13 +37,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:tb_user',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => 'required',
             'level' => 'required',
         ]);
-
+       
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

@@ -259,15 +259,15 @@ class DilController extends Controller
        return view('v_home',compact('data'));
     }
 
-   public function exportexcel(Request $request,$cabang)
+   public function exportexcel(Request $request,$id_cabang)
   
    {
 
     $from = Carbon::parse($request->get('from'));
     $to = Carbon::parse($request->get('to'));
 
- 
-    return Excel::download(new DilExport($request->cabang,$from, $to), 'DilCabang.xlsx');
+//  dd($request->all());
+    return Excel::download(new DilExport($request->id_cabang,$from, $to), 'DilCabang.xlsx');
       
    }
    public function exportpdf()
@@ -338,7 +338,8 @@ class DilController extends Controller
     $data->move('Pelanggan',$namafile);
     
 
-    $import = Excel::import(new DilImport, \public_path('/Pelanggan/'. $namafile));
+    $import = Excel::import(new DilImport, \public_path('../Pelanggan/'. $namafile));
+    
  
     if($import) {
         //redirect
@@ -470,25 +471,25 @@ public function cetakperiode()
 {
     
 // dd($data);
-$title='Laporan DIL Berdasarkan Cabang Dan Golongan';
+$title='Laporan DIL Berdasarkan Cabang Dan Merek';
  if (request()->start_date || request()->end_date) {
      $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
      $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
      $data = DB::table('tbl_dil')
     ->Join('merek as m','tbl_dil.id_merek','=','m.id')
-     ->select(DB::raw("(COUNT(cabang)) as jumlah"),'cabang')
+     ->select(DB::raw("(COUNT(id_cabang)) as jumlah"),'id_cabang')
        ->whereBetween('tanggal_pasang',[$start_date,$end_date])
-       ->groupBy('cabang')
+       ->groupBy('id_cabang')
        ->where('status',1)
        ->get();
        $datamerek = DB::table('tbl_dil')
        ->Join('merek as m','tbl_dil.id_merek','=','m.id')
-       ->select(DB::raw("(COUNT(m.merek)) as jumlah"),'m.merek','cabang','m.id')
+       ->select(DB::raw("(COUNT(m.merek)) as jumlah"),'m.merek','id_cabang','m.id')
        ->whereBetween('tanggal_pasang',[$start_date,$end_date])
        ->groupBy('m.id')
        ->groupBy('m.merek')
-       ->groupBy('cabang')
-       ->orderBy('cabang')
+       ->groupBy('id_cabang')
+       ->orderBy('id_cabang')
        ->get();
 // dd($datamerek);
 $pdf = PDF::loadView('periode', compact('data','title','datamerek'));
@@ -500,31 +501,31 @@ $pdf = PDF::loadView('periode', compact('data','title','datamerek'));
 {
     
 // dd($data);
-$title='Laporan DIL Berdasarkan Cabang Dan Merek';
+$title='Laporan DIL Berdasarkan Cabang Dan Golongan';
  if (request()->start_date || request()->end_date) {
      $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
      $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
      $data = DB::table('tbl_dil')
     ->Join('golongan as m','tbl_dil.id_golongan','=','m.id')
-     ->select(DB::raw("(COUNT(cabang)) as jumlah"),'cabang')
+     ->select(DB::raw("(COUNT(id_cabang)) as jumlah"),'id_cabang')
        ->whereBetween('tanggal_pasang',[$start_date,$end_date])
-       ->groupBy('cabang')
+       ->groupBy('id_cabang')
        ->where('status',1)
        ->get();
     //    dd($data);
        $datagolongan = DB::table('tbl_dil')
        ->Join('golongan as m','tbl_dil.id_golongan','=','m.id')
-       ->select(DB::raw("(COUNT(m.nama_golongan)) as jumlah"),'m.nama_golongan','m.kode','cabang')
+       ->select(DB::raw("(COUNT(m.nama_golongan)) as jumlah"),'m.nama_golongan','m.kode','id_cabang')
        ->whereBetween('tanggal_pasang',[$start_date,$end_date])
        ->groupBy('m.nama_golongan')
        ->groupBy('m.kode')
-       ->groupBy('cabang')
-       ->orderBy('cabang')
+       ->groupBy('id_cabang')
+       ->orderBy('id_cabang')
        ->get();
 // dd($datagolongan);
 $pdf = PDF::loadView('periodegolongan', compact('data','title','datagolongan'));
         //  $pdf = PDF::loadView('periode',compact($data));
-        return $pdf->download('laporan DIL Bedasarkan Cabang dan Merek.pdf');
+        return $pdf->download('laporan DIL Bedasarkan Cabang dan Golongan.pdf');
  }
  } 
 public function cetaklaporansl()

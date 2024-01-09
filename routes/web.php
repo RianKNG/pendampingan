@@ -176,6 +176,10 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::post('laporan/create', [LaporanController::class,'create'])->name('laporan.create');
     Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
 
+
+
+
+
 });
 
 

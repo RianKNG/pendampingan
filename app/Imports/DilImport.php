@@ -18,7 +18,7 @@ class DilImport implements ToModel
             
                    'id' => $row[0],
                    'status' => $row[1],
-                   'cabang' => $row[2],
+                   'id_cabang' => $row[2],
                    'no_rekening' => $row[3],
                    'nama_sekarang'=> $row[4],
                    'nama_pemilik'=> $row[5],

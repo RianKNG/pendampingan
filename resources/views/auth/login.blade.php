@@ -88,7 +88,7 @@
     <div class="hero-container">
       <img src="{{ asset('adminLTE') }}/templatedepan/img/direktur.png" class="img-rounded" alt="...">
       <li class="btn btn-primary dunungan">Rd. Moch.Taufik Suriakusumah, SE.</li>
-      <h1><p class="empat"><b>SELAMAT DATANG DI SIPDIL</b></p></h1>
+      <h1><p class="empat"><b>SELAMAT DATANG DI SIDILAN</b></p></h1>
       <style>
    p {
      /* width: 500px;

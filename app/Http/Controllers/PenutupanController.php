@@ -34,7 +34,7 @@ class PenutupanController extends Controller
                    ->leftJoin('tbl_dil','penutupan.id_dil','=','tbl_dil.id')
                    // jangan select id parentnya karena akan terpanggil parent nya
                    // kalou manggil data all function makan callbact function null(*)
-                    ->select('penutupan.id','penutupan.tanggal_tutup','penutupan.alasan','penutupan.id_dil','tbl_dil.status','tbl_dil.nama_sekarang','tbl_dil.nama_pemilik','tbl_dil.id_merek','tbl_dil.segel','tbl_dil.cabang')
+                    ->select('penutupan.id','penutupan.tanggal_tutup','penutupan.alasan','penutupan.id_dil','tbl_dil.status','tbl_dil.nama_sekarang','tbl_dil.nama_pemilik','tbl_dil.id_merek','tbl_dil.segel','tbl_dil.id_cabang')
                     ->orderBy('id','desc')
                     ->simplePaginate(100);
                     // dd($request->all());
@@ -117,7 +117,7 @@ class PenutupanController extends Controller
         // jangan select id parentnya karena akan terpanggil parent nya
         // ->select('a.id','a.tanggal_tutup','a.alasan','a.id_dil','b.status','b.nama_sekarang','b.nama_pemilik','b.id_merek','b.segel');
         
-         ->select('a.*','b.status','b.nama_sekarang','b.nama_pemilik','b.id_merek','b.segel','b.cabang');
+         ->select('a.*','b.status','b.nama_sekarang','b.nama_pemilik','b.id_merek','b.segel','b.id_cabang');
         //  ->get();
         //  ->orderBy('id','desc')
          

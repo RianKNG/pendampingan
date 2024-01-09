@@ -38,7 +38,7 @@ class DilExport implements FromQuery,WithMapping,WithHeadings,WithEvents,ShouldA
         
      
         return DilModel::query()
-        ->where('cabang', $this->cabang)
+        ->where('id_cabang', $this->cabang)
         ->whereBetween('tanggal_pasang', [$this->from, $this->to]);
        
     
@@ -67,7 +67,7 @@ class DilExport implements FromQuery,WithMapping,WithHeadings,WithEvents,ShouldA
             'NO SERI',
             'MEREK',
             'JENIS USAHA',
-            // 'TANGGAL PASANG',
+            'TANGGAL PASANG',
             
         ];
     }
@@ -93,7 +93,7 @@ class DilExport implements FromQuery,WithMapping,WithHeadings,WithEvents,ShouldA
             $cabang->no_seri,
             $cabang->merek()->pluck('merek')->implode(', '),
             $cabang->jenis_usaha,
-            // $cabang->tanggal_pasang,
+            $cabang->tanggal_pasang,
            
         ];
     }

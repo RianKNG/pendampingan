@@ -115,7 +115,7 @@
                 <tr>
                     <td>{{  $loop->iteration }}</td>
                    
-                    <td>{{  duka($k->cabang) }}</td>
+                    <td>{{  duka($k->id_cabang) }}</td>
                     <td>{{ $k->jumlah }}(Dil)</td>
                     {{-- <td>{{ $k->tanggal_tutup }}</td> --}}
                 </tr>
@@ -162,7 +162,7 @@
                         <label>{{  $k->nama_golongan }}</label>  
                         @endif
                     </td>
-                    <td>{{  duka($k->cabang) }}</td>
+                    <td>{{  duka($k->id_cabang) }}</td>
                     <td>{{ $k->jumlah }}(Dil)</td>
                 </tr>
                 @endforeach

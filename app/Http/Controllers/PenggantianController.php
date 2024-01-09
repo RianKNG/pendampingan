@@ -22,7 +22,7 @@ class PenggantianController extends Controller
             ->leftJoin('merek as m','d.id_merek','=','m.id')
             ->leftJoin('tbl_dil as n','d.id_dil','=','n.id')
             ->select([
-                'd.id','d.tanggal_ganti','d.no_wmbaru','d.id_dil','d.id_merek','n.cabang'
+                'd.id','d.tanggal_ganti','d.no_wmbaru','d.id_dil','d.id_merek','n.id_cabang'
             ])
             ->where('id_dil','LIKE','%'.$request->search.'%')
             ->simplePaginate(100);
@@ -33,7 +33,7 @@ class PenggantianController extends Controller
             ->leftJoin('merek as m','d.id_merek','=','m.id')
             ->leftJoin('tbl_dil as n','d.id_dil','=','n.id')
             ->select([
-                'd.id','d.tanggal_ganti','d.no_wmbaru','d.id_dil','d.id_merek','n.cabang'
+                'd.id','d.tanggal_ganti','d.no_wmbaru','d.id_dil','d.id_merek','n.id_cabang'
             ])
     
             ->simplePaginate(100);
@@ -45,7 +45,7 @@ class PenggantianController extends Controller
         //     ])
         //         ->join('tbl_dil as d',function($join){
         //             $join->on('d.id','=','a.id_dil');
-        //             // ->where('d.cabang','=',2);
+        //             // ->where('d.id_cabang','=',2);
         //         })
         //         ->get();
     
