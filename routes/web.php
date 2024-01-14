@@ -190,6 +190,10 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
 
     Route::get('wilayah', [WilayahController::class, 'index']);
     Route::get('/wilayah/all', [WilayahController::class, 'allData']);
+    Route::post('/wilayah/add', [WilayahController::class, 'addData']);
+    Route::get('/wilayah/edit/{id}', [WilayahController::class, 'editData']);
+    Route::post('/wilayah/update/{id}', [WilayahController::class, 'updateData']);
+    Route::get('/wilayah/delete/{id}', [WilayahController::class, 'deleteData']);
 
 
 

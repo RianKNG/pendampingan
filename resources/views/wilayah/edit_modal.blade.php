@@ -2,7 +2,7 @@
 
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -14,18 +14,19 @@
         <div class="modal-body">
           <div class="forn-group">
               <label for="">Kode</label>
-              <input type="text" class="form-control" id="kode" placeholde="masukan Kode Wilayah">
-              <span class="text-danger" id="kodeError"></span>
+              <input type="text" class="form-control" id="kodeU" placeholde="masukan Kode Wilayah">
+              <span class="text-danger" id="kodeErrorU"></span>
           </div>
           <div class="forn-group">
             <label for="">Wilayah</label>
-            <input type="text" class="form-control" id="nama_wilayah" placeholde="masukan nama Wilayah">
-            <span class="text-danger" id="nama_wilayahError"></span>
+            <input type="text" class="form-control" id="nama_wilayahU" placeholde="masukan nama Wilayah">
+            <span class="text-danger" id="nama_wilayahErrorU"></span>
         </div>
+        <input type="hidden" id="id">
         </div>
         <div class="modal-footer">
-          <button type="button" id="addButton" onclick="addData()" class="btn btn-secondary" data-dismiss="modal">Add</button>
-          <button type="button" id="updateButton" class="btn btn-primary">Update</button>
+          <button type="button" id="addButton" onclick="updateData()" class="btn btn-secondary" data-dismiss="modal">Ubah Data</button>
+          <button type="button" id="updateButton" class="btn btn-primary">Cencel</button>
         </div>
       </div>
     </div>
