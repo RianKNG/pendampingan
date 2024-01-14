@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  {{-- <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{-- <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+  {{-- --------------------------------------------------------------------- --}}
+  <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
-  {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}} 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  
+   {{-- --------------------------------------------------------------------- --}}
+
   <title>Master Dil</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -33,9 +36,9 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader justify-content-center align-items-center">
+  {{-- <div class="preloader justify-content-center align-items-center">
     <img class="animation__wobble" src="{{ asset('adminLTE/dist/img/a.png') }}" alt="P E R U M D A" height="100" width="100">
-  </div> 
+  </div>  --}}
 
   <!-- Navbar -->
 
@@ -135,7 +138,15 @@
 <script src="{{ asset('adminLTE/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-{{-- <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script> --}}
+
+
+
+
+@stack('wilayah');
+@yield('footer2');
+@yield('footer');
+@stack('scripts');
+@stack('kodescripts');
 <script type="text/javascript">
   window.onload = function() { jam(); }
  
@@ -157,9 +168,5 @@
   }
 
 </script>  
-@yield('footer2')
-@yield('footer')
-@stack('scripts')
-@stack('kodescripts')
 </body>
 </html>

@@ -110,7 +110,7 @@
       </a>
     </li>
     <li class="#">
-      <a href="#" class="nav-link">
+      <a href="wilayah" class="nav-link">
         <span class="icon"><i class="fa fa-coins text-red"></i></span>
      
         <p class="btn-xs">

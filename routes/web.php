@@ -17,6 +17,7 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\PenutupanController;
@@ -138,6 +139,8 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::post('/importbbn', [BbnController::class,'importbbn'])->name('importbbn');
 
  
+
+
     // bbn
     // Route::get('/report',[ReportController::class,'index'])->name('report');
     // Route::post('/report/search',[ReportController::class,'search'])->name('dilsearch');
@@ -178,17 +181,26 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
   //Cabang
     Route::get('/cabang', [CabangController::class,'index']);
+
+    //wilayah
+    
   
+   
 
 
+    Route::get('wilayah', [WilayahController::class, 'index']);
+    Route::get('/wilayah/all', [WilayahController::class, 'allData']);
 
 
 
 });
 
 
-
-
+// Route::post('add/wilayah', [WilayahController::class, 'addWilayah'])->name('add.wilayah');
+// Route::get('fetch-wilayah', [WilayahController::class, 'fetchwilayah'])->name('fetchwilayah');
+// Route::get('edit-wilayah/{id}', [WilayahController::class, 'edit']);
+// Route::put('update-wilayah/{id}', [WilayahController::class, 'update']);
+// Route::delete('delete-wilayah/{id}', [WilayahController::class, 'destroy']);
 
 
 
