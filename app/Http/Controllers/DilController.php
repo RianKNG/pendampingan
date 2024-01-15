@@ -249,6 +249,29 @@ class DilController extends Controller
     return redirect()->route('dil')->with('success','status pelanggan berhasil diubah');
 
     }
+    public function rubah($id)
+    {
+
+        $data = DilModel::select('kondisi_wm')->where('id',$id)->first();
+        // dd($data);
+        if ($data->kondisi_wm == 2) {
+            $kondisi_wm = 1;
+        }elseif($data->kondisi_wm == 3){
+            $kondisi_wm = 1;
+        }elseif($data->kondisi_wm == 4){
+            $kondisi_wm = 1;
+        }elseif($data->kondisi_wm == 5){
+            $kondisi_wm = 1;
+        }elseif($data->kondisi_wm == 6){
+            $kondisi_wm = 1;
+        }else{
+            $kondisi_wm = 1;
+        }
+        DilModel::where('id',$id)->update(['kondisi_wm'=>$kondisi_wm]);
+        // return $data;
+    return redirect()->route('dil')->with('success','status pelanggan berhasil diubah');
+      
+    }
     public function jumlah(Request $request)
     {
         // $data = DilModel::get();

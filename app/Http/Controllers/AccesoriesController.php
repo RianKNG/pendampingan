@@ -112,6 +112,7 @@ class AccesoriesController extends Controller
             ->where('kondisi_wm', '=', 4)
             ->groupBy('id_cabang')
         ->get();
+        
     //  $cab = ['14','12'];
     //  if ($cab == '14') {
     //      echo "cimanggung";
@@ -254,6 +255,26 @@ $graph = new DilModel;
                 return 'TIDAK DIKETAHUI';
             }else{ 
             return 'DITABELNYA KOSONG';
+            }
+          
+        })
+        ->editColumn('kondisi_wm',function($data){
+            if($data->kondisi_wm == 1){
+                return 'BAIK';
+            }elseif($data->kondisi_wm == 2){
+                return 'TIDAK ADA';
+            }else{ 
+            return 'LAINNYA';
+            }
+          
+        })
+        ->editColumn('usaha',function($data){
+            if($data->usaha == 1){
+                return 'ADA';
+            }elseif($data->usaha == 2){
+                return 'TIDAK ADA';
+            }else{ 
+            return 'LAINNYA';
             }
           
         })

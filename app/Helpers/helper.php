@@ -109,6 +109,14 @@ function sts($angka){
    $sts =$status[(int)($angka)];
     return $sts;
 }
+function kon($angka){
+    // $angka = array(0,1,2,3,4,5,6);
+    $stat= array('','BAIK','RUSAK','BURAM','HILANG','TERKUBUR','TERKUNCI');
+    
+   $kon =$stat[(int)($angka)];
+    return $kon;
+}
+
 
     
 ?>

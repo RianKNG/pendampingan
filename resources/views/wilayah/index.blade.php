@@ -49,7 +49,7 @@
             $.ajax({
               type : "GET",
               dataType: "json",
-              url: "/wilayah/all",
+              url: "{{ url('/wilayah/all') }}",
                 success:function(response){
                     var data =""
                     // console.log(data);
@@ -114,11 +114,12 @@
        // -------------------------------------end add from data--------------------------------------
         // -------------------------------------satart edit data--------------------------------------
         function editData(id){
+            var url = "{{URL::to('/')}}";
             // alert(id);
             $.ajax({
                 type:"GET",
                 dataType:"json",
-                url:"/wilayah/edit/"+id,
+                url:url +"/wilayah/edit/"+id,
                 success:function(data){
                     $('#id').val(data.id);
                     $('#kodeU').val(data.kode);
@@ -130,6 +131,7 @@
         // -------------------------------------end edit from data--------------------------------------
          // -------------------------------------satart update data--------------------------------------
          function updateData(id){
+            var url = "{{URL::to('/')}}";
             // alert(id);
             var id = $('#id').val();
             var kode = $('#kodeU').val();
@@ -138,7 +140,7 @@
                 type:"POST",
                 dataType:"json",
                 data:{kode:kode,nama_wilayah:nama_wilayah},
-                url:"/wilayah/update/"+id,
+                url:url +"/wilayah/update/"+id,
                 success:function(data){
                     clearData();
                     allData();
@@ -162,7 +164,7 @@
                 dataType:"json",
                 url:"/wilayah/delete/"+id,
                 success:function(data){
-                    console.log('data berhasil dihapus');
+                    alert('data berhasil dihapus');
                 },
                 error: function(error){
                         // $('#kodeErrorU').text('error.responseJSON.errors.kodeU');

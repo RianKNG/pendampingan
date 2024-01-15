@@ -30,34 +30,46 @@
             <td>
                 <select name="filter_cabang" id="filter_cabang" data-column="1" class="form-control" required>
                 <option value="">--- Pilih Cabang ---</option>
-                <option value="05">Jatinangor</option>
-                <option value="06">Tanjungsari</option>
-                <option value="13">Pamulihan</option>
-                <option value="09">Tomo</option>
-                <option value="10"> Ujungjaya</option>
-                <option value="03"> Darmaraja</option>
-                <option value="12">Cisitu</option>
-                <option value="14"> Cimanggung</option>
-                <option value="06">Tanjungsari</option>
-                <option value="13"> Pamulihan</option>
-                <option value=1> Sumedang Utara</option>
-                <option value="07">Paseh</option>
-                <option value="08">Cimalaka</option>
-                <option value=2>Tanjungkerta</option>
-                <option value="04">Situraja</option>
-                <option value="11"> Wado</option>
-                <option value="31"> Sumedang Selatan</option>
-                <option value="05">Jatinangor</option>
-                <option value="40"> Mol Pelayan Publik</option>
+                <option value="JATINANGOR">Jatinangor</option>
+                <option value="TANJUNGSARI">Tanjungsari</option>
+                <option value="PAMULIHAN">Pamulihan</option>
+                <option value="TOMO">Tomo</option>
+                <option value="UJUNGJAYA"> Ujungjaya</option>
+                <option value="DARMARAJA"> Darmaraja</option>
+                <option value="CISITU">Cisitu</option>
+                <option value="CIMANGGUNG"> Cimanggung</option>
+                <option value="TANJUNGSARI">Tanjungsari</option>
+                <option value="PAMULIHAN"> Pamulihan</option>
+                <option value="SUMEDANG UTARA"> Sumedang Utara</option>
+                <option value="PASEH">Paseh</option>
+                <option value="CIMALAKA">Cimalaka</option>
+                <option value="TANJUNGKERTA">Tanjungkerta</option>
+                <option value="SITURAJA">Situraja</option>
+                <option value="WADO"> Wado</option>
+                <option value="SUMEDANG SELATAN"> Sumedang Selatan</option>
+                <option value="JATINANGOR">Jatinangor</option>
+                <option value="MOL PELAYANAN PUBLIK"> Mol Pelayan Publik</option>
               </td>
               <td>
-                <select name="filter_segel" id="filter_segel" data-column="3" class="form-control" required>
-                <option value="">--- Kondisi WM ---</option>
+                <select name="filter_segel" id="filter_segel" data-column="2" class="form-control" required>
+                <option value="">--- Kondisi SEGEL ---</option>
                 <option value= 1 >BAIK</option>
                 <option value= 2 >Rusak</option>
                 <option value= 3 >BURAM</option>
                 <option value= 4 >HILANG</option>
                 <option value= 5 >RUMAH TERKUNCI</option>
+              </td>
+              <td>
+                <select name="filter_kondisi_wm" id="filter_kondisi_wm" data-column="3" class="form-control" required>
+                <option value="">--- Kondisi WM ---</option>
+                <option value= 1 >BAIK</option>
+                <option value= 2 >TIDAK ADA</option>
+              </td>
+              <td>
+                <select name="filter_usaha" id="filter_usaha" data-column="4" class="form-control" required>
+                <option value="">--- USAHA ---</option>
+                <option value= 1 >ADA</option>
+                <option value= 2 >TIDAK ADA</option>
               </td>
         </tr>
     </table>
@@ -68,10 +80,13 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Kode Cabang</th>
+                {{-- <th>Kode Cabang</th> --}}
                 <th>Nama Cabang</th>
                 <th>Kondisi Segel</th>
-                <th>Status</th>
+                <th>Kondisi_WM</th>
+                <th>Usaha</th>
+                <th>Nama</th>
+                <th>Alamat</th>
             </tr>
         </thead>
         
@@ -91,6 +106,9 @@
           var table = $('#myTable').DataTable({
               processing: true,
               serverSide: true,
+              
+              
+      
               language: {
                       url: "{{ asset('adminLTE/dist/js/bahasa.json') }}",
                   }, 
@@ -101,10 +119,13 @@
               }},
                 //   { data: 'DT_RowIndex', name: 'DT_RowIndex' , orderable: false, searchable: false },
                //   { data: 'DT_RowIndex', name: 'DT_RowIndex' , orderable: false, searchable: false },
-                {data: 'id_cabang', name: 'd.id_cabang'},
-                {data: 'nama_cabang', name: 'nama_cabang'},
+                // {data: 'id_cabang', name: 'd.id_cabang'},
+                {data: 'nama_cabang', name: 'u.nama_cabang'},
                   {data: 'segel', name: 'd.segel'},
-                  {data: 'status', name: 'd.status'},
+                  {data: 'kondisi_wm', name: 'd.kondisi_wm'},
+                  {data: 'usaha', name: 'd.usaha'},
+                  {data: 'nama_sekarang', name: 'd.nama_sekarang'},
+                  {data: 'alamat', name: 'd.alamat'},
               ]
           }); 
           $('#filter_cabang').change(function(){
@@ -116,7 +137,17 @@
                 table.column($(this).data('column'))
                 .search( $(this).val())
                 .draw();
-            });           
+            });
+            $('#filter_kondisi_wm').change(function(){
+                table.column($(this).data('column'))
+                .search( $(this).val())
+                .draw();
+            });
+            $('#filter_usaha').change(function(){
+                table.column($(this).data('column'))
+                .search( $(this).val())
+                .draw();
+            });                  
           
         });
 </script>

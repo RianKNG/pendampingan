@@ -96,6 +96,7 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/dil/cetakperiode', [DilController::class,'cetakperiode']);
     Route::get('/dil/cetakrt', [DilController::class,'cetakrt']);
     Route::get('/exportexcel/{cabang}', [DilController::class,'exportexcel'])->name('exportexcel');
+    Route::get('/dil/rubah/{id}', [DilController::class,'rubah']);
     //import
     Route::post('/importexcel', [DilController::class,'importexcel'])->name('importexcel');
     //import

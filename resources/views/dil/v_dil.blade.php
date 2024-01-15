@@ -135,7 +135,41 @@
                     {{-- <td>{{ $k->jml_jiwa_tetap }}</td> --}}
                     <td>{{ $k->jml_jiwa_tidak_tetap}}</td>
                     <td>{{ $k->angka }}</td>
-                    <td>{{ $k->kondisi_wm }}</td>
+                    {{-- <td>{{ $k->kondisi_wm }}</td> --}}
+                    {{-- <td>
+                      @if($k->kondisi_wm == 1)
+                      
+                      <p class="btn btn-success btn-xs">{{ kon($k->kondisi_wm) }}</p>
+                  @elseif($k->kondisi_wm == 2)
+                  <p class="btn btn-danger btn-xs">{{ kon($k->kondisi_wm) }}</p>
+                  @elseif($k->kondisi_wm == 3)
+                  <p class="btn btn-warning btn-xs">{{ kon($k->kondisi_wm) }}</p>
+                  @elseif($k->kondisi_wm == 4)
+                  <p class="btn btn-secondary btn-xs">{{ kon($k->kondisi_wm) }}</p>
+                  @elseif($k->kondisi_wm == 5)
+                  <p class="btn btn-secondary btn-xs">{{ kon($k->kondisi_wm) }}</p>
+                  @elseif($k->kondisi_wm == 6)
+                  <p class="btn btn-primary btn-xs">{{ kon($k->kondisi_wm) }}</p>
+                  @endif
+                    </td> --}}
+                    
+                    <td>
+                      @if ($k->kondisi_wm == 1)
+                        <a href="{{ url('/dil/rubah/' .$k->id) }}" class=""></a>Baik
+                      @elseif($k->kondisi_wm == 2)
+                        <a href="{{ url('/dil/rubah/' .$k->id) }}" class="fa fa-check"><span>Rusak</span></a>
+                        @elseif($k->kondisi_wm == 3)
+                        <a href="{{ url('/dil/rubah/' .$k->id) }}" class="fa fa-check">Buram</a>
+                        @elseif($k->kondisi_wm == 4)
+                        <a href="{{ url('/dil/rubah/' .$k->id) }}" class="fa fa-check">Hilang</a>
+
+                        @elseif($k->kondisi_wm == 5)
+                        <a href="{{ url('/dil/rubah/' .$k->id) }}" class="fa fa-check">Terkubur</a>
+                        @elseif($k->kondisi_wm == 6)
+                        <a href="{{ url('/dil/rubah/' .$k->id) }}" class=""></a>Terkunci
+                      @endif
+                    </td>
+                   
                     <td> {{ $k->merek}}</td>
                     {{-- <td>{{ $k->segel }}</td> --}}
                     {{-- <td>{{ $k->stop_kran }}</td>
