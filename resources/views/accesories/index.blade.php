@@ -22,7 +22,7 @@
 
       
     <div class="row">
-      <div class="col-lg-6 col-6">
+      <div class="col-lg-4 col-6">
         <!-- small box -->
         <div class="small-box bg-success">
           <h6 class="bling"><a href="{{ url('/test/jalan') }}" class="small-box-footer"> <i id="blink" class="fas fa-arrow-circle-left btn-danger"></i><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Pelanggan Berdasarkan Jalan</strong> </a></h6>
@@ -34,7 +34,18 @@
         </div>
       </div>
       <!-- ./col -->
-      <div class="col-lg-6 col-6">
+      <div class="col-lg-4 col-6">
+        <!-- small box -->
+        <div class="small-box bg-primary">
+            <h6 class="blinkblink"><a href="{{ url('/test/datatable') }}" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rekap Data Berdasarkan Wilayah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <i id="blink" class="fas fa-arrow-circle-right btn-warning"></i></a></h6>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="{{ url('/test/datatable') }}" class="small-box-footer"><i>info</i>  <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-4 col-6">
         <!-- small box -->
         <div class="small-box bg-warning">
             <h6 class="blinkblink"><a href="{{ url('/test/datatable') }}" class="small-box-footer"> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pencarian Data Status Pelanggan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <i id="blink" class="fas fa-arrow-circle-right btn-warning"></i></a></h6>

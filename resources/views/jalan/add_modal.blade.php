@@ -18,14 +18,19 @@
               <span class="text-danger" id="kodeError"></span>
           </div>
           <div class="forn-group">
-            <label for="">Wilayah</label>
-            <input type="text" class="form-control" id="nama_wilayah" placeholde="masukan nama Wilayah">
-            <span class="text-danger" id="nama_wilayahError"></span>
+            <label for="">Jalan</label>
+            <input type="text" class="form-control" id="nama_jalan" placeholde="masukan nama jalan">
+            <span class="text-danger" id="nama_jalanError"></span>
           </div>
           <div class="forn-group">
             <label for="">Cabang</label>
             <input type="text" class="form-control" id="cabang" placeholde="masukan nama Cabang">
             <span class="text-danger" id="cabangError"></span>
+          </div>
+          <div class="forn-group">
+            <label for="">Wilayah</label>
+            <input type="text" class="form-control" id="wilayah" placeholde="masukan nama wilayah">
+            <span class="text-danger" id="wilayahError"></span>
           </div>
         </div>
         <div class="modal-footer">

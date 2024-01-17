@@ -15,7 +15,7 @@
                 <button class="btn btn-success">Refresh</button>
             </div>
             <div class="form-group mr-1">
-                <a class="btn btn-primary" href="#">Tambah</a>
+                <a class="btn btn-primary" href="{{ route('cabang.create') }}">Tambah</a>
             </div>
         </form>
     </div>
@@ -45,8 +45,8 @@
                 <td>{{ $row->created_at }}</td>
                 <td>{{ $row->updated_at }}</td>
                 <td>
-                    <a class="btn btn-sm btn-warning" href="#">Ubah</a>
-                    <form method="POST" action="#" style="display: inline-block;">
+                    <a class="btn btn-sm btn-warning" href="{{ route('cabang.edit', $row) }}">Ubah</a>
+                    <form method="POST" action="{{ route('cabang.destroy', $row) }}" style="display: inline-block;">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" onclick="return confirm('Hapus Data?')">Hapus</button>

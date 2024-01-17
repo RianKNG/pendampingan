@@ -10,13 +10,13 @@
            <li class="{{ Request::is('/')? "active":"" }}">
         <a href="{{ url('/home') }}" class="nav-link">
           <span class="icon"><i class="fa fa-signal text-warning"></i></span>
-            <p class="btn-xs">Dashboard</p>
+            <p class="btn-xs">Dashboard (A-A)</p>
           </a>
       </li>
       <li class="{{ Request::is('/test')? "active":"" }}">
         <a href="{{ url('/test') }}" class="nav-link">
           <span class="icon"><i class="fa fa-coins text-red"></i></span>
-            <p class="btn-xs">Dashboard Accesories</p>
+            <p class="btn-xs">Dashboard (A-B)</p>
           </a>
       </li>
     <li>
@@ -105,7 +105,7 @@
         <span class="icon"><i class="fa fa-coins text-red"></i></span>
      
         <p class="btn-xs">
-          <i style="color: rgb(151, 207, 19)">Cabang (Progres)</i>
+          <i>Cabang</i>
         </p>
       </a>
     </li>
@@ -114,15 +114,15 @@
         <span class="icon"><i class="fa fa-coins text-red"></i></span>
      
         <p class="btn-xs">
-          <i style="color: rgb(151, 207, 19)">Wilayah (Belum Dibuat)</i>
+          <i>Wilayah</i>
         </p>
       </a>
     </li>
     <li class="#">
-      <a href="#" class="nav-link">
+      <a href="jalan" class="nav-link">
         <span class="icon"><i class="fa fa-coins text-red"></i></span>
         <p class="btn-xs">
-          <i style="color: rgb(151, 207, 19)">Jalan (Belum Dibuat)</i>
+          <i>Jalan</i>
         </p>
       </a>
     </li>

@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wilayah;
+use App\Models\Jalan;
+use App\Imports\JalanImport;
 use Illuminate\Http\Request;
-use App\Imports\WilayahImport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class WilayahController extends Controller
+class JalanController extends Controller
 {
     public function index()
     {
-        return view('wilayah.index');
+        return view('jalan.index');
     }
    
     //---------------------------------allData---------------------
     public function allData()
     {
-        $data = Wilayah::orderBy('id','DESC')->get();
+        $data =Jalan::orderBy('id','DESC')->get();
         return response()->json($data);
     }
      //---------------------------------addData---------------------
@@ -25,14 +25,15 @@ class WilayahController extends Controller
      {
          $request->validate([
             'kode'=>'required',
-            'nama_wilayah'=>'required',
+            'nama_jalan'=>'required',
             'cabang'=>'required',
+            'wilayah'=>'required',
          ]);
-         $data = Wilayah::insert([
+         $data =Jalan::insert([
             'kode' => $request->kode,
-            'nama_wilayah' => $request->nama_wilayah,
+            'nama_jalan' => $request->nama_jalan,
             'cabang' => $request->cabang,
-
+            'wilayah' => $request->wilayah,
 
          ]);
 
@@ -41,7 +42,7 @@ class WilayahController extends Controller
      //---------------------------------editData---------------------
      public function editData($id)
      {
-         $data = Wilayah::findOrFail($id);
+         $data =Jalan::findOrFail($id);
          return response()->json($data);
      }
       //---------------------------------updateData---------------------
@@ -49,13 +50,15 @@ class WilayahController extends Controller
       {
         $request->validate([
             'kode'=>'required',
-            'nama_wilayah'=>'required',
+            'nama_jalan'=>'required',
             'cabang'=>'required',
+            'wilayah'=>'required',
          ]);
-         $data = Wilayah::findOrFail($id)->update([
+         $data =Jalan::findOrFail($id)->update([
             'kode' => $request->kode,
-            'nama_wilayah' => $request->nama_wilayah,
+            'nama_jalan' => $request->nama_jalan,
             'cabang' => $request->cabang,
+            'wilayah' => $request->wilayah,
 
          ]);
 
@@ -63,11 +66,11 @@ class WilayahController extends Controller
       }
       public function deleteData($id)
       {
-        $data = Wilayah::findOrFail($id);
+        $data =Jalan::findOrFail($id);
         $data->delete();
         return response()->json($data);
       }
-      public function importwilayah(Request $request)
+      public function importjalan(Request $request)
       {
         //   dd($request->all());
           $this->validate($request, [
@@ -78,7 +81,7 @@ class WilayahController extends Controller
           $data->move('Pelanggan',$namafile);
           
       
-          $import = Excel::import(new WilayahImport, \public_path('/Pelanggan/'. $namafile));
+          $import = Excel::import(new JalanImport, \public_path('/Pelanggan/'. $namafile));
        
           if($import) {
               //redirect
@@ -88,5 +91,5 @@ class WilayahController extends Controller
               return back()->with(['error' => 'Data Gagal Diimport!']);
           }
       }
-      
 }
+

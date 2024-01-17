@@ -27,7 +27,8 @@ class CabangController extends Controller
      */
     public function create()
     {
-        //
+        $data['title'] = 'Tambah Cabang';
+        return view('cabang.create', $data);
     }
 
     /**
@@ -38,7 +39,17 @@ class CabangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'nama_cabang' => 'required',
+           
+        ]);
+       
+        $cabang = new Cabang();
+        $cabang->kode = $request->kode;
+        $cabang->nama_cabang = $request->nama_cabang;
+        $cabang->save();
+        return redirect('cabang')->with('success', 'Tambah Data Berhasil');
     }
 
     /**
@@ -60,29 +71,41 @@ class CabangController extends Controller
      */
     public function edit(Cabang $cabang)
     {
-        //
+        $data['title'] = 'Ubah Cabang';
+        $data['row'] = $cabang;
+        return view('cabang.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cabang  $cabang
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cabang $cabang)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'nama_cabang' => 'required',
+        ]);
+
+        $cabang = new Cabang();
+        $cabang->kode = $request->kode;
+        $cabang->nama_cabang = $request->nama_cabang;
+        $cabang->save();
+        return redirect('cabang')->with('success', 'Ubah Data Berhasil');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cabang  $cabang
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cabang $cabang)
     {
-        //
+        $cabang->delete();
+        return redirect('cabang')->with('success', 'Hapus Data Berhasil');
     }
 }

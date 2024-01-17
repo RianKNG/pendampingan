@@ -12,6 +12,7 @@ class Wilayah extends Model
     protected $fillable = [
         'kode',
         'nama_wilayah',
+        'cabang',
     ];
     public $timestamps = false;
 

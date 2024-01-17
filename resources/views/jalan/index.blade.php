@@ -2,6 +2,8 @@
 @extends('templates.v_template')
 {{-- @section('title','(MASTER WILAYAH)') --}}
 @section('content')
+
+
 <div class="loader-div">
     {{-- <img class="loader-img" src="ajax-loader.gif" style="height: 120px;width: auto;" /> --}}
     <img class="loader-img" src="{{ asset('adminLTE/dist/img/load.gif') }}" style="height: 120px;width: auto;">
@@ -10,12 +12,13 @@
     <div class="card-header">
       <h3 class="card-title">(MASTER WILAYAH)</h3>
     </div>
+
 <section class="content table-striped">
     <div class="container-fluid table-striped">
       {{-- <div class="card card-warning card-outline">
         <div class="card-header text-center btn btn-secondary"> --}}
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">TambahData</button>
-                <form action="{{ url('/importwilayah') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/importjalan') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -28,13 +31,16 @@
                         <button type="submit" class="btn btn-success">IMPORT</button>
                     </div>
                 </form>
+            {{-- <span id="loading-spinner" class="spinner-border spinner-border-sm" role="status" area-hidden="true"></span> --}}
+           
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Kode</th>
-                        <th>Nama Wilayah</th>
+                        <th>Nama Jalan</th>
                         <th>Cabang</th>
+                        <th>Wilayah</th>
                         <th>Aksi</th>
                         
                     </tr>
@@ -46,18 +52,19 @@
 </div>
 </div>
 </div>
- @include('wilayah.add_modal')
- @include('wilayah.edit_modal')
+ @include('jalan.add_modal')
+ @include('jalan.edit_modal')
 @endsection
-@push('wilayah')
+@push('jalan')
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 <script>
     // $('addW').show();
     // $('addButton').show();
     // $('updateW').hide();
     // $('updateButton').hide();
-   
-    
+    // $('#loading-spinner').hide();
+    $(".loader-div").show(); // show loader
         $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -68,23 +75,27 @@
             $.ajax({
               type : "GET",
               dataType: "json",
-              url: "{{ url('/wilayah/all') }}",
+              url: "{{ url('/jalan/all') }}",
               beforeSend:function(){
-                // $(".loader-div").show(); // show loader
+                // $('loading-spinner').show();
                 $(".loader-div").show(); // hide loader
               },
                 success:function(response){
-                    $(".loader-div").hide(); // show loader
+                    $(".loader-div").hide(); // hide loader
                     var data =""
+
                     // console.log(data);
                     $.each(response, function(key,value){
+                        // $('loading-spinner').hide();
+                        $(".loader-div").hide(); // hide loader
                         // data =data
                         // console.log(value.kode);
                         data =data+"<tr>"
                         data =data+"<td>"+value.id+"</td>"
                         data =data+"<td>"+value.kode+"</td>"
-                        data =data+"<td>"+value.nama_wilayah+"</td>"
+                        data =data+"<td>"+value.nama_jalan+"</td>"
                         data =data+"<td>"+value.cabang+"</td>"
+                        data =data+"<td>"+value.wilayah+"</td>"
                         data =data+"<td>"
                         data =data+"<button class='btn btn-primary btn-sm-2 mr-2' data-toggle='modal' data-target='#editModal' onclick='editData("+value.id+")'>Edit</button>"
                         data =data+"<button class='btn btn-danger btn-sm-2' onclick='deleteData("+value.id+")'>Delete</button>"
@@ -100,11 +111,13 @@
  // -------------------------------------satart clear from data--------------------------------------
         function clearData(){
             $('#kode').val('');
-            $('#nama_wilayah').val('');
+            $('#nama_jalan').val('');
             $('#cabang').val('');
+            $('#wilayah').val('');
             $('#kodeError').text('');
+            $('#nama_jalanError').text('');
+            $('#cabangError').text('');
             $('#wilayahError').text('');
-            $('#cabang').text('');
 
         }
 
@@ -112,17 +125,19 @@
  // -------------------------------------satart add from data--------------------------------------
             function addData(){
                 var kode = $('#kode').val();
-                var nama_wilayah = $('#nama_wilayah').val();
+                var nama_jalan = $('#nama_jalan').val();
                 var cabang = $('#cabang').val();
-                console.log(kode);
-                console.log(nama_wilayah);
-                console.log(cabang);
+                var wilayah = $('#wilayah').val();
+                // console.log(kode);
+                // console.log(nama_jalan);
+                // console.log(cabang);
+                // console.log(wilayah);
 
                 $.ajax({
                     type:"POST",
                     dataType:"json",
-                    data:{kode:kode,nama_wilayah:nama_wilayah,cabang:cabang},
-                    url:"/wilayah/add",
+                    data:{kode:kode,nama_jalan:nama_jalan,cabang:cabang,wilayah:wilayah},
+                    url:"/jalan/add",
                     success:function(data){
                         // console.log('Data Berhasil Ditambahkan');
                         clearData();
@@ -133,8 +148,9 @@
                     },
                     error: function(error){
                         $('#kodeError').text('error.responseJSON.errors.kode');
-                        $('#nama_wilayahError').text('error.responseJSON.errors.nama_wilayah');
+                        $('#nama_jalanError').text('error.responseJSON.errors.nama_jalan');
                         $('#cabangError').text('error.responseJSON.errors.cabang');
+                        $('#wilayahError').text('error.responseJSON.errors.wilayah');
                         // console.log(error.responseJSON.errors.kode);
                         // console.log(error.responseJSON.errors.nama_wilayah);
                     }
@@ -149,12 +165,13 @@
             $.ajax({
                 type:"GET",
                 dataType:"json",
-                url:url +"/wilayah/edit/"+id,
+                url:url +"/jalan/edit/"+id,
                 success:function(data){
                     $('#id').val(data.id);
                     $('#kodeU').val(data.kode);
-                    $('#nama_wilayahU').val(data.nama_wilayah);
+                    $('#nama_jalanU').val(data.nama_jalan);
                     $('#cabangU').val(data.cabang);
+                    $('#wilayahU').val(data.wilayah);
                     console.log(data);
                 }
             })
@@ -166,13 +183,14 @@
             // alert(id);
             var id = $('#id').val();
             var kode = $('#kodeU').val();
-            var nama_wilayah = $('#nama_wilayahU').val();
+            var nama_jalan = $('#nama_jalanU').val();
             var cabang = $('#cabangU').val();
+            var wilayah = $('#wilayahU').val();
             $.ajax({
                 type:"POST",
                 dataType:"json",
-                data:{kode:kode,nama_wilayah:nama_wilayah,cabang:cabang},
-                url:url +"/wilayah/update/"+id,
+                data:{kode:kode,nama_jalan:nama_jalan,cabang:cabang,wilayah:wilayah},
+                url:url +"/jalan/update/"+id,
                 success:function(data){
                     clearData();
                     allData();
@@ -185,7 +203,7 @@
                         // $('#kodeErrorU').text('error.responseJSON.errors.kodeU');
                         // $('#nama_wilayahErrorU').text('error.responseJSON.errors.nama_wilayahU');
                         console.log(error.responseJSON.errors.kodeU);
-                        console.log(error.responseJSON.errors.nama_wilayahU);
+                        console.log(error.responseJSON.errors.nama_jalanU);
                 }
             })
         }
@@ -194,7 +212,7 @@
             $.ajax({
                 type:"GET",
                 dataType:"json",
-                url:"/wilayah/delete/"+id,
+                url:"/jalan/delete/"+id,
                 success:function(data){
                     alert('data berhasil dihapus');
                 },
@@ -207,8 +225,8 @@
                 }
             })
         }
-        
 
+      
 </script>
 
 @endpush

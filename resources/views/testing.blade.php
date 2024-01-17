@@ -80,7 +80,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                {{-- <th>Kode Cabang</th> --}}
+                <th>Kode Cabang</th>
                 <th>Nama Cabang</th>
                 <th>Kondisi Segel</th>
                 <th>Kondisi_WM</th>
@@ -119,7 +119,7 @@
               }},
                 //   { data: 'DT_RowIndex', name: 'DT_RowIndex' , orderable: false, searchable: false },
                //   { data: 'DT_RowIndex', name: 'DT_RowIndex' , orderable: false, searchable: false },
-                // {data: 'id_cabang', name: 'd.id_cabang'},
+                {data: 'id_cabang', name: 'd.id_cabang'},
                 {data: 'nama_cabang', name: 'u.nama_cabang'},
                   {data: 'segel', name: 'd.segel'},
                   {data: 'kondisi_wm', name: 'd.kondisi_wm'},

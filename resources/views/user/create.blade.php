@@ -8,7 +8,7 @@
     <div class="card-body">
  <!-- Horizontal Form -->
  <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
       @if($errors->any())
       @foreach($errors->all() as $err)
       <p class="alert alert-danger">{{ $err }}</p>

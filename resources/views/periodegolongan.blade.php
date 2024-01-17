@@ -32,7 +32,8 @@
         table.display th,
         table.display td{
             border: 1px solid #B3BFAA;
-            padding: .5em 1em;
+            /* padding: .5em 1em; */
+            padding: .0em 0em;
         }
 
         table.display th{ background: #D5E0CC; }

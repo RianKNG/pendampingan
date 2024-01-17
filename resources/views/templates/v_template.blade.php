@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   {{-- <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
+  {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
   {{-- --------------------------------------------------------------------- --}}
   <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  
    {{-- --------------------------------------------------------------------- --}}
+ 
 
   <title>Master Dil</title>
 
@@ -31,6 +32,29 @@
    @stack('style')
    @yield('test')
    {{-- <link rel="stylesheet"href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"> --}}
+   <style>
+    .loader-div {
+       display: none;
+       position: fixed;
+       margin: 0px;
+       padding: 0px;
+       right: 0px;
+       top: 0px;
+       width: 100%;
+       height: 100%;
+       background-color: #fff;
+       z-index: 30001;
+       opacity: 0.8;
+     }
+     .loader-img {
+       position: absolute;
+       top: 0;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       margin: auto;
+     }
+ </style>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -141,8 +165,8 @@
 
 
 
-
 @stack('wilayah');
+@stack('jalan');
 @yield('footer2');
 @yield('footer');
 @stack('scripts');

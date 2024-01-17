@@ -12,6 +12,7 @@ use App\Http\Controllers\DilController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JalanController;
 use App\Http\Controllers\CabangController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ReportController;
@@ -181,31 +182,31 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::post('laporan/create', [LaporanController::class,'create'])->name('laporan.create');
     Route::post('laporan/store', [LaporanController::class,'store'])->name('laporan.store');
   //Cabang
-    Route::get('/cabang', [CabangController::class,'index']);
-
+    Route::resource('cabang', CabangController::class);
+    // Route::resource('user', UserController::class);
     //wilayah
-    
-  
-   
-
-
     Route::get('wilayah', [WilayahController::class, 'index']);
     Route::get('/wilayah/all', [WilayahController::class, 'allData']);
     Route::post('/wilayah/add', [WilayahController::class, 'addData']);
     Route::get('/wilayah/edit/{id}', [WilayahController::class, 'editData']);
     Route::post('/wilayah/update/{id}', [WilayahController::class, 'updateData']);
     Route::get('/wilayah/delete/{id}', [WilayahController::class, 'deleteData']);
+    Route::post('/importwilayah', [WilayahController::class,'importwilayah'])->name('importwilayah');
+     //jalan
+     Route::get('jalan',[JalanController::class,'index']);
+     Route::get('/jalan/all', [JalanController::class, 'allData']);
+     Route::post('/jalan/add', [JalanController::class, 'addData']);
+     Route::get('/jalan/edit/{id}', [JalanController::class, 'editData']);
+     Route::post('/jalan/update/{id}', [JalanController::class, 'updateData']);
+     Route::get('/jalan/delete/{id}', [JalanController::class, 'deleteData']);
+     Route::post('/importjalan', [JalanController::class,'importjalan'])->name('importjalan');
 
 
 
 });
 
 
-// Route::post('add/wilayah', [WilayahController::class, 'addWilayah'])->name('add.wilayah');
-// Route::get('fetch-wilayah', [WilayahController::class, 'fetchwilayah'])->name('fetchwilayah');
-// Route::get('edit-wilayah/{id}', [WilayahController::class, 'edit']);
-// Route::put('update-wilayah/{id}', [WilayahController::class, 'update']);
-// Route::delete('delete-wilayah/{id}', [WilayahController::class, 'destroy']);
+
 
 
 

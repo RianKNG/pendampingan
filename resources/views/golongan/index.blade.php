@@ -95,9 +95,9 @@
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label class="btn-xs">Id</label>
-                    <input type="nuber" name="id" class="form-control" value="{{ $k->id }}">
-                    {{-- <input type="text" name="kode" class="form-control" readonly> --}}
+                    {{-- <label class="btn-xs">Id</label> --}}
+                    {{-- <input type="number" name="id" class="form-control" value="{{ $k->id }}"> --}}
+                    <input type="hidden" name="kode" class="form-control" readonly>
                    
                   </div>
                   <div class="form-group">

@@ -18,6 +18,7 @@ class CreateTblDilTable extends Migration
             $table->string('status')->nullable();
             $table->unsignedInteger('id_cabang');
             $table->unsignedInteger('id_wilayah');
+            $table->unsignedInteger('id_jalan');
             $table->string('no_rekening')->nullable();
             $table->string('nama_sekarang')->nullable();
             $table->string('nama_pemilik')->nullable();
@@ -40,8 +41,7 @@ class CreateTblDilTable extends Migration
             $table->date('tanggal_pasang')->nullable();
             $table->date('tanggal_file')->nullable();
 
-            $table->foreign('id_cabang')->references('id')->on('cabang')->onDelete('cascade'); 
-            $table->foreign('id_wilayah')->references('id')->on('wilayah')->onDelete('cascade'); 
+           
            
         });
 

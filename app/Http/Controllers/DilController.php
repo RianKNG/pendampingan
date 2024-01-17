@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jalan;
+
+
 use App\Models\Merek;
-
-
 use App\Models\Cabang;
+use App\Models\Wilayah;
 use App\Models\DilModel;
 use App\Models\Golongan;
 use App\Exports\DilExport;
+
 use App\Imports\DilImport;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
@@ -49,16 +51,19 @@ class DilController extends Controller
             ->select([
                     'd.id','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
                     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-                    'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_cabang','d.id_golongan','d.id_merek','m.merek','u.nama_cabang'
+                    'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_cabang','d.id_golongan','d.id_merek','m.merek','u.nama_cabang',
                     // 'g.nama_golongan','g.kode','u.id','u.nama_cabang'
+                    'd.id_wilayah','d.id_jalan'
         ])
         ->Join('merek as m','d.id_merek','=','m.id')
         ->Join('cabang as u','d.id_cabang','=','u.id')
+        ->Join('wilayah as w','d.id_wilayah','=','w.id')
+        ->Join('jalan as j','d.id_jalan','=','j.id')
         ->Join('golongan as g','d.id_golongan','=','g.id')
         ->leftJoin('bbn as s','s.id_dil','=','d.id')
         // ->where('id_cabang',11)
         ->simplePaginate(100);
-        
+     
         // if (request('term')) {
         //     $data = DB::table('tbl_dil as d')
         // ->select([
@@ -101,10 +106,14 @@ class DilController extends Controller
             'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
             'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
             'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-            'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang'
+            'g.nama_golongan','g.kode','s.nama_baru','p.alasan','m.merek','c.id','c.nama_cabang',
+            'd.id_wilayah','d.id_jalan'
+
         ])
         ->Join('merek as m','d.id_merek','=','m.id')
         ->Join('cabang as c','d.id_cabang','=','c.id')
+        ->Join('wilayah as w','d.id_wilayah','=','w.id')
+        ->Join('jalan as j','d.id_jalan','=','j.id')
         ->Join('golongan as g','d.id_golongan','=','g.id')
         ->leftJoin('bbn as s','s.id_dil','=','d.id')
         ->leftJoin('penutupan as p','p.alasan','=','d.id')
@@ -127,8 +136,10 @@ class DilController extends Controller
         $mer = Merek::all();
         $gol = Golongan::all();
         $cab = Cabang::all();
+        $wil = Wilayah::all();
+        $jal = Jalan::all();
         // dd($cab);
-        return view('dil.v_dil_tambah',compact('mer','gol','cab'));
+        return view('dil.v_dil_tambah',compact('mer','gol','cab','wil','jal'));
 
     }
     public function insert(Request $request)
@@ -140,6 +151,8 @@ class DilController extends Controller
           'id' => 'required|unique:tbl_dil,id|max:11',
           'status' => 'required',
           'id_cabang'=>'required',
+          'id_wilayah'=>'required',
+          'id_jalan'=>'required',
           'no_rekening' => 'required|max:8',
           'nama_sekarang' => 'required',
           'nama_pemilik' => 'required',
@@ -172,6 +185,8 @@ class DilController extends Controller
           'id' => $request->id,
           'status' => $request->status,
           'id_cabang' => $request->id_cabang,
+          'id_wilayah' => $request->id_wilayah,
+          'id_jalan' => $request->id_jalan,
           'no_rekening' => $request->no_rekening,
           'nama_sekarang' => $request->nama_sekarang,
           'nama_pemilik' => $request->nama_pemilik,
@@ -207,7 +222,7 @@ class DilController extends Controller
        $mer = Merek::all();
        $gol = Golongan::all();
        $cab = Cabang::all();
-        $data = DilModel::find($id);
+       $data = DilModel::find($id);
         // dd($data);r
        
         return view('dil.v_editdil',compact('data','mer','gol','cab'));

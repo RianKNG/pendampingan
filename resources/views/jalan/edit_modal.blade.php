@@ -19,13 +19,18 @@
           </div>
           <div class="forn-group">
             <label for="">Wilayah</label>
-            <input type="text" class="form-control" id="nama_wilayahU" placeholde="masukan nama Wilayah">
-            <span class="text-danger" id="nama_wilayahErrorU"></span>
+            <input type="text" class="form-control" id="nama_jalanU" placeholde="masukan nama Jalan">
+            <span class="text-danger" id="nama_jalanErrorU"></span>
         </div>
           <div class="forn-group">
             <label for="">Cabang</label>
-            <input type="text" class="form-control" id="cabangU" placeholde="masukan nama Wilayah">
+            <input type="text" class="form-control" id="cabangU" placeholde="masukan nama Cabang">
             <span class="text-danger" id="cabangErrorU"></span>
+        </div>
+          <div class="forn-group">
+            <label for="">Wilayah</label>
+            <input type="text" class="form-control" id="wilayahU" placeholde="masukan nama Wilayah">
+            <span class="text-danger" id="wilayahErrorU"></span>
         </div>
         <input type="hidden" id="id">
         </div>

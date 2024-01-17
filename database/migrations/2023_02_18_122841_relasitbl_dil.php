@@ -17,7 +17,10 @@ class RelasitblDil extends Migration
             $table->unsignedInteger('id_merek');
             $table->unsignedInteger('id_golongan');
             $table->foreign('id_merek')->references('id')->on('merek')->onDelete('cascade');        
-            $table->foreign('id_golongan')->references('id')->on('golongan')->onDelete('cascade');  
+            $table->foreign('id_golongan')->references('id')->on('golongan')->onDelete('cascade'); 
+            $table->foreign('id_cabang')->references('id')->on('cabang')->onDelete('cascade'); 
+            $table->foreign('id_wilayah')->references('id')->on('wilayah')->onDelete('cascade');
+            $table->foreign('id_jalan')->references('id')->on('jalan')->onDelete('cascade');   
 
         });
     }
