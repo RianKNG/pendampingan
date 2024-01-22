@@ -49,6 +49,8 @@ class AccesoriesController extends Controller
             ->leftJoin('bbn as s','s.id_dil','=','d.id')
             // ->where('cabang',11)
             ->get();
+  
+
             // dd($datarelasi);
              $ada = DB::table('tbl_dil')->where('segel','ada')->count();
              

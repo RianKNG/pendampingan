@@ -216,7 +216,22 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-6">
+            <div class="info-box mb-3 btn-xs">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text">Total Sudah Diperbaiki</span>
+                <span class="info-box-number"></span>
+                <h3 class="btn btn-info"><span><span>({{ number_format($x ,0,",",".") }})</span></span></h3>
+
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
         </div>
+        
         <div class="row">
           <div class="col-md-12">
             <div class="card">

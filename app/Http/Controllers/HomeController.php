@@ -245,6 +245,15 @@ class HomeController extends Controller
        ->sum('jml_jiwa_tetap');
        $jmltt = DB::table('tbl_dil')
        ->sum('jml_jiwa_tidak_tetap');
+       $perbaikan = DB::table('tbl_dil')
+       ->select(DB::raw("(COUNT(*)) as jumlah"),'kondisi_wm','id_cabang')
+    
+       ->whereYear('created_at', Carbon::now()->year)
+       ->groupBy('kondisi_wm')
+       ->groupBy('id_cabang')
+       ->get();
+          $x = $perbaikan->count();
+      //  dd( $x);
 
     
 
@@ -456,7 +465,7 @@ class HomeController extends Controller
                  //grafik dil
                  'grafikjan','grafikpeb','grafikmar' ,'grafikapr','grafikmei','grafikjun','grafikjul','grafikags' ,'grafiksep' ,'grafikokt','grafiknov' ,'grafikdes','categories','data',
                 //aktip/non
-                'jumlahdil','jumlahnonaktip'));
+                'jumlahdil','jumlahnonaktip','x'));
 
                  
     }
