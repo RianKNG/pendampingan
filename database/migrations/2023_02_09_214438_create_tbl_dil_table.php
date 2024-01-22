@@ -40,6 +40,9 @@ class CreateTblDilTable extends Migration
             $table->string('jenis_usaha')->nullable();
             $table->date('tanggal_pasang')->nullable();
             $table->date('tanggal_file')->nullable();
+            $table->unsignedInteger('id_merek');
+            $table->unsignedInteger('id_golongan');
+            $table->timestamps();
 
            
            

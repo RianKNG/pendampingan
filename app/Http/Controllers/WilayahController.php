@@ -17,7 +17,7 @@ class WilayahController extends Controller
     //---------------------------------allData---------------------
     public function allData()
     {
-        $data = Wilayah::orderBy('id','DESC')->get();
+        $data = Wilayah::orderBy('id','ASC')->get();
         return response()->json($data);
     }
      //---------------------------------addData---------------------

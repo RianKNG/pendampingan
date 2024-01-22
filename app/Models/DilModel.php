@@ -16,7 +16,7 @@ class DilModel extends Model
     public $timestamps = false;
     protected $fillable = ['id','status','no_rekening','nama_sekarang','nama_pemilik','alamat','angka','status_milik',
     'jml_jiwa_tetap','jml_jiwa_tidak_tetap','kondisi_wm','segel','stop_kran','ceck_valve','kopling','plugran','box','usaha',
-    'sumber_lain','no_seri','jenis_usaha','tanggal_pasang','tanggal_file','id_merek','id_golongan','id_cabang','id_wilayah','id_jalan'];
+    'sumber_lain','no_seri','jenis_usaha','tanggal_pasang','tanggal_file','id_merek','id_golongan','id_cabang','id_wilayah','id_jalan','created_at','updated_at'];
     public function merek()
     {
         return $this->belongsTo(Merek::class,'id_merek');

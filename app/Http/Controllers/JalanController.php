@@ -14,10 +14,10 @@ class JalanController extends Controller
         return view('jalan.index');
     }
    
-    //---------------------------------allData---------------------
+    //---------------------------------allDataIF($A35811<>"";TEXT($A35811;"0000000000");"")---------------------
     public function allData()
     {
-        $data =Jalan::orderBy('id','DESC')->get();
+        $data =Jalan::orderBy('id','ASC')->get();
         return response()->json($data);
     }
      //---------------------------------addData---------------------

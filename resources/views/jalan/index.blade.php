@@ -78,6 +78,7 @@
               url: "{{ url('/jalan/all') }}",
               beforeSend:function(){
                 // $('loading-spinner').show();
+                // document.getElementById("button").innerHTML = "Loading...";
                 $(".loader-div").show(); // hide loader
               },
                 success:function(response){

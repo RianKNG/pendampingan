@@ -15,21 +15,21 @@
     <div class="card-body">
       <form>
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <!-- text input -->
             <div class="form-group">
               <label>No Sambungan</label>
               <input type="integer" class="form-control" name="id" value="{{ $data->id }}">
             </div>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <!-- Select multiple-->
             <div class="form-group">
             <label>Cabang</label>
             <select name="id_cabang" class="form-control">
-              <option value="">--- Cabang ---</option>
-              @foreach($gol as $item)
-                  <option value="{{ $item->id }}" @if (old('id_cabang') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_cabang }}</option>
+              <option value="">--- cabang ---</option>
+              @foreach($cab as $item)
+                <option value="{{ $item->id }}" @if (old('id_cabang') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_cabang }}</option>
               @endforeach  
               @error('id_cabang')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -37,14 +37,57 @@
             </select>
             </div>
           </div>
+          <div class="col-sm-3">
+            <!-- Select multiple-->
+            <div class="form-group">
+            <label>Wilayah</label>
+            <select name="id_wilayah" class="form-control">
+              <option value="">--- wilayah ---</option>
+              @foreach($wil as $item)
+                <option value="{{ $item->id }}" @if (old('id_wilayah') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->kode }} ||{{ $item->nama_wilayah }} || {{ $item->cabang }}</option>
+               
+              @endforeach  
+              @error('id_wilayah')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror  
+            </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <!-- Select multiple-->
+            <div class="form-group">
+            <label>Jalan</label>
+            <select name="id_jalan" class="form-control">
+              <option value="">--- jalan ---</option>
+              @foreach($jal as $item)
+                <option value="{{ $item->id }}" @if (old('id_jalan') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_jalan }}</option>
+              @endforeach  
+              @error('id_jalan')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror  
+            </select>
+            </div>
+          </div>
+          <input type="hidden" id="postId" name="status" value="1" />
+        {{-- <div class="col-sm-4">
+          <div class="form-group">
+            <label>Status</label>
+            
+            <input type="integer" class="form-control" name="status" value="1" readonly placeholder="aktip">
+            @error('status')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+          </div>
+        </div> --}}
+      </div>
         
-          <div class="col-sm-4">
+          {{-- <div class="col-sm-4">
             <div class="form-group">
               <label>status</label>
               <option  class="form-control" name="status"  value="{{ $data->status }}" disabled>Aktip</option>
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="row">
           <div class="col-sm-4">
             <!-- textarea -->

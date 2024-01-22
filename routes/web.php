@@ -66,6 +66,8 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/test/all', [AccesoriesController::class,'all']);
     Route::get('/test/datatable', [AccesoriesController::class,'datatable']);
     Route::get('/test/ajax', [AccesoriesController::class,'ajax'])->name('ajax');
+    Route::get('/test/wilayah', [AccesoriesController::class,'wilayah'])->name('wilayah');
+    Route::get('/test/cabang', [AccesoriesController::class,'cabang'])->name('cabang');
     Route::get('/test/jalan', [AccesoriesController::class,'jalan'])->name('jalan');
     Route::get('/test/wmbaik', [AccesoriesController::class,'wmbaik'])->name('wmbaik');
     Route::get('/test/wmrusak', [AccesoriesController::class,'wmrusak'])->name('wmrusak');

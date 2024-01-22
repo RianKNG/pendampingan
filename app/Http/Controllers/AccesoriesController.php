@@ -282,7 +282,7 @@ $graph = new DilModel;
         ->make(true);
     }
 
-        return view('testing');
+        return view('detail.testing');
     }
 
   
@@ -575,7 +575,7 @@ $graph = new DilModel;
         //     dd($jumlahdatacabang);
         return view('accesories.all',compact('datacabang','jumlahdatacabang'));
     }
-    public function jalan(){
+    public function cabang(){
         // $client = DB::
         // table('tbl_dil')
         // ->select(DB::raw('SUBSTRING(id, 3, 7) as value'))
@@ -612,9 +612,34 @@ $groupCount = DB::table('cabang as d')
 ->Join('tbl_dil as u','d.id','=','u.id_cabang')
 ->select(DB::raw("(COUNT(d.id)) as jumlah"),'nama_cabang')
 ->groupBy('nama_cabang')
-->get();
+->get()->toArray();
 // dd($groupCount);
-return view('jalan',compact('groupCount'));
+return view('detail.cabang',compact('groupCount'));
+}
+public function wilayah(){
+
+$groupCountWil = DB::table('wilayah as d')
+->Join('tbl_dil as u','d.id','=','u.id_wilayah')
+->select(DB::raw("(COUNT(d.id)) as jumlah"),'nama_wilayah','cabang')
+->groupBy('nama_wilayah')
+->groupBy('cabang')
+->orderBy('cabang')
+->get()->toArray();
+// dd($groupCountWil);
+return view('detail.wilayah',compact('groupCountWil'));
+}
+public function jalan(){
+
+    $groupCountJal = DB::table('jalan as d')
+    ->Join('tbl_dil as u','d.id','=','u.id_jalan')
+    ->select(DB::raw("(COUNT(d.id)) as jumlah"),'nama_jalan','cabang','wilayah')
+    ->groupBy('nama_jalan')
+    ->groupBy('cabang')
+    ->groupBy('wilayah')
+    ->orderBy('cabang')
+    ->get()->toArray();
+    // dd($groupCountJal);
+    return view('detail.jalan',compact('groupCountJal'));
 }
 public function wmbaik(Request $request)
     {

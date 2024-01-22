@@ -222,10 +222,12 @@ class DilController extends Controller
        $mer = Merek::all();
        $gol = Golongan::all();
        $cab = Cabang::all();
+       $wil = Wilayah::all();
+       $jal = Jalan::all();
        $data = DilModel::find($id);
         // dd($data);r
        
-        return view('dil.v_editdil',compact('data','mer','gol','cab'));
+        return view('dil.v_editdil',compact('data','mer','gol','cab','wil','jal'));
     }
     // public function jumlahstatus(Request $request,$id){
     //     $data = DilModel::find($id);
@@ -376,7 +378,7 @@ class DilController extends Controller
     $data->move('Pelanggan',$namafile);
     
 
-    $import = Excel::import(new DilImport, \public_path('../Pelanggan/'. $namafile));
+    $import = Excel::import(new DilImport, \public_path('/Pelanggan/'. $namafile));
     
  
     if($import) {

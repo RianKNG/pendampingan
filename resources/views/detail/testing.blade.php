@@ -28,7 +28,7 @@
     <table >
         <tr>
             <td>
-                <select name="filter_cabang" id="filter_cabang" data-column="1" class="form-control" required>
+                <select name="filter_cabang" id="filter_cabang" data-column="2" class="form-control" required>
                 <option value="">--- Pilih Cabang ---</option>
                 <option value="JATINANGOR">Jatinangor</option>
                 <option value="TANJUNGSARI">Tanjungsari</option>
@@ -51,7 +51,7 @@
                 <option value="MOL PELAYANAN PUBLIK"> Mol Pelayan Publik</option>
               </td>
               <td>
-                <select name="filter_segel" id="filter_segel" data-column="2" class="form-control" required>
+                <select name="filter_segel" id="filter_segel" data-column="3" class="form-control" required>
                 <option value="">--- Kondisi SEGEL ---</option>
                 <option value= 1 >BAIK</option>
                 <option value= 2 >Rusak</option>
@@ -60,13 +60,13 @@
                 <option value= 5 >RUMAH TERKUNCI</option>
               </td>
               <td>
-                <select name="filter_kondisi_wm" id="filter_kondisi_wm" data-column="3" class="form-control" required>
+                <select name="filter_kondisi_wm" id="filter_kondisi_wm" data-column="4" class="form-control" required>
                 <option value="">--- Kondisi WM ---</option>
                 <option value= 1 >BAIK</option>
                 <option value= 2 >TIDAK ADA</option>
               </td>
               <td>
-                <select name="filter_usaha" id="filter_usaha" data-column="4" class="form-control" required>
+                <select name="filter_usaha" id="filter_usaha" data-column="5" class="form-control" required>
                 <option value="">--- USAHA ---</option>
                 <option value= 1 >ADA</option>
                 <option value= 2 >TIDAK ADA</option>
