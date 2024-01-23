@@ -286,7 +286,7 @@ class DilController extends Controller
         }
         DilModel::where('id',$id)->update(['kondisi_wm'=>$kondisi_wm]);
         // return $data;
-    return redirect()->route('dil')->with('success','status pelanggan berhasil diubah');
+    return redirect()->route('perbaikan')->with('success','status pelanggan berhasil diubah');
       
     }
     public function jumlah(Request $request)

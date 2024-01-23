@@ -245,15 +245,21 @@ class HomeController extends Controller
        ->sum('jml_jiwa_tetap');
        $jmltt = DB::table('tbl_dil')
        ->sum('jml_jiwa_tidak_tetap');
-       $perbaikan = DB::table('tbl_dil')
-       ->select(DB::raw("(COUNT(*)) as jumlah"),'kondisi_wm','id_cabang')
+       $perbaikan = DB::table('perbaikan as a')
+       ->join('tbl_dil as b','a.id_dil','=','b.id')
+      //  ->select(DB::raw("(COUNT(*)) as jumlah"),'kondisi_wm','id_cabang')
     
-       ->whereYear('created_at', Carbon::now()->year)
-       ->groupBy('kondisi_wm')
-       ->groupBy('id_cabang')
-       ->get();
+      //  ->whereYear('tanggal_perbaikan', Carbon::now()->year)
+      //  ->groupBy('kondisi_wm')
+      //  ->groupBy('id_cabang')
+      ->select('b.*','a.*')
+        ->whereMonth('tanggal_perbaikan', Carbon::now()->month)
+        ->get();
+
+  
           $x = $perbaikan->count();
       //  dd( $x);
+      // dd($perbaikan);
 
     
 

@@ -88,6 +88,16 @@
       </a>
     </li>
     <li>
+      <li class="{{ Request::is('/perbaikan')? "active":"" }}">
+        <a href="{{ url('/perbaikan') }}" class="nav-link">
+          {{-- <i class="nav-icon far fa-circle text-green"></i> --}}
+          <span class="icon"><i class="fa fa-file text-info"></i></span>
+          <p class="btn-xs">
+            Perbaikan
+          </p>
+        </a>
+      </li>
+      <li>
       <i><label for="">Master ACC</label></i>
       
     </li>

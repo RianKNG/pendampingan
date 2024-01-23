@@ -121,31 +121,31 @@ class AccesoriesController extends Controller
     //  } elseif($cab == '02') {
     //     echo "cimanggung";
     //  }
-    $tabelgrafik = DB::table('tbl_dil')
-    ->select([
-        'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-        'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-        'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
-        'm.merek','g.nama_golongan','g.kode','s.nama_baru'
-])
-    ->select('id_cabang', DB::raw('count(*) as total'))
-    ->groupBy('id_cabang')
-    // ->groupBy('total')
-    ->get();
-    if($tabelgrafik == "05"){
-        $tabelgrafik = 'Jatinangor';
-    }elseif($tabelgrafik == "13"){
-        $tabelgrafik = 'Pamulihan';
-    }elseif($tabelgrafik == "06"){
-        $tabelgrafik = 'Tanjungsari';   
-    }elseif($tabelgrafik == "14"){
-        $tabelgrafik = 'Ciamnggung'; 
-    }elseif($tabelgrafik == "01"){
-        $tabelgrafik = 'Sumedang Utara'; 
-    }else{
+//     $tabelgrafik = DB::table('tbl_dil')
+//     ->select([
+//         'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+//         'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.segel','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
+//         'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
+//         'm.merek','g.nama_golongan','g.kode','s.nama_baru'
+// ])
+//     ->select('id_cabang', DB::raw('count(*) as total'))
+//     ->groupBy('id_cabang')
+//     // ->groupBy('total')
+//     ->get();
+//     if($tabelgrafik == "05"){
+//         $tabelgrafik = 'Jatinangor';
+//     }elseif($tabelgrafik == "13"){
+//         $tabelgrafik = 'Pamulihan';
+//     }elseif($tabelgrafik == "06"){
+//         $tabelgrafik = 'Tanjungsari';   
+//     }elseif($tabelgrafik == "14"){
+//         $tabelgrafik = 'Ciamnggung'; 
+//     }elseif($tabelgrafik == "01"){
+//         $tabelgrafik = 'Sumedang Utara'; 
+//     }else{
         
-        $tabelgrafik = 'Anda Salah Memasukan Kode';
-    }
+//         $tabelgrafik = 'Anda Salah Memasukan Kode';
+//     }
 //  dd($tabelgrafik);
 
         $groups = DB::table('tbl_dil')
@@ -190,7 +190,7 @@ $graph = new DilModel;
         'sada','stidakada','cada','ctidakada','kada','ktidakada','pada','ptidakada',
         'bada','btidakada','semuapelanggan','datarelasi','wmbaik','wmrusak','wmburam',
         'wmhilang','wmterkubur','wmterkunci','grafikbaik','grafikrusak','grafikburam',
-        'grafikterkubur','grafikterkunci','grafikhilang','chart','groups','tabelgrafik','merekgrap','graph'));
+        'grafikterkubur','grafikterkunci','grafikhilang','chart','groups','merekgrap','graph'));
     }
     // public function datatable(Request $request){
     //     if ($request->ajax()) {

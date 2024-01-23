@@ -22,6 +22,7 @@ use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\PenutupanController;
+use App\Http\Controllers\PerbaikanController;
 use App\Http\Controllers\AccesoriesController;
 use App\Http\Controllers\PenggantianController;
 use App\Http\Controllers\PenyambunganController;
@@ -202,6 +203,13 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
      Route::post('/jalan/update/{id}', [JalanController::class, 'updateData']);
      Route::get('/jalan/delete/{id}', [JalanController::class, 'deleteData']);
      Route::post('/importjalan', [JalanController::class,'importjalan'])->name('importjalan');
+
+      //Perbaikan
+    Route::get('/perbaikan', [PerbaikanController::class,'index'])->name('perbaikan');
+    Route::post('/perbaikan/insert', [PerbaikanController::class,'insert']);
+    Route::get('/perbaikan/hapus/{id}', [PerbaikanController::class,'hapus']);
+    Route::get('/perbaikan/edit/{id}',[PerbaikanController::class,'edit']);
+    Route::post('/perbaikan/update/{id}',[PerbaikanController::class,'update']);
 
 
 

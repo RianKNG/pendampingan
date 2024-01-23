@@ -24,13 +24,14 @@ class EvaluasiController extends Controller
 
         $evaluasi = DB::table('tbl_dil as d')
             ->select([
-                    'd.id','d.cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+                    'd.id','d.id_cabang','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
                     'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
                     'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_golongan',
                     'm.merek','g.nama_golongan','g.kode','s.nama_baru'
         ])
         ->Join('merek as m','d.id_merek','=','m.id')
         ->Join('golongan as g','d.id_golongan','=','g.id')
+        ->Join('cabang as c','d.id_cabang','=','c.id')
         ->leftJoin('bbn as s','s.id_dil','=','d.id')
         // ->where('cabang',11)
         ->get();
@@ -45,27 +46,27 @@ class EvaluasiController extends Controller
       
              
                 $querywm1 = DB::table('tbl_dil')
-                     ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                     ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                      ->where('kondisi_wm', '=', 1)
-                     ->groupBy('cabang')
+                     ->groupBy('id_cabang')
                      ->get();
                 // dd($querywm );
                 
                 $querywm2 = DB::table('tbl_dil')
-                     ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                     ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                      ->where('kondisi_wm', '=', 2)
-                     ->groupBy('cabang')
+                     ->groupBy('id_cabang')
                      ->get();
                 // dd($querywm );
                 $querywm3 = DB::table('tbl_dil')
-                ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                 ->where('kondisi_wm', '=', 3)
-                ->groupBy('cabang')
+                ->groupBy('id_cabang')
                 ->get();
                 $querywm4 = DB::table('tbl_dil')
-                ->select(DB::raw('count(*) as kondisi_wm, cabang'))
+                ->select(DB::raw('count(*) as kondisi_wm, id_cabang'))
                 ->where('kondisi_wm', '=', 4)
-                ->groupBy('cabang')
+                ->groupBy('id_cabang')
                 ->get();
                 
           
