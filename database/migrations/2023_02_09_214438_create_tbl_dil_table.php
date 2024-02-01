@@ -42,7 +42,7 @@ class CreateTblDilTable extends Migration
             $table->date('tanggal_file')->nullable();
             $table->unsignedInteger('id_merek');
             $table->unsignedInteger('id_golongan');
-            $table->timestamps();
+            // $table->timestamps();
 
            
            

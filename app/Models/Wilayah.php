@@ -15,5 +15,9 @@ class Wilayah extends Model
         'cabang',
     ];
     public $timestamps = false;
+    public function wilayah()
+    {
+        return $this->hasMany(Wilayah::class,'id_wilayah');
+    }
 
 }

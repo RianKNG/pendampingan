@@ -79,7 +79,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 <div>
-<i class="text-warning"><marquee> <i>!!! Mohon ma'af apabila Tim Kami dalam pembuatan Sistem ini masih Banyak Kekurangan Karena masih dalam Pengembangan sesui intruksi Pimpinan !!!</i></marquee></i>
+<i class="text-warning"><marquee> <i>!!! Sistem Ini Sudah Bisa Digunakan, Apabila ditemukan ada BUG silahkan hubungi TIM HUMAS V D P R, dan TIM KAMI sangat senang sekali apabila ada yang mau mengembangkan, Mohon ma'af yang sebesar besarnya dengan keterbatasan ilmu yang TIM Kami Miliki !!!</i></marquee></i>
 </div>
   
 

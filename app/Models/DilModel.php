@@ -33,4 +33,8 @@ class DilModel extends Model
     {
         return $this->belongsTo(Jalan::class,'id_jalan');
     }
+    public function wilayah()
+    {
+        return $this->belongsTo(Wilayah::class,'id_wilayah');
+    }
 }

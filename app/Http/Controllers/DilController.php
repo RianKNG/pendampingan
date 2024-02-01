@@ -372,9 +372,10 @@ class DilController extends Controller
         'tanggal_file'=>   Carbon::parse($ulang),
 
     ]);
-    // return($request->all());
+
     $data = $request->file('file');
     $namafile = $data->getClientOriginalName();
+
     $data->move('Pelanggan',$namafile);
     
 
