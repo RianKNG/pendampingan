@@ -184,7 +184,7 @@
           </p>
         </a>
       </li> --}}
-      <li class="{{ Request::is('/evaluasi')? "active":"" }}">
+      {{-- <li class="{{ Request::is('/evaluasi')? "active":"" }}">
         <a href="{{ url('/evaluasi') }}" class="nav-link">
           <span class="icon"><i class="fa fa-pen text-success"></i></span>
           <p class="btn-xs">
@@ -192,6 +192,6 @@
             
           </p>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </nav> 
