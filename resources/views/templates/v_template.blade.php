@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="{{ asset('adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminLTE/dist/css/adminlte.min.css') }}">
-  
+  {{-- <meta http-equiv="refresh" content="5"> --}}
    <!-- Theme style -->
    {{-- <meta http-equiv ="refresh" content="{{ $sec; }}" URL="{{ $page; }}"> --}}
    @stack('style')
@@ -55,6 +55,15 @@
        margin: auto;
      }
  </style>
+ <style>
+  #jam {
+    color:blue;
+    background-color: aqua;
+    font-size: 24px;
+    border-radius: 10px 10px 10px 10px;
+   }
+   
+</style>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -75,11 +84,11 @@
   </aside>
  
   <!-- Content Wrapper. Contains page content -->
-  
+  <div class="wrapper" style="min-height: 100%;"> 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 <div>
-<i class="text-warning"><marquee> <i>!!! Sistem Ini Sudah Bisa Digunakan, Apabila ditemukan ada BUG silahkan hubungi TIM HUMAS V D P R, dan TIM KAMI sangat senang sekali apabila ada yang mau mengembangkan, Mohon ma'af yang sebesar besarnya dengan keterbatasan ilmu yang TIM Kami Miliki !!!</i></marquee></i>
+<i class="text-warning"><marquee> <i>!!! Sistem Ini Sudah Bisa Digunakan, Apabila ditemukan ada BUG silahkan hubungi IT &  HUMAS V D P Rsangat senang sekali apabila ada yang mau mengembangkan, Mohon ma'af yang sebesar besarnya dengan keterbatasan ilmu yang TIM Kami Miliki !!!</i></marquee></i>
 </div>
   
 
@@ -192,5 +201,11 @@
   }
 
 </script>  
+{{-- <script>
+  function autoRefresh() {
+      window.location = window.location.href;
+  }
+  setInterval('autoRefresh()', 2000);
+</script> --}}
 </body>
 </html>

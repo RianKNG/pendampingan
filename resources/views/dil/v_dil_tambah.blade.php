@@ -1,6 +1,17 @@
 @extends('templates.v_template')
 @section('title','Tambah Data')
+
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach($errors->all() as $item)
+    <li>{{ $item }}</li>
+    @endforeach
+  </ul>
+</div>
+
+@endif
 <section class="content btn-xs">
 <div class="container-fluid">
   <form action="/dil/insert/" method="post" enctype="multipart/form-data">
@@ -19,7 +30,7 @@
             <!-- text input -->
             <div class="form-group">
               <label>No Sambungan</label>
-              <input type="integer" class="form-control" name="id" value="{{ old('id') }}">
+              <input type="integer" class="form-control" name="id" value="{{ Session::get('id') }},{{ old('id') }}">
               @error('id')
               <div class="alert text-danger">harus berisi 10 karakter</div>
               @enderror
@@ -126,18 +137,18 @@
             <div class="form-group">
               <label>Nama Sekarang</label>
               <input type="text" class="form-control" name="nama_sekarang" value="{{ old('nama_sekarang') }}">
-              @error('nama_sekarang')
+              {{-- @error('nama_sekarang')
               <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
+              @enderror --}}
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
               <label>Nama Pemilik</label>
               <input type="text" class="form-control" name="nama_pemilik" value="{{ old('nama_pemilik') }}">
-              @error('nama_pemilik')
+              {{-- @error('nama_pemilik')
               <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
+              @enderror --}}
             </div>
           </div>
         </div>
@@ -166,60 +177,44 @@
         <div class="row">
           <div class="col-md-2">
             <div>status Milik</div>
+            @error('status_milik')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"><input class="form-check-input" type="checkbox" name="status_milik" value="sewa" id="status_milik">Sewa</label>
-                @error('status_milik')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
                 <div></div>
                <label class="form-check-label"><input class="form-check-input" type="checkbox" name="status_milik" value="hak milik" id="status_milik">hak milik</label>
-               @error('status_milik')
-               <div class="alert alert-danger">{{ $message }}</div>
-               @enderror
               </div>
             </div>
           </div>
           <div class="col-md-2">
             <div>Usaha</div>
+            @error('usaha')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"><input class="form-check-input" type="checkbox" name="usaha" value="ada" id="usaha">Ada</label>
-                @error('usaha')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
                 <div></div>
                <label class="form-check-label"><input class="form-check-input" type="checkbox" name="usaha" value="tidak ada" id="usaha">Tidak ada</label>
-               @error('usaha')
-               <div class="alert alert-danger">{{ $message }}</div>
-               @enderror
               </div>
             </div>
           </div>
           <div class="col-sm-2">
             <div>Konsisi WM</div>
+            @error('kondisi_wm')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="form-group">
               <div class="form-check">
                 <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" value="1" id="kondisi_wm">Baik</label>
-                @error('kondisi_wm')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
                 <div></div>
                 <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" value="2" id="kondisi_wm">Rusak</label>
-                @error('kondisi_wm')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
                 <div></div>
                 <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" value="3" id="kondisi_wm">Buram</label>
-                @error('kondisi_wm')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
                 <div></div>
-                
                <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" value="4" id="kondisi_wm">Hilang</label>
-               @error('kondisi_wm')
-               <div class="alert alert-danger">{{ $message }}</div>
-               @enderror
               </div>
             </div>
           </div>
@@ -228,9 +223,9 @@
             <div class="form-group">
               <label>Jml Jiwa Tetap</label>
               <input type="integer" class="form-control" name="jml_jiwa_tetap" value="{{ old('jml_jiwa_tetap') }}">
-              @error('jml_jiwa_tetap')
+              {{-- @error('jml_jiwa_tetap')
               <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
+              @enderror --}}
             </div>
           </div>
 
@@ -238,112 +233,91 @@
             <div class="form-group">
               <label>Jml Jiwa Tidak tetap</label>
               <input type="integer" class="form-control" name="jml_jiwa_tidak_tetap" value="{{ old('jml_jiwa_tidak_tetap') }}">
-              @error('jml_jiwa_tidak_tetap')
+              {{-- @error('jml_jiwa_tidak_tetap')
               <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
+              @enderror --}}
             </div>
           </div>
         </div>
       <div class="row">
         <div class="col-md-2">
           <div>segel</div>
+          @error('segel')
+          <div class="alert alert-danger">{{ $message }}</div>
+           @enderror
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="segel" value="1" id="segel">Baik</label>
-              @error('segel')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
               <div></div>
              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="segel" value="2" id="segel">Tidak ada</label>
-             @error('segel')
-             <div class="alert alert-danger">{{ $message }}</div>
-             @enderror
              <div></div>
              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="segel" value="3" id="segel">Rusak</label>
-             @error('segel')
-             <div class="alert alert-danger">{{ $message }}</div>
-             @enderror
             </div>
           </div>
         </div>
         <div class="col-md-2">
           <div>stop kran</div>
+          @error('stop_kran')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="stop_kran" value="ada"id="stop_kran">ada</label>
-              @error('stop_kran')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
               <div></div>
              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="stop_kran" id="stop_kran" value="tidak ada">tidak ada</label>
-             @error('stop_kran')
-             <div class="alert alert-danger">{{ $message }}</div>
-             @enderror
             </div>
           </div>
         </div>
         <div class="col-md-2">
           <div>ceck valve</div>
+          @error('ceck_valve')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="ceck_valve" value="ada" id="ceck_valve">ada</label>
-              @error('ceck_valve')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
               <div></div>
              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="ceck_valve" value="tidak ada"id="ceck_valve">tidak ada</label>
-             @error('ceck_valve')
-             <div class="alert alert-danger">{{ $message }}</div>
-             @enderror
             </div>
           </div>
         </div>
         
         <div class="col-md-2">
           <div>kopling</div>
+          @error('kopling')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kopling" id="kopling" value="ada">ada</label>
-              @error('kopling')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
               <div></div>
              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kopling" id="kopling" value="tidak ada">tidak ada</label>
-             @error('kopling')
-             <div class="alert alert-danger">{{ $message }}</div>
-             @enderror
             </div>
           </div>
         </div>
         <div class="col-md-2">
           <div>plug</div>
+          @error('plugran')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"> <input class="form-check-input" name="plugran" value="ada" type="checkbox">ada</label>
-              @error('plugran')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
               <div></div>
               <label class="form-check-label"> <input class="form-check-input" name="plugran" value="tidak ada" type="checkbox">tidak ada</label>
-              @error('plugran')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
             </div>
           </div>
         </div>
         <div class="col-md-2">
           <div>box</div>
+          @error('box')
+          <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
           <div class="form-group">
             <div class="form-check">
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="box" value="ada" id="box">ada</label>
-              @error('box')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
                <div></div>
               <label class="form-check-label"><input class="form-check-input" type="checkbox" name="box" value="tidak ada" id="box">tidak ada</label>
-              @error('box')
-              <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
             </div>
           </div>
         </div>
@@ -354,18 +328,18 @@
             <div class="form-group">
               <label>Sumber Lain</label>
               <input type="text" name="sumber_lain" class="form-control" value="{{ old('sumber_lain') }}">
-              @error('sumber_lain')
+              {{-- @error('sumber_lain')
               <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
+              @enderror --}}
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label>Jenis Usaha</label>
               <input type="text" name="jenis_usaha" class="form-control" value="{{ old('jenis_usaha') }}">
-              @error('jenis_usaha')
+              {{-- @error('jenis_usaha')
               <div class="alert alert-danger">{{ $message }}</div>
-              @enderror
+              @enderror --}}
             </div>
           </div>
         </div>

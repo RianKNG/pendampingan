@@ -7,6 +7,11 @@
  {{ $message }}
 </div>
 @endif
+{{-- @if ($message = Session::get('error'))
+<div class="alert alert-success" role="alert">
+ {{ $message }}
+</div>
+@endif --}}
 {{-- @push('style')
 <link rel="stylesheet"
     href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -32,7 +37,7 @@
                           <span class="fas fa-search"></span>
                       </button>
                   </span>
-                  <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term">
+                  <input type="text" class="form-control mr-2" name="term" placeholder="masukan no pelanggan" id="term">
                   <a href="{{ route('dil') }}" class=" mt-0">
                       <span class="input-group-btn">
                           <button class="btn btn-danger" type="button" title="Refresh page">

@@ -68,7 +68,7 @@
             $.ajax({
               type : "GET",
               dataType: "json",
-              url: "{{ url('/wilayah/all') }}",
+              url: "{{ @url('/wilayah/all') }}",
               beforeSend:function(){
                 // $(".loader-div").show(); // show loader
                 $(".loader-div").show(); // hide loader

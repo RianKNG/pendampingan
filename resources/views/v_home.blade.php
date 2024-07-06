@@ -779,6 +779,7 @@ showValues();
 
 <!-- #END# Bar Chart -->
 
+
 </script>
 <script type="text/javascript">
                 let sas = {{ number_format($jumlahdil ,0,",",".") }};//dil aktip
@@ -836,6 +837,8 @@ showValues();
         ]
     }]
 });
+
+
 </script> 
  
 

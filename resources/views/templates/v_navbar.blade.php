@@ -5,7 +5,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link"><span class="text-warning">Tim HUMAS   &   VDPR</span></a>
+      <a href="#" class="nav-link"><span class="text-warning">IT(INFORMATION TECHNOLOGY) & HUMAS</span></a>
      
     </li>
     <li class="nav-item d-none d-sm-inline-block">
@@ -21,7 +21,7 @@
     <?php
     date_default_timezone_set("Asia/jakarta");
 ?>
-<p align="right">Waktu Menunjukan Pukul: <b><span id="jam" style="font-size:24"></span></b></p>
+<p align="right">Waktu : <b><span id="jam" style="font-size:24"></span></b></p>
 
    </div>
 </li>

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -46,6 +47,7 @@ class DilController extends Controller
     {
         // $cab = Cabang::all();
         $username = $this->user->name;
+     
         if($username == 'admin') {
             $data = DB::table('tbl_dil as d')
             ->select([
@@ -63,7 +65,7 @@ class DilController extends Controller
         ->leftJoin('bbn as s','s.id_dil','=','d.id')
         // ->where('id_cabang',11)
         ->simplePaginate(100);
-     
+    //  dd($data);
         // if (request('term')) {
         //     $data = DB::table('tbl_dil as d')
         // ->select([
@@ -100,6 +102,12 @@ class DilController extends Controller
         // // ->where('d.status',2)
         // ->simplePaginate(100);
         // dd($data);
+        // $convers =DB::table('tbl_dil')
+        // ->selectRaw('id, lpad(id, 10, 0)')
+        // // ->selectRaw('id')
+        // ->get();
+        // dd($convers);
+       
         if (request('term')) {
             $data = DB::table('tbl_dil as d')
         ->select([
@@ -119,7 +127,7 @@ class DilController extends Controller
         ->leftJoin('penutupan as p','p.alasan','=','d.id')
         ->orderBy('d.status','desc')
         ->where('d.id_cabang', 'Like', '%' . request('term') . '%')
-        ->orWhere('d.id', 'Like', '%' . request('term') . '%')
+        // ->orWhere('d.id', 'Like', '%' . request('term') . '%')
         ->simplePaginate(100);
            
         }
@@ -147,6 +155,20 @@ class DilController extends Controller
         // dd($request->all());
         $dateinit = \Carbon\Carbon::parse($request->tanggal_file);
         $datefim = \Carbon\Carbon::parse($request->tanggal_pasang);
+        Session::flash('id',$request->id);
+        Session::flash('status',$request->status);
+        Session::flash('id_wilayah',$request->id_wilayah);
+        Session::flash('id_jalan',$request->id_jalan);
+        Session::flash('kondisi_wm',$request->kondisi_wm);
+        Session::flash('segel',$request->segel); 
+        Session::flash('stop_kran',$request->stop_kran);
+        Session::flash('ceck_valve',$request->ceck_valve);
+        Session::flash('kopling',$request->kopling);
+        Session::flash('plugran',$request->plugran);
+        Session::flash('box',$request->box);
+        Session::flash('usaha',$request->usaha);
+        Session::flash('sumber_lain',$request->sumber_lain);
+       
         $this->validate($request,[
           'id' => 'required|unique:tbl_dil,id|max:11',
           'status' => 'required',
@@ -177,10 +199,39 @@ class DilController extends Controller
           'tanggal_pasang' => 'required',
           'tanggal_file' => 'required',
 
+        ],[
+          'id.required' => 'harus 10 karakter',
+          'status.required' => 'wajib diisi',
+          'id_cabang.required'=>'wajib diisi',
+          'id_wilayah.required'=>'wajib diisi',
+          'id_jalan.required'=>'wajib diisi',
+          'no_rekening.required' => 'masukan aja nilai 0 jika belum belun konfirm ke VDPR',
+          'nama_sekarang.required' => 'wajib diisi',
+          'nama_pemilik.required' => 'wajib diisi',
+          'alamat.required' => 'wajib diisi',
+          'angka.required' => 'wajib diisi',
+          'status_milik.required' => 'wajib diisi',
+          'jml_jiwa_tetap.required' => 'wajib diisi',
+          'jml_jiwa_tidak_tetap.required' => 'wajib diisi',
+          'kondisi_wm.required' => 'wajib diceklist salah satu saja',
+          'segel.required' => 'wajib diceklist salah satu saja',
+          'stop_kran.required' => 'wajib diceklist salah satu saja',
+          'ceck_valve.required' => 'wajib diceklist salah satu saja',
+          'kopling.required' => 'wajib diceklist salah satu saja',
+          'plugran.required' => 'wajib diceklist salah satu saja',
+          'box.required' => 'wajib diceklist salah satu saja',
+          'usaha.required' => 'wajib diisi',
+          'sumber_lain' => 'wajib diisi',
+          'id_golongan.required' => 'wajib diisi',
+          'id_merek.required' => 'wajib diisi',
+          'no_seri.required' => 'wajib diisi',
+          'jenis_usaha.required' => 'required',
+          'tanggal_pasang.required' => 'required',
+          'tanggal_file.required' => 'required',
         ]);
         
         
-        DilModel::create([
+        $dil = DilModel::create([
           
           'id' => $request->id,
           'status' => $request->status,
@@ -212,8 +263,15 @@ class DilController extends Controller
           'tanggal_file' => $request->tanggal_file,
         ])
         ->get();
+        if($dil){
+            //redirect dengan pesan sukses
+            return redirect()->route('dil')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->route('dil')->with(['error' => 'Data Gagal Disimpan!']);
+        }
   
-        return redirect()->route('dil')->with('success','data berhasil ditambahkan');
+        // return redirect()->route('dil')->with('success','data berhasil ditambahkan');
       }  
 
     public function edit($id)
