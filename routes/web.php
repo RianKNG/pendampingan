@@ -65,7 +65,8 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::get('/test/rada', [AccesoriesController::class,'rada']);
     Route::get('/test/rtada', [AccesoriesController::class,'rtada']);
     Route::get('/test/all', [AccesoriesController::class,'all']);
-    Route::get('/test/datatable', [AccesoriesController::class,'datatable']);
+    Route::get('/test/statusjs', [AccesoriesController::class,'statusjs'])->name('statusjs');
+    Route::get('/test/datatable', [AccesoriesController::class,'datatable'])->name('aku');
     Route::get('/test/ajax', [AccesoriesController::class,'ajax'])->name('ajax');
     Route::get('/test/wilayah', [AccesoriesController::class,'wilayah'])->name('wilayah');
     Route::get('/test/cabang', [AccesoriesController::class,'cabang'])->name('cabang');
@@ -188,16 +189,18 @@ Route::group(['middleware'=>['user','user:admin,user']], function () {
     Route::resource('cabang', CabangController::class);
     // Route::resource('user', UserController::class);
     //wilayah
-    Route::get('wilayah', [WilayahController::class, 'index']);
     Route::get('/wilayah/all', [WilayahController::class, 'allData']);
+    Route::get('wilayah', [WilayahController::class, 'index']);
+    
     Route::post('/wilayah/add', [WilayahController::class, 'addData']);
     Route::get('/wilayah/edit/{id}', [WilayahController::class, 'editData']);
     Route::post('/wilayah/update/{id}', [WilayahController::class, 'updateData']);
     Route::get('/wilayah/delete/{id}', [WilayahController::class, 'deleteData']);
     Route::post('/importwilayah', [WilayahController::class,'importwilayah'])->name('importwilayah');
      //jalan
+      Route::get('/jalan/all', [JalanController::class, 'allData']);
      Route::get('jalan',[JalanController::class,'index']);
-     Route::get('/jalan/all', [JalanController::class, 'allData']);
+    
      Route::post('/jalan/add', [JalanController::class, 'addData']);
      Route::get('/jalan/edit/{id}', [JalanController::class, 'editData']);
      Route::post('/jalan/update/{id}', [JalanController::class, 'updateData']);

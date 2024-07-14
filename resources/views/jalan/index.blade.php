@@ -68,6 +68,9 @@
         $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    xhrFields:{
+                        withCredentials:'true',
                     }
                 })
                 // -------------------------------------startget all from data--------------------------------------
@@ -77,7 +80,7 @@
               dataType: "json",
               url: "{{ url('/jalan/all') }}",
               beforeSend:function(){
-                // $('loading-spinner').show();
+                $('loading-spinner').show();
                 // document.getElementById("button").innerHTML = "Loading...";
                 $(".loader-div").show(); // hide loader
               },

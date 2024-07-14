@@ -46,8 +46,7 @@
     @section('content')
     {{-- <div class="container"> --}}
         <!-- Info boxes -->
-       
-        <h6><span> <i><b>Update Konsolidasi D I L Bulan : {{ $newDateFormat }}</b></i></span></h6>
+        <h6><span> <i><b>Update Konsolidasi D I L Bulan : <strong >{{ $newDateFormat }}</strong></b></i></span></h6>
         <div class="row">
           
           <div class="col-12 col-sm-6 col-md-3">
@@ -236,7 +235,8 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                Grafik Update SL Baru||Penutupan||Penyambungan||Penggantian {{ $tahun }}
+              </b>Grafik Update SL Baru||Penutupan||Penyambungan||Penggantian <strong class="text-warning" >{{ $tahun }}</strong>
+                {{-- Grafik Update SL Baru||Penutupan||Penyambungan||Penggantian {{ $tahun }} --}}
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -305,7 +305,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              Grafik DIL {{ $tahun }}
+            </b>Grafik DIL <strong class="text-warning" >{{ $tahun }}</strong>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -689,7 +689,7 @@
       // }
   },
   title: {
-      text: 'Pergerakan DIL',
+      text: 'Pergerakan Status DIL',
       align: 'center'
   },
       
@@ -1147,7 +1147,7 @@ showValues();
         type: 'line'
     },
     title: {
-        text: 'Pergerakan Status DIL'
+        text: 'Pergerakan DIL',
     },
     subtitle: {
         text: 'Interval: ' +

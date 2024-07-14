@@ -26,13 +26,13 @@
   <link rel="stylesheet" href="{{ asset('adminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminLTE/dist/css/adminlte.min.css') }}">
+  
   {{-- <meta http-equiv="refresh" content="5"> --}}
    <!-- Theme style -->
    {{-- <meta http-equiv ="refresh" content="{{ $sec; }}" URL="{{ $page; }}"> --}}
-   @stack('style')
    @yield('test')
-   {{-- <link rel="stylesheet"href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"> --}}
-   <style>
+   @stack('style')
+   {{-- <style>
     .loader-div {
        display: none;
        position: fixed;
@@ -54,8 +54,8 @@
        right: 0;
        margin: auto;
      }
- </style>
- <style>
+ </style> --}}
+ {{-- <style>
   #jam {
     color:blue;
     background-color: aqua;
@@ -63,7 +63,7 @@
     border-radius: 10px 10px 10px 10px;
    }
    
-</style>
+</style> --}}
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -88,7 +88,8 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 <div>
-<i class="text-warning"><marquee> <i>!!! Sistem Ini Sudah Bisa Digunakan, Apabila ditemukan ada BUG silahkan hubungi IT &  HUMAS V D P Rsangat senang sekali apabila ada yang mau mengembangkan, Mohon ma'af yang sebesar besarnya dengan keterbatasan ilmu yang TIM Kami Miliki !!!</i></marquee></i>
+ <marquee>!!! DILAN Sudah Bisa Digunakan, Apabila ditemukan ada BUG silahkan hubungi IT atau HUMAS dan kami sangat support bila ada yang mengembangkan, Mohon ma'af yang sebesar besarnya dengan keterbatasan ilmu yang TIM Kami Miliki !!!</marquee>
+
 </div>
   
 
@@ -173,14 +174,13 @@
 <script src="{{ asset('adminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 
 
-
 @stack('wilayah');
 @stack('jalan');
 @yield('footer2');
 @yield('footer');
 @stack('scripts');
 @stack('kodescripts');
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   window.onload = function() { jam(); }
  
   function jam() {
@@ -200,7 +200,7 @@
       return e;
   }
 
-</script>  
+</script>   --}}
 {{-- <script>
   function autoRefresh() {
       window.location = window.location.href;

@@ -199,6 +199,10 @@ $graph = new DilModel;
     //     }        
     //     return view('xxx');
     // }
+    public function statusjs(){
+      
+        return view('detail.testing');
+    }
     public function datatable(Request $request)
     {
         // $data = DB::table('tbl_dil')
@@ -206,86 +210,164 @@ $graph = new DilModel;
         // ->groupBy('id_cabang')
         // ->get();
         // dd($data);
-        if($request->ajax())
-        {
+      
             $data = DB::table('tbl_dil as d')
             ->select([
-                    'd.id','d.status','d.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
-                    'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel','kondisi_wm','d.stop_kran','d.ceck_valve','d.kopling','d.plugran',
-                    'd.box','d.plugran','d.box','d.usaha','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_cabang','u.nama_cabang'
-                    // 'g.nama_golongan','g.kode','u.id','u.nama_cabang'
-        ])
-       
-        ->Join('cabang as u','d.id_cabang','=','u.id');
+                    'd.id as a','d.nama_sekarang as b',
 
-        if($request->filter_id_cabang)
+                    'd.no_rekening','d.nama_sekarang','d.nama_pemilik','d.alamat','d.status_milik',
+                    'd.jml_jiwa_tetap','d.jml_jiwa_tidak_tetap','d.angka','d.segel as c','kondisi_wm as d','d.stop_kran','d.ceck_valve','d.kopling',
+                    'd.plugran','d.box','d.usaha as e','d.sumber_lain','d.no_seri','d.jenis_usaha','d.tanggal_pasang','d.tanggal_file','d.id_cabang as z','u.nama_cabang as u',
+                    'g.nama_golongan','g.kode','u.id'
+            ])->orderBy('d.id')
+       
+        ->Join('cabang as u','d.id_cabang','=','u.id')
+        ->Join('golongan as g','d.id_golongan','=','g.id');
+
+        if($request->filter_cabang)
         {
-            $data = $data->where('id_cabang', [$request->id_cabang]);
+            $data = $data->where('z', [$request->z]);
         }
         if($request->filter_segel)
         {
-            $data = $data->where('d.segel', [$request->segel]);
+            $data = $data->where('c', [$request->c]);
         }
-        
+        if($request->filter_kondisi_wm)
+        {
+            $data = $data->where('d', [$request->d]);
+        }
+        if($request->filter_usaha)
+        {
+            $data = $data->where('e', [$request->e]);
+        }
+        // ->make(true);
         return DataTables::of($data)
-        // ->addIndexColumn()
-        ->editColumn('d.id_cabang',function($data){
-            // if($data->id_cabang == 05){
-            //     return 'Jatinangor';
-            // }elseif($data->id_cabang == 13){
-            //     return 'Pamulihan';
-            // }elseif($data->id_cabang == 06){
-            //     return 'Tanjungsari';   
-            // }elseif($data->id_cabang == 2){
-            //     return 'Tanjungkerta'; 
-            // }elseif($data->id_cabang == 1){
-            //     return 'Sumedang Utara'; 
-            // }else{
-                
-            //     return 'Anda Salah Memasukan Kode';
-            // }
-            return $data->nama_cabang; 
-        })
-        ->editColumn('segel',function($data){
-            if($data->segel == 1){
-                return 'BAIK';
-            }elseif($data->segel == 2){
-                return 'TIDAK ADA';
-            }elseif($data->segel == 3){
-                return 'RUSAK';
-            }elseif($data->segel == 4){
-                return 'TIDAK DIKETAHUI';
-            }else{ 
-            return 'DITABELNYA KOSONG';
-            }
-          
-        })
-        ->editColumn('kondisi_wm',function($data){
-            if($data->kondisi_wm == 1){
-                return 'BAIK';
-            }elseif($data->kondisi_wm == 2){
-                return 'TIDAK ADA';
-            }else{ 
-            return 'LAINNYA';
-            }
-          
-        })
-        ->editColumn('usaha',function($data){
-            if($data->usaha == 1){
-                return 'ADA';
-            }elseif($data->usaha == 2){
-                return 'TIDAK ADA';
-            }else{ 
-            return 'LAINNYA';
-            }
-          
-        })
-        ->addIndexColumn()
-        ->make(true);
-    }
+                ->editColumn('z',function($data){
+                if($data->z == 5){
+                    return 'Jatinangor';
+                }elseif($data->z == 13){
+                    return 'Pamulihan';
+                }elseif($data->z == 6){
+                    return 'Tanjungsari';   
+                }elseif($data->z == 2){
+                    return 'Tanjungkerta'; 
+                }elseif($data->z == 1){
+                    return 'Sumedang Utara'; 
+                }else{
+                    
+                    return 'Anda Salah Memasukan Kode';
+                }
+                return $data->u; 
+            })
+            // ->filterColumn('c', function($data, $keyword){
+            //      $data->where('c',$keyword)->get();
+            // })
+            ->editColumn('c',function($data){
+                if($data->c == 1){
+                    return 'BAIK';
+                }elseif($data->c == 2){
+                    return 'RUSAK';
+                }elseif($data->c == 3){
+                    return 'TIDAK ADA';
+                }else{ 
+                return 'NULL';
+                }
+                return $data->c; 
+            
+            })
+            ->editColumn('d',function($data){
+                if($data->d == 1){
+                    return 'BAIK';
+                }elseif($data->d == 2){
+                    return 'RUSAK';
+                }elseif($data->d == 3){
+                    return 'BURAM';
+                }elseif($data->d == 4){
+                    return 'HILANG';
+                }else{ 
+                    return 'NULL';
+                }
+                return $data->d; 
+            
+            })
+            ->editColumn('e',function($data){
+                if($data->e == 1){
+                    return 'ADA';
+                }elseif($data->e == 2){
+                    return 'TIDAK';
+                }else{ 
+                return 'NULL';
+                }
+                return $data->e; 
+            
+            })
 
-        return view('detail.testing');
-    }
+
+
+        ->addIndexColumn()
+         ->make(true);
+           
+        }
+        // return DataTables::of($data)->make(true);
+        // ->addIndexColumn()
+        // ->editColumn('d.id_cabang',function($data){
+        //     // if($data->id_cabang == 05){
+        //     //     return 'Jatinangor';
+        //     // }elseif($data->id_cabang == 13){
+        //     //     return 'Pamulihan';
+        //     // }elseif($data->id_cabang == 06){
+        //     //     return 'Tanjungsari';   
+        //     // }elseif($data->id_cabang == 2){
+        //     //     return 'Tanjungkerta'; 
+        //     // }elseif($data->id_cabang == 1){
+        //     //     return 'Sumedang Utara'; 
+        //     // }else{
+                
+        //     //     return 'Anda Salah Memasukan Kode';
+        //     // }
+        //     return $data->nama_cabang; 
+        // })
+        // ->editColumn('segel',function($data){
+        //     if($data->segel == 1){
+        //         return 'BAIK';
+        //     }elseif($data->segel == 2){
+        //         return 'TIDAK ADA';
+        //     }elseif($data->segel == 3){
+        //         return 'RUSAK';
+        //     }elseif($data->segel == 4){
+        //         return 'TIDAK DIKETAHUI';
+        //     }else{ 
+        //     return 'DITABELNYA KOSONG';
+        //     }
+          
+        // })
+        // ->editColumn('kondisi_wm',function($data){
+        //     if($data->kondisi_wm == 1){
+        //         return 'BAIK';
+        //     }elseif($data->kondisi_wm == 2){
+        //         return 'TIDAK ADA';
+        //     }else{ 
+        //     return 'LAINNYA';
+        //     }
+          
+        // })
+        // ->editColumn('usaha',function($data){
+        //     if($data->usaha == 1){
+        //         return 'ADA';
+        //     }elseif($data->usaha == 2){
+        //         return 'TIDAK ADA';
+        //     }else{ 
+        //     return 'LAINNYA';
+        //     }
+          
+        // })
+        // ->addIndexColumn()
+        // ->make(true);
+        // return DataTables::of($data);
+    
+
+    //     return view('detail.testing');
+    // }
 
   
     // public function tablenya(Request $request)

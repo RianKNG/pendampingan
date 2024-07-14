@@ -63,7 +63,7 @@ class DilController extends Controller
         ->Join('jalan as j','d.id_jalan','=','j.id')
         ->Join('golongan as g','d.id_golongan','=','g.id')
         ->leftJoin('bbn as s','s.id_dil','=','d.id')
-        // ->where('id_cabang',11)
+        // ->where('id_cabang',2)
         ->simplePaginate(100);
     //  dd($data);
         // if (request('term')) {
@@ -191,7 +191,7 @@ class DilController extends Controller
           'plugran' => 'required',
           'box' => 'required',
           'usaha' => 'required',
-          'sumber_lain' => 'required',
+        //   'sumber_lain' => 'required',
           'id_golongan' => 'required',
           'id_merek' => 'required',
           'no_seri' => 'required',
@@ -201,33 +201,33 @@ class DilController extends Controller
 
         ],[
           'id.required' => 'harus 10 karakter',
-          'status.required' => 'wajib diisi',
-          'id_cabang.required'=>'wajib diisi',
-          'id_wilayah.required'=>'wajib diisi',
-          'id_jalan.required'=>'wajib diisi',
+          'status.required' => 'status wajib diisi',
+          'id_cabang.required'=>'cabang wajib diisi',
+          'id_wilayah.required'=>'wilayah wajib diisi',
+          'id_jalan.required'=>'jalan  diisi',
           'no_rekening.required' => 'masukan aja nilai 0 jika belum belun konfirm ke VDPR',
-          'nama_sekarang.required' => 'wajib diisi',
-          'nama_pemilik.required' => 'wajib diisi',
-          'alamat.required' => 'wajib diisi',
-          'angka.required' => 'wajib diisi',
-          'status_milik.required' => 'wajib diisi',
-          'jml_jiwa_tetap.required' => 'wajib diisi',
-          'jml_jiwa_tidak_tetap.required' => 'wajib diisi',
-          'kondisi_wm.required' => 'wajib diceklist salah satu saja',
-          'segel.required' => 'wajib diceklist salah satu saja',
-          'stop_kran.required' => 'wajib diceklist salah satu saja',
-          'ceck_valve.required' => 'wajib diceklist salah satu saja',
-          'kopling.required' => 'wajib diceklist salah satu saja',
-          'plugran.required' => 'wajib diceklist salah satu saja',
-          'box.required' => 'wajib diceklist salah satu saja',
-          'usaha.required' => 'wajib diisi',
+          'nama_sekarang.required' => 'nama saat ini wajib diisi',
+          'nama_pemilik.required' => 'nama pemilik wajib diisi',
+          'alamat.required' => 'alamat wajib diisi',
+        //   'angka.required' => '',
+          'status_milik.required' => 'status milik wajib diceklist salah satu saja',
+          'jml_jiwa_tetap.required' => 'jml jiwa tetap wajib diisi',
+          'jml_jiwa_tidak_tetap.required' => 'jml jiwa tidak tetap wajib diisi',
+          'kondisi_wm.required' => 'kondisi wajib diceklist salah satu saja',
+          'segel.required' => 'segel wajib diceklist salah satu saja',
+          'stop_kran.required' => 'stop kran wajib diceklist salah satu saja',
+          'ceck_valve.required' => 'ceck valve wajib diceklist salah satu saja',
+          'kopling.required' => 'kopling wajib diceklist salah satu saja',
+          'plugran.required' => 'plugran wajib diceklist salah satu saja',
+          'box.required' => 'box wajib diceklist salah satu saja',
+        //   'usaha.required' => '',
           'sumber_lain' => 'wajib diisi',
-          'id_golongan.required' => 'wajib diisi',
-          'id_merek.required' => 'wajib diisi',
-          'no_seri.required' => 'wajib diisi',
-          'jenis_usaha.required' => 'required',
-          'tanggal_pasang.required' => 'required',
-          'tanggal_file.required' => 'required',
+          'id_golongan.required' => 'golongan wajib diisi',
+          'id_merek.required' => 'merek wajib diisi',
+          'no_seri.required' => 'no seri wajib diisi',
+        //   'jenis_usaha.required' => 'required',
+          'tanggal_pasang.required' => 'tanggal wajib diisi',
+          'tanggal_file.required' => 'tanggal wajib diisi'
         ]);
         
         
@@ -284,7 +284,7 @@ class DilController extends Controller
        $jal = Jalan::all();
        $data = DilModel::find($id);
         // dd($data);r
-       
+        // dd($data);
         return view('dil.v_editdil',compact('data','mer','gol','cab','wil','jal'));
     }
     // public function jumlahstatus(Request $request,$id){
@@ -294,11 +294,44 @@ class DilController extends Controller
     public function update(Request $request,$id)
     {
      
-       
+        $this->validate($request,[
+            'id',
+            'status',
+            'id_cabang',
+            'id_wilayah',
+            'id_jalan',
+            'no_rekening',
+            'nama_sekarang',
+            'nama_pemilik',
+            'alamat',
+            'angka',
+            'status_milik',
+            'jml_jiwa_tetap',
+            'jml_jiwa_tidak_tetap',
+            'kondisi_wm',
+            'segel',
+            'stop_kran',
+            'ceck_valve',
+            'kopling',
+            'plugran',
+            'box',
+            'usaha',
+            'sumber_lain',
+            'id_golongan',
+            'id_merek',
+            'no_seri',
+            'jenis_usaha',
+            'tanggal_pasang',
+            'tanggal_file',
+  
+        ]);
+  
         $data = DilModel::find($id);
-        $data->update($request->all());
+        $dilUpdate=$request->all();
+        $data->update($dilUpdate);
         // ini cara lama
-
+        // dd($request->all());
+        // print($data);
         return redirect()->route('dil')->with('success','data berhasil diubah');
     }
     public function hapus($id)
@@ -344,7 +377,7 @@ class DilController extends Controller
         }
         DilModel::where('id',$id)->update(['kondisi_wm'=>$kondisi_wm]);
         // return $data;
-    return redirect()->route('perbaikan')->with('success','status pelanggan berhasil diubah');
+    return redirect()->route('dil')->with('success','status pelanggan berhasil diubah');
       
     }
     public function jumlah(Request $request)

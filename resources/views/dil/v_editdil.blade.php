@@ -3,7 +3,7 @@
 @section('content')
 <section class="content btn-xs">
 <div class="container-fluid">
-  <form action="/dil/update/{{ $data->id }}" method="post" enctype="multipart/form-data">
+  <form action="/dil/update/{{ $data->id }}" method="POST" enctype="multipart/form-data">
     @csrf
   </div>
   <!-- general form elements disabled -->
@@ -27,8 +27,9 @@
             <div class="form-group">
             <label>Cabang</label>
             <select name="id_cabang" class="form-control">
-              <option value="">--- cabang ---</option>
               @foreach($cab as $item)
+              {{-- <option value="">--- cabang ---</option> --}}
+             
                 <option value="{{ $item->id }}" @if (old('id_cabang') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_cabang }}</option>
               @endforeach  
               @error('id_cabang')
@@ -42,9 +43,9 @@
             <div class="form-group">
             <label>Wilayah</label>
             <select name="id_wilayah" class="form-control">
-              <option value="">--- wilayah ---</option>
+              {{-- <option value="">--- wilayah ---</option> --}}
               @foreach($wil as $item)
-                <option value="{{ $item->id }}" @if (old('id_wilayah') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->kode }} ||{{ $item->nama_wilayah }} || {{ $item->cabang }}</option>
+              <option value="{{ $item->id }}" @if (old('id_wilayah') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_wilayah }}</option>
                
               @endforeach  
               @error('id_wilayah')
@@ -58,9 +59,9 @@
             <div class="form-group">
             <label>Jalan</label>
             <select name="id_jalan" class="form-control">
-              <option value="">--- jalan ---</option>
+              {{-- <option value="">--- jalan ---</option> --}}
               @foreach($jal as $item)
-                <option value="{{ $item->id }}" @if (old('id_jalan') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_jalan }}</option>
+              <option value="{{ $item->id }}" @if (old('id_jalan') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_jalan }}</option>
               @endforeach  
               @error('id_jalan')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -156,13 +157,13 @@
           <div>Konsisi WM</div>
           <div class="form-group">
             <div class="form-check">
-              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondidi_wm" id="kondidi_wm" value="1" {{  ($data->kondidi_wm == '1' ? ' checked' : '') }}>Baik</label>
+              <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" id="kondisi_wm" value="1" {{  ($data->kondisi_wm == '1' ? ' checked' : '') }}>Baik</label>
               <div></div>
-             <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondidi_wm" id="kondidi_wm" value="2" {{  ($data->kondidi_wm == '2' ? ' checked' : '') }}>Rusak</label>
+             <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" id="kondisi_wm" value="2" {{  ($data->kondisi_wm == '2' ? ' checked' : '') }}>Rusak</label>
              <div></div>
-             <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondidi_wm" id="kondidi_wm" value="3" {{  ($data->kondidi_wm == '3' ? ' checked' : '') }}>Buram</label>
+             <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" id="kondisi_wm" value="3" {{  ($data->kondisi_wm == '3' ? ' checked' : '') }}>Buram</label>
              <div></div>
-             <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondidi_wm" id="kondidi_wm" value="4" {{  ($data->kondidi_wm == '4' ? ' checked' : '') }}>Hilang</label>
+             <label class="form-check-label"><input class="form-check-input" type="checkbox" name="kondisi_wm" id="kondisi_wm" value="4" {{  ($data->kondisi_wm == '4' ? ' checked' : '') }}>Hilang</label>
             </div>
           </div>
         </div>
@@ -265,7 +266,7 @@
             <div class="form-group">
               <label>Merek Warter Meter</label>
               <select name="id_merek" class="form-control">
-                <option value="">--- Merek ---</option>
+                {{-- <option value="">--- Merek ---</option> --}}
                 @foreach($mer as $item)
                     <option value="{{ $item->id }}" @if (old('id_merek') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->merek }}</option>
                 @endforeach  
@@ -280,7 +281,7 @@
             <div class="form-group">
             <label>Golongan Tarip</label>
             <select name="id_golongan" class="form-control">
-              <option value="">--- Golongan ---</option>
+              {{-- <option value="">--- Golongan ---</option> --}}
               @foreach($gol as $item)
                   <option value="{{ $item->id }}" @if (old('id_golongan') == "{{ $item->id }}") {{ 'selected' }} @endif>{{ $item->nama_golongan }}</option>
               @endforeach  

@@ -29,8 +29,8 @@
           <div class="col-sm-3">
             <!-- text input -->
             <div class="form-group">
-              <label>No Sambungan</label>
-              <input type="integer" class="form-control" name="id" value="{{ Session::get('id') }},{{ old('id') }}">
+              <label>No Sambungan*</label>
+              <input type="integer" class="form-control" name="id" value="{{ old('id') }}" placeholder="masukan no pelanggan">
               @error('id')
               <div class="alert text-danger">harus berisi 10 karakter</div>
               @enderror
@@ -67,7 +67,7 @@
             <div class="col-sm-3">
               <!-- Select multiple-->
               <div class="form-group">
-              <label>Cabang</label>
+              <label>Cabang*</label>
               <select name="id_cabang" class="form-control">
                 <option value="">--- cabang ---</option>
                 @foreach($cab as $item)
@@ -82,7 +82,7 @@
             <div class="col-sm-3">
               <!-- Select multiple-->
               <div class="form-group">
-              <label>Wilayah</label>
+              <label>Wilayah*</label>
               <select name="id_wilayah" class="form-control">
                 <option value="">--- wilayah ---</option>
                 @foreach($wil as $item)
@@ -98,7 +98,7 @@
             <div class="col-sm-3">
               <!-- Select multiple-->
               <div class="form-group">
-              <label>Jalan</label>
+              <label>Jalan*</label>
               <select name="id_jalan" class="form-control">
                 <option value="">--- jalan ---</option>
                 @foreach($jal as $item)
@@ -166,7 +166,7 @@
           <div class="col-sm-4">
             <!-- textarea -->
             <div class="form-group">
-              <label>Angka</label>
+              <label>Angka Stand</label>
               <input type="text" class="form-control" name="angka" value="{{ old('angka') }}">
               @error('rt')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -176,7 +176,7 @@
         </div>
         <div class="row">
           <div class="col-md-2">
-            <div>status Milik</div>
+            <div>status Milik*</div>
             @error('status_milik')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -189,7 +189,7 @@
             </div>
           </div>
           <div class="col-md-2">
-            <div>Usaha</div>
+            <div>Usaha*</div>
             @error('usaha')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -202,7 +202,7 @@
             </div>
           </div>
           <div class="col-sm-2">
-            <div>Konsisi WM</div>
+            <div>Konsisi WM*</div>
             @error('kondisi_wm')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -221,7 +221,7 @@
           
           <div class="col-sm-2">
             <div class="form-group">
-              <label>Jml Jiwa Tetap</label>
+              <label>Jml Jiwa Tetap*</label>
               <input type="integer" class="form-control" name="jml_jiwa_tetap" value="{{ old('jml_jiwa_tetap') }}">
               {{-- @error('jml_jiwa_tetap')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -231,7 +231,7 @@
 
           <div class="col-sm-2">
             <div class="form-group">
-              <label>Jml Jiwa Tidak tetap</label>
+              <label>Jml Jiwa Tidak tetap*</label>
               <input type="integer" class="form-control" name="jml_jiwa_tidak_tetap" value="{{ old('jml_jiwa_tidak_tetap') }}">
               {{-- @error('jml_jiwa_tidak_tetap')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -241,7 +241,7 @@
         </div>
       <div class="row">
         <div class="col-md-2">
-          <div>segel</div>
+          <div>segel*</div>
           @error('segel')
           <div class="alert alert-danger">{{ $message }}</div>
            @enderror
@@ -256,7 +256,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <div>stop kran</div>
+          <div>stop kran*</div>
           @error('stop_kran')
               <div class="alert alert-danger">{{ $message }}</div>
               @enderror
@@ -269,7 +269,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <div>ceck valve</div>
+          <div>ceck valve*</div>
           @error('ceck_valve')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -283,7 +283,7 @@
         </div>
         
         <div class="col-md-2">
-          <div>kopling</div>
+          <div>kopling*</div>
           @error('kopling')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -296,7 +296,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <div>plug</div>
+          <div>plug*</div>
           @error('plugran')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -309,7 +309,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <div>box</div>
+          <div>box*</div>
           @error('box')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -348,7 +348,7 @@
           <div class="col-sm-4">
             <!-- Select multiple-->
             <div class="form-group">
-            <label>Merek Warter Meter</label>
+            <label>Merek Warter Meter*</label>
             <select name="id_merek" class="form-control">
               <option value="">--- Merek ---</option>
               @foreach($mer as $item)
@@ -363,7 +363,7 @@
           <div class="col-sm-4">
             <!-- Select multiple-->
             <div class="form-group">
-            <label>Golongan Tarip</label>
+            <label>Golongan Tarip*</label>
             <select name="id_golongan" class="form-control">
               <option value="">--- Golongan ---</option>
               @foreach($gol as $item)
@@ -377,7 +377,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label>No Seri</label>
+              <label>No Seri*</label>
               <input type="no_seri" class="form-control" name="no_seri" value="{{ old('no_seri') }}">
               @error('no_seri')
               <div class="alert alert-danger">{{ $message }}</div>
@@ -390,7 +390,7 @@
             <!-- checkbox -->
             <div class="form-group">
               <div class="form-input">
-               <label>Tanggal Penetapan Dil</label>
+               <label>Tanggal File*</label>
                 <input type="date" class="form-control" name="tanggal_pasang" value="{{ old('tanggal_pasang') }}">
                 @error('tanggal_pasang')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -403,7 +403,7 @@
             <!-- checkbox -->
             <div class="form-group">
               <div class="form-input">
-               <label>Tanggal Pasang</label>
+               <label>Tanggal Pasang*</label>
                 <input type="date" class="form-control" name="tanggal_file" value="{{ old('tanggal_file') }}">
                 @error('tanggal_file')
                 <div class="alert alert-danger">{{ $message }}</div>
